@@ -13,6 +13,9 @@ RIGHT   = 0x08
 FIRE    = 0x10
 STOP    = 0x20
 
+MOTOR   = 0x02
+LED     = 0x03
+
 Launcher = None
 
 def usage():
@@ -37,10 +40,10 @@ def init():
     Launcher.set_configuration()
 
 def send(cmd):
-    Launcher.ctrl_transfer(0x21, 0x09, 0, 0, [0x02, cmd, 0x00,0x00,0x00,0x00,0x00,0x00])
+    Launcher.ctrl_transfer(0x21, 0x09, 0, 0, [MOTOR, cmd, 0x00,0x00,0x00,0x00,0x00,0x00])
 
 def led(cmd):
-    Launcher.ctrl_transfer(0x21, 0x09, 0, 0, [0x03, cmd, 0x00,0x00,0x00,0x00,0x00,0x00])
+    Launcher.ctrl_transfer(0x21, 0x09, 0, 0, [LED, cmd, 0x00,0x00,0x00,0x00,0x00,0x00])
 
 def move(cmd, duration_ms):
     send(cmd)
@@ -90,7 +93,6 @@ def main(args):
     if len(args) > 2:
         value = int(args[2])
     execute(command, value)
-
 
 if __name__ == '__main__':
     main(sys.argv)
