@@ -16,7 +16,7 @@ STOP    = 0x20
 Launcher = None
 
 def usage():
-    print "Help"
+    print "============ USAGE ============="
     print "missile.py [command] [value]"
     print "commands: right, left, up, down, fire, sleep, park, led"
 
