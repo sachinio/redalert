@@ -1,7 +1,7 @@
 <?php
   $cmd = $_GET['cmd'];
   $val = $_GET['val'];
-  exec("sudo python ../redalert/missile.py $cmd $val");
+  exec("sudo python ../missile.py $cmd $val");
 ?>
 
 
