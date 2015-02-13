@@ -3,13 +3,10 @@
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 </head>
 <body>
-<button onclick="run()">Click Me</button>
+<button onclick="run()">Fire</button>
 <script>
     var run = function(){
-        alert('ready?');
-        $.get("php/missilecmd.php?link=google.com", function(data){
-          alert(data);
-        });
+        $.get("php/missilecmd.php?cmd=fire", function(data){});
     }
 </script>
 </body>
