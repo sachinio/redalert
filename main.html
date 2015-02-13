@@ -1,0 +1,16 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+<button onclick="run()">Click Me</button>
+<script>
+    var run = function(){
+        alert('ready?');
+        $.get("../command.php?link=google.com", function(data){
+          alert(data);
+        });
+    }
+</script>
+</body>
+</html>
