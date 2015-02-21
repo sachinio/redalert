@@ -1,23 +1,43 @@
 <html>
 <head>
     <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <style>
+        .camControl button{
+            height: 30px;
+            padding: 3px;
+        }
+        .camControl .top, .bottom{
+            display: block;
+            width: 206px;
+        }
+        .camControl .left, .right{
+            width: 101px;
+        }
+    </style>
 </head>
 <body>
-<button onclick="run('fire',0)">Fire</button>
+<!-- <button onclick="run('fire',0)">Fire</button>
 <button onclick="run('right',500)">Right</button>
 <button onclick="run('left',500)">Left</button>
 <button onclick="run('up',500)">Up</button>
 <button onclick="run('down',500)">Down</button>
-<button onclick="run('park',500)">Park</button>
-<img id="cam" src="ram/cam.jpg"/>
+<button onclick="run('park',500)">Park</button> -->
+<duv class="camControl">
+    <img id="cam" src="ram/cam.jpg"/>
+    <button class="top">UP</button>
+    <button class="left">LEFT</button>
+    <button class="right">RIGHT</button>
+    <button class="bottom">BOTTOM</button>
+</div>
 <script>
+    var intervalId = 0;
     var run = function(cmd,val){
         $.get("php/missilecmd.php?cmd="+cmd+"&val="+val);
     }
     
-    setInterval(function(){
+    /*setInterval(function(){
         $("#cam").attr("src","ram/cam.jpg?"+new Date().getTime());
-},150);
+},150);*/
 </script>
 </body>
 </html>
