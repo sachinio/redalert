@@ -25,8 +25,8 @@
 <div class="camControl">
     <img id="cam" src="../ram/cam.jpg"/>
     <button class="top" onclick="send(1,1)">UP</button>
-    <button class="left" onclick="send(0,1)">LEFT</button>
-    <button class="right" onclick="send(0,0)">RIGHT</button>
+    <button class="left" onclick="send(0,0)">LEFT</button>
+    <button class="right" onclick="send(0,1)">RIGHT</button>
     <button class="bottom" onclick="send(1,0)">BOTTOM</button>
     <span>Cam On</span><input class="camButton" type="checkbox" onclick="toggleCam()">
 </div>
@@ -60,8 +60,8 @@
             }
         }
 
-        //a = Math.max(-70, a);
-        //a = Math.min(70, a);
+        a = Math.max(10, a);
+        a = Math.min(170, a);
 
         makeGetCall(a,s);
     }
