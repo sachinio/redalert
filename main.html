@@ -45,7 +45,9 @@
             a=angle+=10;
         }
 
-        $.get("php/camcmd.php?angle="+a+"&sno="+s);
+        $.get("php/camcmd.php?angle="+a+"&sno="+s, function(data){
+            alert(data)
+        });
     }
     
     /*setInterval(function(){
