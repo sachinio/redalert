@@ -53,15 +53,15 @@
                 a = angleV -= 10;
             }
         }else{
-            if(p==0) {
+            if(p==1) {
                 a = angle += 10;
             }else{
                 a = angle -= 10;
             }
         }
 
-        a = Math.max(-70, a);
-        a = Math.min(70, a);
+        //a = Math.max(-70, a);
+        //a = Math.min(70, a);
 
         makeGetCall(a,s);
     }
