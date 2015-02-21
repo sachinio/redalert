@@ -20,5 +20,6 @@ int main(int argc, char *argv[]){
   int newPos = 6 + (17 * pos/180);
   softPwmWrite(pin, newPos);
   delay(tdelay);
+  printf("servo is now at %s",argv[1]);
   return 0;
 }
