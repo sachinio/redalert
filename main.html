@@ -45,8 +45,8 @@
             a=angle+=10;
         }
 
-        $.get("php/camcmd.php?angle="+a+"&sno="+s, function(data){
-            alert(data)
+        $.get("php/camcmd.php?angle="+a+"&sno="+s, function(output){
+            console.log('camcmd output: '+ output);
         });
     }
     
