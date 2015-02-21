@@ -27,13 +27,14 @@
     <button class="top" onclick="send(1,1)">UP</button>
     <button class="left" onclick="send(0,0)">LEFT</button>
     <button class="right" onclick="send(0,1)">RIGHT</button>
-    <button class="bottom" onclick="send(1,0)">BOTTOM</button>
+    <button class="bottom" onclick="send(1,0)">DOWN</button>
     <span>Cam On</span><input class="camButton" type="checkbox" onclick="toggleCam()">
 </div>
 <script>
     var intervalId = 0;
-    var angleV = 90;
-    var angle = 90;
+    var angleV = 80;
+    var angle = 80;
+
     var run = function(cmd,val){
         $.get("php/missilecmd.php?cmd="+cmd+"&val="+val);
     }
@@ -71,6 +72,9 @@
 
         makeServoCall(a,s);
     }
+
+    send(1,1);
+    send(0,1);
 
     var toggleCam = function () {
         var checked = $('.camButton').attr('checked');
