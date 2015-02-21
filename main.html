@@ -22,12 +22,13 @@
 <button onclick="run('up',500)">Up</button>
 <button onclick="run('down',500)">Down</button>
 <button onclick="run('park',500)">Park</button> -->
-<duv class="camControl">
+<div class="camControl">
     <img id="cam" src="ram/cam.jpg"/>
     <button class="top" onclick="send(1)">UP</button>
     <button class="left">LEFT</button>
     <button class="right">RIGHT</button>
     <button class="bottom">BOTTOM</button>
+    <span>Cam On</span><input class="camButton" type="checkbox" onclick="toggleCam()">
 </div>
 <script>
     var intervalId = 0;
@@ -49,10 +50,19 @@
             console.log('camcmd output: '+ output);
         });
     }
-    
-    /*setInterval(function(){
-        $("#cam").attr("src","ram/cam.jpg?"+new Date().getTime());
-},150);*/
+
+    var toggleCam = function () {
+        var checked = $('.camButton').attr('checked');
+        if(checked){
+            $('.camButton').attr('checked', false);
+            clearInterval(intervalId);
+        }else{
+            $('.camButton').attr('checked', true);
+            intervalId =  setInterval(function(){
+                $("#cam").attr("src","../ram/cam.jpg?"+new Date().getTime());
+            },150);
+        }
+    }
 </script>
 </body>
 </html>
