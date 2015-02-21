@@ -77,8 +77,10 @@
         if(checked){
             $('.camButton').attr('checked', false);
             clearInterval(intervalId);
+            makeCamCall(0);
         }else{
             $('.camButton').attr('checked', true);
+            makeCamCall(1);
             intervalId =  setInterval(function(){
                 $("#cam").attr("src","../ram/cam.jpg?"+new Date().getTime());
             },150);
