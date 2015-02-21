@@ -4,7 +4,6 @@
     <style>
         .camControl button{
             height: 30px;
-            padding: 3px;
         }
         .camControl .top, .bottom{
             display: block;
@@ -35,8 +34,8 @@
     var angleV = 80;
     var angle = 80;
 
-    var run = function(cmd,val){
-        $.get("php/missilecmd.php?cmd="+cmd+"&val="+val);
+    var run = function(cmd,val) {
+        $.get("php/missilecmd.php?cmd=" + cmd + "&val=" + val);
     }
 
     var makeServoCall = function(a,s){
