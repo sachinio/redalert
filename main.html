@@ -23,11 +23,11 @@
 <button onclick="run('down',500)">Down</button>
 <button onclick="run('park',500)">Park</button> -->
 <div class="camControl">
-    <img id="cam" src="ram/cam.jpg"/>
-    <button class="top" onclick="send(1)">UP</button>
-    <button class="left">LEFT</button>
-    <button class="right">RIGHT</button>
-    <button class="bottom">BOTTOM</button>
+    <img id="cam" src="../ram/cam.jpg"/>
+    <button class="top" onclick="send(1,1)">UP</button>
+    <button class="left" onclick="send(0,1)">LEFT</button>
+    <button class="right" onclick="send(0,0)">RIGHT</button>
+    <button class="bottom" onclick="send(1,0)">BOTTOM</button>
     <span>Cam On</span><input class="camButton" type="checkbox" onclick="toggleCam()">
 </div>
 <script>
@@ -38,17 +38,32 @@
         $.get("php/missilecmd.php?cmd="+cmd+"&val="+val);
     }
 
-    var send = function(s){
-        var a;
-        if(s === 1){
-            a=angleV+=10;
-        }else{
-            a=angle+=10;
-        }
-
+    var makeGetCall = function(a,s){
         $.get("php/camcmd.php?angle="+a+"&sno="+s, function(output){
             console.log('camcmd output: '+ output);
         });
+    }
+
+    var send = function(s,p){
+        var a = 0;
+        if(s === 1){
+            if(p==1) {
+                a = angleV += 10;
+            }else{
+                a = angleV -= 10;
+            }
+        }else{
+            if(p==0) {
+                a = angle += 10;
+            }else{
+                a = angle -= 10;
+            }
+        }
+
+        a = Math.max(-70, a);
+        a = Math.min(70, a);
+
+        makeGetCall(a,s);
     }
 
     var toggleCam = function () {
