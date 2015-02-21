@@ -24,15 +24,28 @@
 <button onclick="run('park',500)">Park</button> -->
 <duv class="camControl">
     <img id="cam" src="ram/cam.jpg"/>
-    <button class="top">UP</button>
+    <button class="top" onclick="send(1)">UP</button>
     <button class="left">LEFT</button>
     <button class="right">RIGHT</button>
     <button class="bottom">BOTTOM</button>
 </div>
 <script>
     var intervalId = 0;
+    var angleV = 0;
+    var angle = 0;
     var run = function(cmd,val){
         $.get("php/missilecmd.php?cmd="+cmd+"&val="+val);
+    }
+
+    var send = function(s){
+        var a;
+        if(s === 1){
+            a=angleV+=10;
+        }else{
+            a=angle+=10;
+        }
+
+        $.get("php/camcmd.php?angle="+a+"&sno="+s);
     }
     
     /*setInterval(function(){

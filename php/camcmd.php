@@ -1,3 +1,4 @@
 <?php
-$val = $_GET['val'];
-exec("sudo  $val");
+$angle = $_GET['angle'];
+$sno = $_GET['sno'];
+exec("sudo ./home/pi/code/cInterfaces/servo $angle $sno");
