@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<button onclick="run('fire',0)">Fire</button>
+<button onclick="run('right',500)">Right</button>
+<button onclick="run('left',500)">Left</button>
+<button onclick="run('up',500)">Up</button>
+<button onclick="run('down',500)">Down</button>
+<button onclick="run('park',500)">Park</button>
+<script>
+    var run = function(cmd,val) {
+        $.get("missile/missilecmd.php?cmd=" + cmd + "&val=" + val);
+    }
+</script>
+</body>
+</html>
