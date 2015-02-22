@@ -7,9 +7,9 @@
         }
         .camControl .top, .bottom{
             display: block;
-            width: 206px;
+            width: 311px;
         }
-        .camControl .left, .right{
+        .camControl .left, .center, .right{
             width: 101px;
         }
     </style>
@@ -25,6 +25,7 @@
     <img id="cam" src="../ram/cam.jpg"/>
     <button class="top" onclick="send(1,1)">UP</button>
     <button class="left" onclick="send(0,0)">LEFT</button>
+    <button class="right" onclick="center()">CENTER</button>
     <button class="right" onclick="send(0,1)">RIGHT</button>
     <button class="bottom" onclick="send(1,0)">DOWN</button>
     <span>Cam On</span><input class="camButton" type="checkbox" onclick="toggleCam()">
@@ -50,6 +51,13 @@
         });
     }
 
+    var center = function(){
+        angle = 80;
+        angleV = 80;
+        send(1,1);
+        send(0,1);
+    }
+
     var send = function(s,p){
         var a = 0;
         if(s === 1){
@@ -72,8 +80,7 @@
         makeServoCall(a,s);
     }
 
-    send(1,1);
-    send(0,1);
+    center();
 
     var toggleCam = function () {
         var checked = $('.camButton').attr('checked');
