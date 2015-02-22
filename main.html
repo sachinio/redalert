@@ -66,8 +66,8 @@
             }
         }
 
-        a = Math.max(10, a);
-        a = Math.min(170, a);
+        a = Math.max(s===1?10:0, a);
+        a = Math.min(s===1?170:180, a);
 
         makeServoCall(a,s);
     }
