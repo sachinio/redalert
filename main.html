@@ -66,14 +66,15 @@
             $('#record').attr('record','true');
             $('#record').text('Stop Recording');
             cmd = "ca 1";
-            cmd
         }else{
             $('#record').attr('record','false');
             $('#record').text('Start Recording');
             cmd = "ca 2";
         }
 
-        $.get("php/pipe_cmd.php?cmd="+cmd);
+        $.get("php/pipe_cmd.php?cmd="+cmd,function(){
+            console.log("written to PIPE");
+        });
     }
 
     var send = function(s,p){
