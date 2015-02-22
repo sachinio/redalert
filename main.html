@@ -21,14 +21,15 @@
 <button onclick="run('up',500)">Up</button>
 <button onclick="run('down',500)">Down</button>
 <button onclick="run('park',500)">Park</button> -->
+<img id="cam" src="../ram/cam.jpg"/>
 <div class="camControl">
-    <img id="cam" src="../ram/cam.jpg"/>
     <button class="top" onclick="send(1,1)">UP</button>
     <button class="left" onclick="send(0,0)">LEFT</button>
-    <button class="right" onclick="center()">CENTER</button>
+    <button class="center" onclick="center()">CENTER</button>
     <button class="right" onclick="send(0,1)">RIGHT</button>
     <button class="bottom" onclick="send(1,0)">DOWN</button>
     <span>Cam On</span><input class="camButton" type="checkbox" onclick="toggleCam()">
+    <button id="record" record="false" onclick="record()">Start Recording</button>
 </div>
 <script>
     var intervalId = 0;
@@ -56,6 +57,23 @@
         angleV = 80;
         send(1,1);
         send(0,1);
+    }
+
+    var record = function(){
+        var state = $('#record').attr('record');
+        var cmd;
+        if(state === false){
+            $('#record').attr('record','true');
+            $('#record').text('Stop Recording');
+            cmd = "ca 1";
+            cmd
+        }else{
+            $('#record').attr('record','false');
+            $('#record').text('Start Recording');
+            cmd = "ca 2";
+        }
+
+        $.get("php/pipe_cmd.php?cmd="+cmd);
     }
 
     var send = function(s,p){
