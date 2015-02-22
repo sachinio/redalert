@@ -62,14 +62,14 @@
     var record = function(){
         var state = $('#record').attr('record');
         var cmd;
-        if(state === false){
+        if(state === 'false'){
             $('#record').attr('record','true');
             $('#record').text('Stop Recording');
             cmd = "ca 1";
         }else{
             $('#record').attr('record','false');
             $('#record').text('Start Recording');
-            cmd = "ca 2";
+            cmd = "ca 0";
         }
 
         $.get("php/pipe_cmd.php?cmd="+cmd,function(){
