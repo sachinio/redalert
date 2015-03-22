@@ -4,14 +4,50 @@
     <meta charset="UTF-8">
     <title></title>
     <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <style>
+        input {
+            border: 5px solid white;
+            -webkit-box-shadow:
+            inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1);
+            -moz-box-shadow:
+            inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1);
+            box-shadow:
+            inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 16px rgba(0,0,0,0.1);
+            padding: 15px;
+            background: rgba(255,255,255,0.5);
+            margin: 0 0 10px 0;
+            width: 200px;
+        }
+    </style>
 </head>
 <body>
-<button onclick="run('R',20)">Send</button>
+<input id="addr" type="text" placeholder="64 bit Address" value="00 13 A2 00 40 C1 AC 62">
+<input id="cmd" type="text" placeholder="Command" value="R">
+<input id="del" type="number" placeholder="delay in ms" value="40">
+<input id="bri" type="number" placeholder="Brightness(0-100)" value="20">
+<input id="rgb" type="text" placeholder="R,G,B" value="255,0,0">
+<input id="tout" type="number" placeholder="Timeout in seconds" value="5">
+<button onclick="send()">Send</button>
 </body>
 
 <script>
-    var run = function(cmd,val) {
-        $.get("lights/lights_cmd.php?cmd=" + cmd + "&val=" + val);
+    var send = function(){
+        var addr = $('#addr').val();
+        var cmd = $('#cmd').val();
+        var del = $('#del').val();
+        var bri = $('#bri').val();
+        var rgb = $('#rgb').val();
+        var tout = $('#tout').val();
+        run(addr,cmd,del,bri,rgb,tout);
+    }
+    var run = function(addr, cmd, del, bri, rgb, tout) {
+        var getCmd = "lights/lights_cmd.php?cmd=" + cmd + "&del=" + del + "&bri="
+                + bri + "&rgb=" + rgb + "&tout=" + tout+ "&addr=" + addr;
+        console.log(getCmd);
+        $.get(getCmd);
     }
 </script>
 </html>

@@ -35,8 +35,8 @@ def createFrame(address, data):
 
 ser = serial.Serial('/dev/ttyUSB0', baudrate=9600, timeout=3.0);
 
-address = "00 13 A2 00 40 C1 AC 62"
-data = sys.argv[1]+","+sys.argv[2]+",20,100,40,0,3"
+address = sys.argv[1]
+data = sys.argv[2]+","+sys.argv[3]+","+sys.argv[4]+","+sys.argv[5]+","+sys.argv[6]
 
 frame = createFrame(address, data)
 ser.write(frame)
