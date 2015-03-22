@@ -5,6 +5,12 @@
     <title></title>
 </head>
 <body>
-
+<button onclick="run('R',20)">Send</button>
 </body>
+
+<script>
+    var run = function(cmd,val) {
+        $.get("lights/lights_cmd.php?cmd=" + cmd + "&val=" + val);
+    }
+</script>
 </html>
