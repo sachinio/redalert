@@ -28,7 +28,7 @@
 <input id="cmd" type="text" placeholder="Command" value="R">
 <input id="del" type="text" placeholder="delay in ms" value="40">
 <input id="bri" type="text" placeholder="Brightness(0-100)" value="20">
-<input id="rgb" type="text" placeholder="R,G,B" value="255,0,0">
+<input id="rgb" type="color" placeholder="R,G,B" value="#2fffaa">
 <input id="tout" type="text" placeholder="Timeout in seconds" value="5">
 <button onclick="send()">Send</button>
 </body>
@@ -41,6 +41,12 @@
         var bri = $('#bri').val();
         var rgb = $('#rgb').val();
         var tout = $('#tout').val();
+
+        R = hexToR(rgb);
+        G = hexToG(rgb);
+        B = hexToB(rgb);
+
+        rgb = R+','+G+','+B;
         run(addr,cmd,del,bri,rgb,tout);
     }
     var run = function(addr, cmd, del, bri, rgb, tout) {
@@ -51,5 +57,10 @@
             console.log(d);
         });
     }
+
+    function hexToR(h) {return parseInt((cutHex(h)).substring(0,2),16)}
+    function hexToG(h) {return parseInt((cutHex(h)).substring(2,4),16)}
+    function hexToB(h) {return parseInt((cutHex(h)).substring(4,6),16)}
+    function cutHex(h) {return (h.charAt(0)=="#") ? h.substring(1,7):h}
 </script>
 </html>

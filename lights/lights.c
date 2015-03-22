@@ -11,6 +11,7 @@ char MSG[25], CMD[30];
 int DEL = 50, BRI = 20, R = 255, G = 100, B = 50, TOUT = 0;
 int x;
 long t;
+
 Adafruit_NeoMatrix pixels = Adafruit_NeoMatrix(8, 8, PIN,
   NEO_MATRIX_TOP     + NEO_MATRIX_RIGHT +
   NEO_MATRIX_COLUMNS + NEO_MATRIX_PROGRESSIVE,
@@ -46,12 +47,12 @@ void setupMatrix(){
 }
 
 void checkTimeout(){
-if(TOUT == 0)
-return;
-if(millis()>t){
-  CMD[0] = 'O';
+    if(TOUT == 0)
+        return;
+    if(millis()>t)
+      CMD[0] = 'O';
 }
-}
+
 void checkSerialAPI(){
     xbee.readPacket();
 
@@ -153,7 +154,6 @@ void loop() {
     break;
     case 'O': off();
   }
-  //wordloop();
 }
 
 void off(){
@@ -257,8 +257,7 @@ void disco(int del, int brightness){
   delay(del * random(1,3));
 }
 
-void splitString(char* chars, char* cmd,
-int &num1, int &num2, int &num3, int &num4, int &num5, int &num6) {
+void splitString(char* chars, char* cmd, int &num1, int &num2, int &num3, int &num4, int &num5, int &num6) {
   const int MaxValLen = 25;
   char val1[MaxValLen]={};
   char val2[MaxValLen]={};
