@@ -47,7 +47,9 @@
         var getCmd = "lights/lights_cmd.php?cmd=" + cmd + "&del=" + del + "&bri="
                 + bri + "&rgb=" + rgb + "&tout=" + tout+ "&addr=" + addr;
         console.log(getCmd);
-        $.get(getCmd);
+        $.get(getCmd, function(d){
+            console.log(d);
+        });
     }
 </script>
 </html>
