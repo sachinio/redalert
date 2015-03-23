@@ -5,6 +5,39 @@
     <title></title>
     <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
     <style>
+        .nicebutton {
+            height: 38px;
+            text-align: center;
+            border-radius: 28px;
+            background: #13b5ea;
+            background: -moz-linear-gradient(top, #13b5ea, #0f91bb);
+            background: -webkit-gradient(linear, 0 0, 0 100%, from(#13b5ea), to(#0f91bb));
+            background: -webkit-linear-gradient(top, #13b5ea, #0f91bb);
+            background: -o-linear-gradient(top, #13b5ea, #0f91bb);
+            background: linear-gradient(to bottom, #13b5ea, #0f91bb);
+            -webkit-transition: 0.5s;
+            -moz-transition: 0.5s;
+            -o-transition: 0.5s;
+            transition: 0.5s;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 13px;
+            line-height: 28px;
+            margin: 5px 0;
+            padding: 0 20px;
+            border: 5px solid #c8e6f0;
+        }
+
+        .nicebutton.green {
+            background: #33B3B3;
+            background: -moz-linear-gradient(top, #33B3B3, #008080);
+            background: -webkit-gradient(linear, 0 0, 0 100%, from(#33B3B3), to(#008080));
+            background: -webkit-linear-gradient(top, #33B3B3, #008080);
+            background: -o-linear-gradient(top, #33B3B3, #008080);
+            background: linear-gradient(to bottom, #33B3B3, #008080);
+            border: 5px solid #CCFFFF;
+        }
+
         input {
             border: 5px solid white;
             -webkit-box-shadow:
@@ -20,6 +53,7 @@
             background: rgba(255,255,255,0.5);
             margin: 0 0 10px 0;
             width: 200px;
+            display: block;
         }
     </style>
 </head>
@@ -30,7 +64,7 @@
 <input id="bri" type="text" placeholder="Brightness(0-100)" value="20">
 <input id="rgb" type="color" placeholder="R,G,B" value="#fffc00">
 <input id="tout" type="text" placeholder="Timeout in seconds" value="5">
-<button onclick="send()">Send</button>
+<button class="nicebutton green" onclick="send()">Send</button>
 </body>
 
 <script>
