@@ -4,61 +4,14 @@
     <meta charset="UTF-8">
     <title></title>
     <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
-    <style>
-        .nicebutton {
-            height: 38px;
-            text-align: center;
-            border-radius: 28px;
-            background: #13b5ea;
-            background: -moz-linear-gradient(top, #13b5ea, #0f91bb);
-            background: -webkit-gradient(linear, 0 0, 0 100%, from(#13b5ea), to(#0f91bb));
-            background: -webkit-linear-gradient(top, #13b5ea, #0f91bb);
-            background: -o-linear-gradient(top, #13b5ea, #0f91bb);
-            background: linear-gradient(to bottom, #13b5ea, #0f91bb);
-            -webkit-transition: 0.5s;
-            -moz-transition: 0.5s;
-            -o-transition: 0.5s;
-            transition: 0.5s;
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 13px;
-            line-height: 28px;
-            margin: 5px 0;
-            padding: 0 20px;
-            border: 5px solid #c8e6f0;
-        }
-
-        .nicebutton.green {
-            background: #33B3B3;
-            background: -moz-linear-gradient(top, #33B3B3, #008080);
-            background: -webkit-gradient(linear, 0 0, 0 100%, from(#33B3B3), to(#008080));
-            background: -webkit-linear-gradient(top, #33B3B3, #008080);
-            background: -o-linear-gradient(top, #33B3B3, #008080);
-            background: linear-gradient(to bottom, #33B3B3, #008080);
-            border: 5px solid #CCFFFF;
-        }
-
-        input {
-            border: 5px solid white;
-            -webkit-box-shadow:
-            inset 0 0 8px  rgba(0,0,0,0.1),
-            0 0 16px rgba(0,0,0,0.1);
-            -moz-box-shadow:
-            inset 0 0 8px  rgba(0,0,0,0.1),
-            0 0 16px rgba(0,0,0,0.1);
-            box-shadow:
-            inset 0 0 8px  rgba(0,0,0,0.1),
-            0 0 16px rgba(0,0,0,0.1);
-            padding: 15px;
-            background: rgba(255,255,255,0.5);
-            margin: 0 0 10px 0;
-            width: 200px;
-            display: block;
-        }
-    </style>
+    <link rel="stylesheet" href="css\style.css">
 </head>
 <body>
-<input id="addr" type="text" placeholder="64 bit Address" value='"00 13 A2 00 40 C1 AC 62"'>
+<select id="addr">
+    <option value='"00 13 A2 00 40 C1 AC 62"'>Sachin</option>
+    <option value='"00 13 A2 00 40 CA B4 1E"'>Diego/option>
+    <option value='"00 00 00 00 00 00 FF FF"'>Broadcast</option>
+</select>
 <input id="cmd" type="text" placeholder="Command" value="R">
 <input id="del" type="text" placeholder="delay in ms" value="40">
 <input id="bri" type="text" placeholder="Brightness(0-100)" value="20">
@@ -69,7 +22,7 @@
 
 <script>
     var send = function(){
-        var addr = $('#addr').val();
+        var addr = $("#addr option:selected").val();
         var cmd = $('#cmd').val();
         var del = $('#del').val();
         var bri = $('#bri').val();

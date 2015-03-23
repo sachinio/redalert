@@ -1,0 +1,56 @@
+.nicebutton {
+    height: 38px;
+    text-align: center;
+    border-radius: 28px;
+    background: #13b5ea;
+    background: -moz-linear-gradient(top, #13b5ea, #0f91bb);
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#13b5ea), to(#0f91bb));
+    background: -webkit-linear-gradient(top, #13b5ea, #0f91bb);
+    background: -o-linear-gradient(top, #13b5ea, #0f91bb);
+    background: linear-gradient(to bottom, #13b5ea, #0f91bb);
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 28px;
+    margin: 5px 0;
+    padding: 0 20px;
+    border: 5px solid #c8e6f0;
+    width: 240px;
+}
+
+.nicebutton.green {
+    background: #33B3B3;
+    background: -moz-linear-gradient(top, #33B3B3, #008080);
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#33B3B3), to(#008080));
+    background: -webkit-linear-gradient(top, #33B3B3, #008080);
+    background: -o-linear-gradient(top, #33B3B3, #008080);
+    background: linear-gradient(to bottom, #33B3B3, #008080);
+    border: 5px solid #CCFFFF;
+}
+
+input, select {
+    border: 5px solid white;
+    -webkit-box-shadow:
+    inset 0 0 8px  rgba(0,0,0,0.1),
+    0 0 16px rgba(0,0,0,0.1);
+    -moz-box-shadow:
+    inset 0 0 8px  rgba(0,0,0,0.1),
+    0 0 16px rgba(0,0,0,0.1);
+    box-shadow:
+    inset 0 0 8px  rgba(0,0,0,0.1),
+    0 0 16px rgba(0,0,0,0.1);
+    padding: 15px;
+    background: rgba(255,255,255,0.5);
+    margin: 0 0 10px 0;
+    width: 200px;
+    display: block;
+}
+
+select{
+    width: 240px;
+    height: 53px;
+}
