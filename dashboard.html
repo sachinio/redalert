@@ -12,7 +12,7 @@
     <option value='"00 13 A2 00 40 CA B4 1E"'>Diego</option>
     <option value='"00 00 00 00 00 00 FF FF"'>Broadcast</option>
 </select>
-<select id="addr">
+<select id="cmd">
     <option value='R'>Running</option>
     <option value='P'>Police</option>
     <option value='F'>Flashing</option>
@@ -20,7 +20,6 @@
     <option value="D">Disco</option>
     <option value="O">Off</option>
 </select>
-<input id="cmd" type="text" placeholder="Commands (R,P,F,S,D,O)" value="R">
 <input id="del" type="number" placeholder="delay in ms" value="40">
 <input id="bri" type="number" placeholder="Brightness(0-100)" value="20">
 <input id="rgb" type="color" placeholder="R,G,B" value="#fffc00">
@@ -31,7 +30,7 @@
 <script>
     var send = function(){
         var addr = $("#addr option:selected").val();
-        var cmd = $('#cmd').val();
+        var cmd = $("#cmd option:selected").val();
         var del = $('#del').val();
         var bri = $('#bri').val();
         var rgb = $('#rgb').val();
