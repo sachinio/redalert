@@ -1,5 +1,5 @@
 from __future__ import print_function
-import serial
+import serial, fcntl
 import time
 import sys
 
@@ -33,11 +33,11 @@ def createFrame(address, data):
 
     return cmd
 
-ser = serial.Serial('/dev/ttyUSB0', baudrate=9600, timeout=3.0);
-
 address = sys.argv[1]
 data = sys.argv[2]+","+sys.argv[3]+","+sys.argv[4]+","+sys.argv[5]+","+sys.argv[6]
 
 frame = createFrame(address, data)
+
+ser = serial.Serial('/dev/ttyUSB0', baudrate=9600, timeout=3.0);
+fcntl.flock(ser.fileno(), fcntl.LOCK_EX)
 ser.write(frame)
-ser.close()
