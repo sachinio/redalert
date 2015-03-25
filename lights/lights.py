@@ -39,9 +39,6 @@ data = sys.argv[2]+","+sys.argv[3]+","+sys.argv[4]+","+sys.argv[5]+","+sys.argv[
 frame = createFrame(address, data)
 
 ser = serial.Serial('/dev/ttyUSB0', baudrate=9600, timeout=3.0);
-print('port opened ...')
+#locking port
 fcntl.flock(ser.fileno(), fcntl.LOCK_EX)
-print('port locked ...')
-time.sleep(20)
 ser.write(frame)
-print('written ...')
