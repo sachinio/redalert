@@ -33,13 +33,13 @@
     var angle = 80;
 
     var makeServoCall = function(a,s){
-        $.get("camera/servo_cmd.php?angle="+a+"&sno="+s, function(output){
+        $.get("../camera/servo_cmd.php?angle="+a+"&sno="+s, function(output){
             console.log('servo_cmd output: '+ output);
         });
     };
 
     var makeCamCall = function(state){
-        $.get("camera/cam_cmd.php?on="+state, function(output){
+        $.get("../camera/cam_cmd.php?on="+state, function(output){
             console.log('cam_cmd output: '+ output);
         });
     }
@@ -64,7 +64,7 @@
             cmd = "ca 0";
         }
 
-        $.get("camera/pipe_cmd.php?cmd="+cmd,function(){
+        $.get("../camera/pipe_cmd.php?cmd="+cmd,function(){
             console.log("written to PIPE");
         });
     }
@@ -103,7 +103,7 @@
             $('.camButton').attr('checked', true);
             makeCamCall(1);
             intervalId =  setInterval(function(){
-                $("#cam").attr("src","../ram/cam.jpg?"+new Date().getTime());
+                $("#cam").attr("src","../../ram/cam.jpg?"+new Date().getTime());
             },parseInt($('#slider').val()));
         }
     }
