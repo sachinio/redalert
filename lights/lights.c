@@ -11,7 +11,7 @@ char MSG[25], CMD[30];
 int DEL = 100, BRI = 20, R = 255, G = 100, B = 50, TOUT = 0;
 int x;
 long t;
-Adafruit_NeoMatrix pixels = Adafruit_NeoMatrix(8, 8, PIN,
+Adafruit_NeoMatrix pixels = Adafruit_NeoMatrix(8, 8 , PIN,
   NEO_MATRIX_TOP     + NEO_MATRIX_RIGHT +
   NEO_MATRIX_COLUMNS + NEO_MATRIX_PROGRESSIVE,
   NEO_GRB            + NEO_KHZ800);
@@ -256,29 +256,32 @@ void runningLights(int del, int brightness){
 
 void disco(int del, int brightness){
   pixels.setBrightness(brightness);
-  int r = random(0,256);
-  int g = random(0,256);
-  int b = random(0,256);
+  
   for(int i=0;i<NUMPIXELS;i++){
-    int r = random(0,2);
-    if(r == 0){
-      pixels.setPixelColor(i,r,g,b);
+    int ran = random(0,2);
+    if(ran == 0){
+        int r = random(0,256);
+        int g = random(0,256);
+        int b = random(0,256);
+        pixels.setPixelColor(i,r,g,b);
     }
   }
   pixels.show();
   delay(del * random(1,4));
   for(int i=0;i<NUMPIXELS;i++){
-    int r = random(0,4);
-    if(r !=0){
-      pixels.setPixelColor(i,0,0,0);
+    int ran = random(0,4);
+    if(ran !=0){
+        int r = random(0,256);
+        int g = random(0,256);
+        int b = random(0,256);
+        pixels.setPixelColor(i,0,0,0);
     }
   }
   pixels.show();
   delay(del * random(1,3));
 }
 
-void splitString(char* chars, char* cmd, 
-int &num1, int &num2, int &num3, int &num4, int &num5, int &num6) {
+void splitString(char* chars, char* cmd, int &num1, int &num2, int &num3, int &num4, int &num5, int &num6) {
   const int MaxValLen = 25;
   char val1[MaxValLen]={};
   char val2[MaxValLen]={};
