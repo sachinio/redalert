@@ -30,6 +30,7 @@
     background: -o-linear-gradient(top, #33B3B3, #008080);
     background: linear-gradient(to bottom, #33B3B3, #008080);
     border: 5px solid #CCFFFF;
+    display: block;
 }
 
 input, select {
