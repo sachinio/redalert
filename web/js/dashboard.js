@@ -21,6 +21,14 @@ var run = function(addr, cmd, del, bri, rgb, tout) {
     $.get(getCmd, function(d){
         console.log(d);
     });
+
+    party();
+}
+
+var party = function(){
+    $.get('../sounds/sound_cmd.php', function(d){
+
+    })
 }
 
 function hexToR(h) {return parseInt((cutHex(h)).substring(0,2),16)}
