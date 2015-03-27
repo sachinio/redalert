@@ -35,11 +35,11 @@
 
 .nicebutton.red {
     background: #CC0033;
-    background: -moz-linear-gradient(top, #CC0033, #008080);
-    background: -webkit-gradient(linear, 0 0, 0 100%, from(#CC0033), to(#008080));
-    background: -webkit-linear-gradient(top, #CC0033, #008080);
-    background: -o-linear-gradient(top, #CC0033, #008080);
-    background: linear-gradient(to bottom, #CC0033, #008080);
+    background: -moz-linear-gradient(top, #CC0033, #800080);
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#CC0033), to(#800080));
+    background: -webkit-linear-gradient(top, #CC0033, #800080);
+    background: -o-linear-gradient(top, #CC0033, #800080);
+    background: linear-gradient(to bottom, #CC0033, #800080);
     border: 5px solid #CCFFFF;
     display: block;
 }
