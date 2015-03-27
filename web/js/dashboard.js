@@ -21,8 +21,6 @@ var run = function(addr, cmd, del, bri, rgb, tout) {
     $.get(getCmd, function(d){
         console.log(d);
     });
-
-    party();
 }
 
 var party = function(){
