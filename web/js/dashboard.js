@@ -26,7 +26,7 @@ var run = function(addr, cmd, del, bri, rgb, tout) {
 var pTimeout = 0;
 
 var party = function(){
-   var bri = '50'
+   var bri = '30'
    run('00 00 00 00 00 00 FF FF','P','50',bri,'255,100,0','0');
 
    $.get('../sounds/sound_cmd.php?name=eyemix.mp3');
