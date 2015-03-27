@@ -26,8 +26,7 @@ var run = function(addr, cmd, del, bri, rgb, tout) {
 var pTimeout = 0;
 
 var party = function(){
-    $("#cmd").val('G');
-    $('#del').val('800');
+    run('00 00 00 00 00 00 FF FF','G','800','30','255,100,0','0');
 
     $.get('../sounds/sound_cmd.php?name=eyemix.mp3');
 
@@ -35,10 +34,11 @@ var party = function(){
 
    clearTimeout(pTimeout);
    pTimeout = setTimeout(function(){
-        $("#cmd").val('D');
-        $('#del').val('40');
+        run('00 00 00 00 00 00 FF FF','G','400','30','255,100,0','0');
 
-        send();
+        pTimeout = setTimeout(function(){
+            run('00 00 00 00 00 00 FF FF','D','40','30','255,100,0','0');
+        },15000);
    },15000);
 }
 
