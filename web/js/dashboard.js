@@ -35,8 +35,8 @@ var party = function(){
 
    clearTimeout(pTimeout);
    pTimeout = setTimeout(function(){
-        $("#cmd").val('G');
-        $('#del').val('800');
+        $("#cmd").val('D');
+        $('#del').val('40');
 
         send();
    },15000);
