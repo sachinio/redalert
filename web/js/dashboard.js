@@ -26,7 +26,7 @@ var run = function(addr, cmd, del, bri, rgb, tout) {
 }
 
 var party = function(){
-    $.get('../sounds/sound_cmd.php', function(d){
+    $.get('../sounds/sound_cmd.php?name=eyemix.mp3', function(d){
 
     })
 }
