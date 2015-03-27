@@ -16,7 +16,7 @@ var send = function(){
 
 var run = function(addr, cmd, del, bri, rgb, tout) {
     var getCmd = "../lights/lights_cmd.php?cmd=" + cmd + "&del=" + del + "&bri="
-            + bri + "&rgb=" + rgb + "&tout=" + tout+ "&addr=" + addr;
+            + bri + "&rgb=" + rgb + "&tout=" + tout+ '&addr="' + addr+'"';
     console.log('sending command');
     $.get(getCmd, function(d){
         console.log(d);
