@@ -23,13 +23,23 @@ var run = function(addr, cmd, del, bri, rgb, tout) {
     });
 }
 
+var pTimeout = 0;
+
 var party = function(){
-    $("#cmd").val('D');
-    $('#del').val('40');
+    $("#cmd").val('G');
+    $('#del').val('800');
 
     $.get('../sounds/sound_cmd.php?name=eyemix.mp3');
 
     send();
+
+   clearTimeout(pTimeout);
+   pTimeout = setTimeout(function(){
+        $("#cmd").val('G');
+        $('#del').val('800');
+
+        send();
+   },15000);
 }
 
 function hexToR(h) {return parseInt((cutHex(h)).substring(0,2),16)}
