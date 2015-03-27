@@ -225,6 +225,11 @@ void flashingLights(int del, int brightness){
 
 void glow(int del, int bri){
   int cb = 0;
+  int d = del/(100 * bri/100);
+  if(d < 1){
+    d=1;
+  }
+  
   for(int i=0;i<NUMPIXELS;i++){
     pixels.setPixelColor(i, R,G,B);
   }
@@ -233,14 +238,14 @@ void glow(int del, int bri){
     cb++;
     pixels.setBrightness(cb);
     pixels.show();
-    delay(del/(100 * bri/100));
+    delay(d);
   }
   
   while(cb>1){
     cb--;
     pixels.setBrightness(cb);
     pixels.show();
-    delay(del/(100 * bri/100));
+    delay(d);
   }
 }
 
