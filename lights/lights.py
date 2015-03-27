@@ -1,4 +1,3 @@
-from __future__ import print_function
 import serial, fcntl
 import time
 import sys
@@ -42,3 +41,4 @@ ser = serial.Serial('/dev/ttyUSB0', baudrate=9600, timeout=3.0);
 #locking port
 fcntl.flock(ser.fileno(), fcntl.LOCK_EX)
 ser.write(frame)
+print sys.argv
