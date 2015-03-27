@@ -28,10 +28,9 @@
     <input id=slider type="range" min="150" max="2000" value="1000" step="10" />
 </div>
 <script>
-    var timeoutId = 0;
+    var intervalId = 0;
     var angleV = 80;
     var angle = 80;
-    var isCamOn = false;
 
     var makeServoCall = function(a,s){
         $.get("camera/servo_cmd.php?angle="+a+"&sno="+s, function(output){
@@ -98,21 +97,14 @@
         var checked = $('.camButton').attr('checked');
         if(checked){
             $('.camButton').attr('checked', false);
-            isCamOn = false;
+            clearInterval(intervalId);
             makeCamCall(0);
-            clearTimeout(timeoutId);
         }else{
             $('.camButton').attr('checked', true);
             makeCamCall(1);
-            isCamOn = true;
-            getPic();
-        }
-    }
-
-    var getPic = function() {
-        if(isCamOn) {
-            $("#cam").attr("src", "../ram/cam.jpg?" + new Date().getTime());
-            timeoutId =  setTimeout(getPic, parseInt($('#slider').val());
+            intervalId =  setInterval(function(){
+                $("#cam").attr("src","../ram/cam.jpg?"+new Date().getTime());
+            },parseInt($('#slider').val()));
         }
     }
 </script>
