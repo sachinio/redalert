@@ -3,8 +3,8 @@ var angleV = 80;
 var angle = 80;
 var isCamOn = false;
 
-var makeServoCall = function(a,s){
-    $.get("../camera/servo_cmd.php?angle="+a+"&sno="+s, function(output){
+var makeServoCall = function(a,s,d){
+    $.get("../camera/servo_cmd.php?angle="+a+"&sno="+s +"&del="+d, function(output){
         console.log('servo_cmd output: '+ output);
     });
 };
@@ -18,8 +18,8 @@ var makeCamCall = function(state){
 var center = function(){
     angle = 80;
     angleV = 80;
-    send(1,1);
-    send(0,1);
+    send(1,1,800);
+    send(0,1,800);
 }
 
 var record = function(){
@@ -40,7 +40,8 @@ var record = function(){
     });
 }
 
-var send = function(s,p){
+var send = function(s,p,d){
+    d = d || 300;
     var a = 0;
     if(s === 1){
         if(p==1) {
@@ -59,7 +60,7 @@ var send = function(s,p){
     a = Math.max(s===1?10:0, a);
     a = Math.min(s===1?170:180, a);
 
-    makeServoCall(a,s);
+    makeServoCall(a,s,d);
 }
 
 var toggleCam = function () {
