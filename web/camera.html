@@ -98,10 +98,12 @@
         var checked = $('.camButton').attr('checked');
         if(checked){
             $('.camButton').attr('checked', false);
-            clearInterval(timeoutId);
+            clearTimeout(timeoutId);
+            isCamOn = false;
             makeCamCall(0);
         }else{
             $('.camButton').attr('checked', true);
+            isCamOn = true;
             makeCamCall(1);
             getPic();
         }
