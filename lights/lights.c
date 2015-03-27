@@ -1,5 +1,3 @@
-/* For Arduino Micro */
-
 #include <Adafruit_GFX.h>
 #include <Adafruit_NeoMatrix.h>
 #include <Adafruit_NeoPixel.h>
@@ -155,6 +153,7 @@ void loop() {
     case 'G': glow(DEL, BRI);
     break;
     case 'O': off();
+    break;
   }
   //wordloop();
 }
@@ -231,13 +230,15 @@ void glow(int del, int bri){
   }
   
   while(cb<bri){
-    pixels.setBrightness(++cb);
+    cb++;
+    pixels.setBrightness(cb);
     pixels.show();
     delay(del/(100 * bri/100));
   }
   
-  while(cb>0){
-    pixels.setBrightness(cb--);
+  while(cb>1){
+    cb--;
+    pixels.setBrightness(cb);
     pixels.show();
     delay(del/(100 * bri/100));
   }
