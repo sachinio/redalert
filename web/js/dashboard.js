@@ -33,7 +33,7 @@ var party = function(){
 
    clearTimeout(pTimeout);
    pTimeout = setTimeout(function(){
-        run('00 00 00 00 00 00 FF FF','G','800',bri,'255,100,0','0');
+        run('00 00 00 00 00 00 FF FF','G','800',bri,'128,0,128','0');
 
         pTimeout = setTimeout(function(){
             run('00 00 00 00 00 00 FF FF','D','40',bri,'255,100,0','0');
