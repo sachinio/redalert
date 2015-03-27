@@ -26,16 +26,17 @@ var run = function(addr, cmd, del, bri, rgb, tout) {
 var pTimeout = 0;
 
 var party = function(){
-   run('00 00 00 00 00 00 FF FF','P','50','30','255,100,0','0');
+   var bri = '30'
+   run('00 00 00 00 00 00 FF FF','P','50',bri,'255,100,0','0');
 
    $.get('../sounds/sound_cmd.php?name=eyemix.mp3');
 
    clearTimeout(pTimeout);
    pTimeout = setTimeout(function(){
-        run('00 00 00 00 00 00 FF FF','G','800','30','255,100,0','0');
+        run('00 00 00 00 00 00 FF FF','G','800',bri,'255,100,0','0');
 
         pTimeout = setTimeout(function(){
-            run('00 00 00 00 00 00 FF FF','D','40','30','255,100,0','0');
+            run('00 00 00 00 00 00 FF FF','D','40',bri,'255,100,0','0');
         },15000);
    },15000);
 }
