@@ -24,8 +24,11 @@ var run = function(addr, cmd, del, bri, rgb, tout) {
 }
 
 var party = function(){
-    $.get('../sounds/sound_cmd.php?name=eyemix.mp3', function(d){
+    $("#cmd option:selected").val('D');
+    $('#del').val('40');
 
+    $.get('../sounds/sound_cmd.php?name=eyemix.mp3', function(d){
+        send();
     })
 }
 
