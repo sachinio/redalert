@@ -41,6 +41,11 @@ var party = function(){
    },15000);
 }
 
+var stop = function(){
+   $.get('../sounds/stop_cmd.php');
+   run('00 00 00 00 00 00 FF FF','O','50',bri,'255,100,0','0');
+}
+
 function hexToR(h) {return parseInt((cutHex(h)).substring(0,2),16)}
 function hexToG(h) {return parseInt((cutHex(h)).substring(2,4),16)}
 function hexToB(h) {return parseInt((cutHex(h)).substring(4,6),16)}
