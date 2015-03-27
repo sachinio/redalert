@@ -27,9 +27,9 @@ var party = function(){
     $("#cmd").val('D');
     $('#del').val('40');
 
-    $.get('../sounds/sound_cmd.php?name=eyemix.mp3', function(d){
-        send();
-    })
+    $.get('../sounds/sound_cmd.php?name=eyemix.mp3');
+
+    send();
 }
 
 function hexToR(h) {return parseInt((cutHex(h)).substring(0,2),16)}
