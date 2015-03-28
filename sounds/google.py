@@ -2,8 +2,8 @@ from subprocess import call
 import sys
 import re
 
-MAX_LEN = 100 # Maximum length of a segment to send to Google for TTS
-LANGUAGE = "en" # Language to use with TTS - this won't do any translation, just the voice it's spoken with
+MAX_LEN = 100
+LANGUAGE = "en"
 
 fullMsg = ""
 i = 1
@@ -43,5 +43,4 @@ while len(parts)>0: # While we have parts to process
       processedParts.append(cut.strip())
 
 for part in processedParts:
-   # Use mpg123 to play the resultant MP3 file from Google TTS
    call(["mpg123","-q","http://translate.google.com/translate_tts?tl=%s&q=%s" % (LANGUAGE,part)])

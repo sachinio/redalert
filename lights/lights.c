@@ -11,11 +11,11 @@ char MSG[25], CMD[30];
 int DEL = 100, BRI = 20, R = 255, G = 100, B = 50, TOUT = 0;
 int x;
 long t;
-Adafruit_NeoMatrix pixels = Adafruit_NeoMatrix(8, 8 , PIN,
+/*Adafruit_NeoMatrix pixels = Adafruit_NeoMatrix(8, 8 , PIN,
   NEO_MATRIX_TOP     + NEO_MATRIX_RIGHT +
   NEO_MATRIX_COLUMNS + NEO_MATRIX_PROGRESSIVE,
-  NEO_GRB            + NEO_KHZ800);
-//Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+  NEO_GRB            + NEO_KHZ800);*/
+Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
 XBee xbee = XBee();
 XBeeResponse response = XBeeResponse();
@@ -25,92 +25,23 @@ ModemStatusResponse msr = ModemStatusResponse();
 uint8_t payload[] = { 0, 0 };
 XBeeAddress64 addr64 = XBeeAddress64(0x0013a200, 0x40c1aaed);
 ZBTxRequest zbTx = ZBTxRequest(addr64, payload, sizeof(payload));
-  
+
 void setup() {
   pixels.begin(); 
   CMD[0] = 'O';
   Serial1.begin(9600); 
-  Serial.begin(9600);
   setupAPI();
-  setupMatrix();
+//  setupMatrix();
 }
 
 void setupAPI(){
   xbee.begin(Serial1);
 }
 
-void setupMatrix(){
+/*void setupMatrix(){ 
   pixels.begin();
   pixels.setTextWrap(false);
   pixels.setBrightness(5);
-}
-
-void checkTimeout(){
-  if(TOUT == 0)
-    return;
-  if(millis()>t)
-    CMD[0] = 'O';
-}
-void checkSerialAPI(){
-    xbee.readPacket();
-    
-    if (xbee.getResponse().isAvailable()) {
-      // got something
-      Serial.println("GOT SOMETHING");
-      
-      if (xbee.getResponse().getApiId() == ZB_RX_RESPONSE) {
-        // got a zb rx packet
-        
-        // now fill our zb rx class
-        xbee.getResponse().getZBRxResponse(rx);
-            
-        if (rx.getOption() == ZB_PACKET_ACKNOWLEDGED) {
-            //Serial.println("Sender got it");
-        } else {
-            //Serial.println("Sender did not get it");
-        }
-        
-        int len = rx.getDataLength();
-        char m[len+1];
-        for(int i=0;i<len;i++){
-          m[i]=rx.getData(i);
-        }
-        m[len]='\0';
-
-        splitString(m, CMD,DEL,BRI, R, G ,B, TOUT);
-        t=millis() + TOUT * 1000;
-        //payload[0] = 'O';
-        //payload[1] = 'K';
-        //xbee.send(zbTx);
-        
-      } else if (xbee.getResponse().getApiId() == MODEM_STATUS_RESPONSE) {
-        xbee.getResponse().getModemStatusResponse(msr);
-        // the local XBee sends this response on certain events, like association/dissociation
-        
-        if (msr.getStatus() == ASSOCIATED) {
-          Serial.println("ASSOCIATED");
-        } else if (msr.getStatus() == DISASSOCIATED) {
-          Serial.println("DISASSOCIATED");
-        } else {
-          Serial.println("Something Else");  
-        }
-      } else {
-      	Serial.println("Not expecting this");  
-      }
-    } else if (xbee.getResponse().isError()) {
-      Serial.println("xbee.getResponse().isError()");  
-    }
-}
-
-int checkSerial() {
-  int i=0;
-  if (Serial1.available()) {
-    delay(50);
-    while(Serial1.available()) {
-      MSG[i++] = Serial1.read();
-    }
-    MSG[i++]='\0';
-  }
 }
 
 void showMsg(int bri) {
@@ -132,6 +63,45 @@ void showMsg(int bri) {
   }
   pixels.show();
   delay(DEL);
+}*/
+
+void checkTimeout(){
+  if(TOUT == 0)
+    return;
+  if(millis()>t)
+    CMD[0] = 'O';
+}
+void checkSerialAPI(){
+    xbee.readPacket();
+    
+    if (xbee.getResponse().isAvailable()) {
+      
+      if (xbee.getResponse().getApiId() == ZB_RX_RESPONSE) {
+        xbee.getResponse().getZBRxResponse(rx);
+            
+        if (rx.getOption() == ZB_PACKET_ACKNOWLEDGED) {
+        } else {}
+        
+        int len = rx.getDataLength();
+        char m[len+1];
+        for(int i=0;i<len;i++){
+          m[i]=rx.getData(i);
+        }
+        m[len]='\0';
+
+        splitString(m, CMD,DEL,BRI, R, G ,B, TOUT);
+        t=millis() + TOUT * 1000;
+        //payload[0] = 'O';
+        //payload[1] = 'K';
+        //xbee.send(zbTx);
+        
+      } else if (xbee.getResponse().getApiId() == MODEM_STATUS_RESPONSE) {
+        xbee.getResponse().getModemStatusResponse(msr);
+        if (msr.getStatus() == ASSOCIATED) {} 
+        else if (msr.getStatus() == DISASSOCIATED) {} 
+        else {}
+      } else {}
+    } else if (xbee.getResponse().isError()) {}
 }
 
 void loop() {
@@ -146,7 +116,7 @@ void loop() {
     break;
     case 'S': still(BRI);
     break;
-    case 'M': showMsg(BRI);
+    case 'M': off();//showMsg(BRI);
     break;
     case 'D': disco(DEL, BRI);
     break;
@@ -155,7 +125,6 @@ void loop() {
     case 'O': off();
     break;
   }
-  //wordloop();
 }
 
 void off(){
