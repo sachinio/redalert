@@ -3,7 +3,7 @@ import sys
 import re
 
 MAX_LEN = 100 # Maximum length of a segment to send to Google for TTS
-LANGUAGE = "en" # Language to use with TTS - this won't do any translation, just the voice it's spoken with
+LANGUAGE = "en-uk" # Language to use with TTS - this won't do any translation, just the voice it's spoken with
 
 fullMsg = ""
 i = 1
