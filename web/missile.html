@@ -14,7 +14,9 @@
 <button onclick="run('park',500)">Park</button>
 <script>
     var run = function(cmd,val) {
-        $.get("../missile/missile_cmd.php?cmd=" + cmd + "&val=" + val);
+        var o = '../'
+        var suffix = 'http://oldpi/redalert/';
+        $.get(suffix+"missile/missile_cmd.php?cmd=" + cmd + "&val=" + val);
     }
 </script>
 </body>
