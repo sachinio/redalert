@@ -16,7 +16,7 @@
 <script>
     var run = function(cmd,val) {
         var input = $('#alturl').val();
-        var suffix = input === '' ? '../' ? input;
+        var suffix = input === '' ? '../' : input;
         $.get(suffix+"missile/missile_cmd.php?cmd=" + cmd + "&val=" + val);
     }
 </script>
