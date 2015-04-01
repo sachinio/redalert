@@ -12,10 +12,11 @@
 <button onclick="run('up',500)">Up</button>
 <button onclick="run('down',500)">Down</button>
 <button onclick="run('park',500)">Park</button>
+<input id="alturl" type="text" value="">
 <script>
     var run = function(cmd,val) {
-        var o = '../'
-        var suffix = 'http://oldpi/redalert/';
+        var input = $('#alturl').val();
+        var suffix = input === '' ? '../' ? input;
         $.get(suffix+"missile/missile_cmd.php?cmd=" + cmd + "&val=" + val);
     }
 </script>
