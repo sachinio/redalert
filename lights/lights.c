@@ -266,7 +266,7 @@ void splitString(char* chars, char* cmd, int &num1, int &num2, int &num3, int &n
   char val5[MaxValLen]={};
   char val6[MaxValLen]={};
   
-  int len = 25;
+  int len = 40;
   int i=0;
   int j=0;
 
