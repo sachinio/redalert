@@ -14,11 +14,11 @@ time.sleep(2)
 cw = os.getcwd();
 
 # Get latest
-call(['sudo','apt-get','update']);
+#call(['sudo','apt-get','update']);
 # Install required libraries
-call(['sudo','apt-get','install','apache2', 'php5', 'libapache2-mod-php5','git','mpg123','-y'])
+#call(['sudo','apt-get','install','apache2', 'php5', 'libapache2-mod-php5','git','mpg123','-y'])
 # Update OS/Libraries
-call(['sudo','apt-get','upgrade','-y'])
+#call(['sudo','apt-get','upgrade','-y'])
 os.chdir('/var/www')
 call('sudo mkdir git'.split(' '))
 os.chdir('git')
