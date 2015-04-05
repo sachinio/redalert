@@ -8,7 +8,7 @@ import os
 import time
 import fileinput
 
-print("Setting things up for you.. go grab a coffee or something!")
+print("Setting things up for you... go grab a coffee or something?")
 
 time.sleep(2)
 
@@ -18,6 +18,7 @@ cwd = os.getcwd()
 call(['sudo','apt-get','update'])
 
 # Install/Upgrade required libraries
+print('Installing & upgrading required libraries ...')
 call(['sudo','apt-get','install','apache2', 'php5', 'libapache2-mod-php5','git','mpg123' ,'pip','-y'])
 call('sudo pip install pyusb'.split(' '))
 call(['sudo','apt-get','upgrade','-y'])
@@ -37,6 +38,8 @@ call('sudo git pull'.split(' '))
 
 for line in fileinput.input('RPi_Cam_Web_Interface_Installer.sh', inplace=True):
     print(line.replace('rpicamdir=""', 'rpicamdir="rpicam"'),end='')
+
+print('Installing Cam Interface ..')
 
 call('chmod u+x RPi_Cam_Web_Interface_Installer.sh'.split(' '))
 call(['./RPi_Cam_Web_Interface_Installer.sh','install'])
@@ -64,7 +67,7 @@ os.chdir('adafruit')
 call('sudo git pull'.split(' '))
 
 #call(['sudo','rm', '-rf', cwd])
-print('\n Setup is complete!')
+print('\nSetup is complete!')
 
 # other thinsgs to automate
 # 1. add apache to sudo
