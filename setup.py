@@ -12,24 +12,32 @@ print("Setting things up for you.. go grab a coffee or something!")
 
 time.sleep(2)
 
-cw = os.getcwd();
+cwd = os.getcwd()
 
 # Get latest
-call(['sudo','apt-get','update']);
-# Install required libraries
-call(['sudo','apt-get','install','apache2', 'php5', 'libapache2-mod-php5','git','mpg123','-y'])
-# Update OS/Libraries
+call(['sudo','apt-get','update'])
+
+# Install/Upgrade required libraries
+call(['sudo','apt-get','install','apache2', 'php5', 'libapache2-mod-php5','git','mpg123' ,'pip','-y'])
+call('sudo pip install pyusb'.split(' '))
 call(['sudo','apt-get','upgrade','-y'])
+
 os.chdir('/var/www')
+
 call('sudo mkdir git'.split(' '))
 call('sudo mkdir ram'.split(' '))
+
 os.chdir('git')
 
 call('sudo git clone https://github.com/silvanmelchior/RPi_Cam_Web_Interface.git cam'.split(' '))
+
 os.chdir('cam')
-call('sudo git pull'.split(' '))
+
+call('sudo git pull'.split(' ')
+
 for line in fileinput.input('RPi_Cam_Web_Interface_Installer.sh', inplace=True):
     print(line.replace('rpicamdir=""', 'rpicamdir="rpicam"'),end='')
+
 call('chmod u+x RPi_Cam_Web_Interface_Installer.sh'.split(' '))
 call(['./RPi_Cam_Web_Interface_Installer.sh','install'])
 
@@ -49,11 +57,14 @@ call('sudo git pull'.split(' '))
 os.chdir('camera')
 print('Compiling servo.c')
 call('sudo gcc -o servo servo.c -lwiringPi'.split(' '))
+
 os.chdir('../../')
 call('git clone https://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code.git adafruit'.split(' '))
 os.chdir('adafruit')
 call('sudo git pull'.split(' '))
-call(['sudo','rm', '-rf', cw])
+
+#call(['sudo','rm', '-rf', cwd])
+print('\n Setup is complete!')
 
 # other thinsgs to automate
 # 1. add apache to sudo
