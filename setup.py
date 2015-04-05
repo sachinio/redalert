@@ -29,7 +29,7 @@ call('sudo gcc -o servo servo.c -lwiringPi'.split(' '))
 os.chdir('../../')
 call('git clone https://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code.git adafruit'.split(' '))
 
-call(['sudo','rm -rf', cw])
+call(['sudo','rm', '-rf', cw])
 
 # other thinsgs to automate
 # 1. add apache to sudo
