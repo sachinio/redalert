@@ -18,8 +18,6 @@ args = parser.parse_args()
 print(args.delete)
 print(args.rotation)
 
-return
-
 print("Setting things up for you... go grab a coffee or something?")
 
 time.sleep(2)
