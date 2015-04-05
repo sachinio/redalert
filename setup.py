@@ -42,7 +42,8 @@ for line in fileinput.input('RPi_Cam_Web_Interface_Installer.sh', inplace=True):
     print(line.replace('rpicamdir=""', 'rpicamdir="rpicam"'),end='')
 
 call('chmod u+x RPi_Cam_Web_Interface_Installer.sh'.split(' '))
-call(['./RPi_Cam_Web_Interface_Installer.sh','install'])
+call(['./RPi_Cam_Web_Interface_Installer.sh', 'install'])
+call(['./RPi_Cam_Web_Interface_Installer.sh', 'autostart_no'])
 
 for line in fileinput.input('/etc/raspimjpeg', inplace=True):
     print(line.replace('preview_path /dev/shm/mjpeg/cam.jpg', 'preview_path /var/www/ram/cam.jpg'),end='')
