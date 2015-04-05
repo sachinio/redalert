@@ -33,7 +33,7 @@ call('sudo git clone https://github.com/silvanmelchior/RPi_Cam_Web_Interface.git
 
 os.chdir('cam')
 
-call('sudo git pull'.split(' ')
+call('sudo git pull'.split(' '))
 
 for line in fileinput.input('RPi_Cam_Web_Interface_Installer.sh', inplace=True):
     print(line.replace('rpicamdir=""', 'rpicamdir="rpicam"'),end='')
