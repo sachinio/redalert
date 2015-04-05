@@ -29,6 +29,16 @@ for line in fileinput.input('RPi_Cam_Web_Interface_Installer.sh', inplace=True):
     print(line.replace('rpicamdir=""', 'rpicamdir="rpicam"'),end='')
 call('chmod u+x RPi_Cam_Web_Interface_Installer.sh'.split(' '))
 call(['./RPi_Cam_Web_Interface_Installer.sh','install'])
+
+for line in fileinput.input('/etc/raspimjpeg', inplace=True):
+    print(line.replace('preview_path /dev/shm/mjpeg/cam.jpg', 'preview_path /var/www/ram/cam.jpg'),end='')
+
+for line in fileinput.input('/etc/raspimjpeg', inplace=True):
+    print(line.replace('divider 5', 'divider 1'),end='')
+
+for line in fileinput.input('/etc/raspimjpeg', inplace=True):
+    print(line.replace('rotation 0', 'rotation 90'),end='')
+
 os.chdir('../')
 call('sudo git clone https://github.com/sachinio/redalert.git redalert'.split(' '))
 os.chdir('redalert/camera')
