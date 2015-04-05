@@ -53,7 +53,7 @@ for line in fileinput.input('/etc/raspimjpeg', inplace=True):
 for line in fileinput.input('/etc/raspimjpeg', inplace=True):
     print(line.replace('rotation 0', 'rotation 90'),end='')
 
-call(['./RPi_Cam_Web_Interface_Installer.sh', 'autostart_no'])
+call(['sudo','./RPi_Cam_Web_Interface_Installer.sh', 'autostart_no'])
 
 print('\nInstalling Red Alert ...\n')
 
