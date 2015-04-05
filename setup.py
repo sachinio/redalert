@@ -2,7 +2,8 @@
 # frameworks/libraries
 
 from subprocess import call
-from __future__ import print_function # Get Python3 print fx
+# Py3 print fx
+from __future__ import print_function
 import os
 import time
 import fileinput
