@@ -24,15 +24,19 @@ os.chdir('/var/www')
 call('sudo mkdir git'.split(' '))
 os.chdir('git')
 call('sudo git clone https://github.com/silvanmelchior/RPi_Cam_Web_Interface.git cam'.split(' '))
-for line in fileinput.input('cam/RPi_Cam_Web_Interface_Installer.sh', inplace=True):
+os.chdir('cam')
+for line in fileinput.input('RPi_Cam_Web_Interface_Installer.sh', inplace=True):
     print(line.replace('rpicamdir=""', 'rpicamdir="rpicam"'),end='')
+call('chmod u+x RPi_Cam_Web_Interface_Installer.sh'.split(' '))
+call(['./RPi_Cam_Web_Interface_Installer.sh','install'])
+os.chdir('../')
 call('sudo git clone https://github.com/sachinio/redalert.git redalert'.split(' '))
 os.chdir('redalert/camera')
 print('Compiling servo.c')
 call('sudo gcc -o servo servo.c -lwiringPi'.split(' '))
 os.chdir('../../')
 call('git clone https://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code.git adafruit'.split(' '))
-call(['sudo','rm', '-rf', cw])
+#call(['sudo','rm', '-rf', cw])
 
 # other thinsgs to automate
 # 1. add apache to sudo
