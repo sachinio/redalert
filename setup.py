@@ -2,6 +2,7 @@
 # frameworks/libraries
 
 from subprocess import call
+from __future__ import print_function
 import os
 import time
 import fileinput
@@ -23,7 +24,7 @@ call('sudo mkdir git'.split(' '))
 os.chdir('git')
 call('sudo git clone https://github.com/silvanmelchior/RPi_Cam_Web_Interface.git cam'.split(' '))
 for line in fileinput.input('cam/RPi_Cam_Web_Interface_Installer.sh', inplace=True):
-    print line.replace('rpicamdir=""', 'rpicamdir="rpicam"')
+    print(line.replace('rpicamdir=""', 'rpicamdir="rpicam"'),end='')
 #call('sudo git clone https://github.com/sachinio/redalert.git redalert'.split(' '))
 #os.chdir('redalert/camera')
 #print 'Compiling servo.c'
