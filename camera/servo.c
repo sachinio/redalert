@@ -12,10 +12,9 @@ change MIN & MAX for other types
 #include <stdint.h>
 #include <softPwm.h>
 
-#define MIN = 6;
-#define MAX = 17;
-
 int main(int argc, char *argv[]){
+  int MIN=6;
+  int MAX=17;
   int tdelay = 800;
   if(argc <  3){
     printf("Insuffcient args. servo [angle] [pin] [?delay]\n");

@@ -80,7 +80,7 @@ var toggleCam = function () {
 
 var getPic = function(){
     if(isCamOn) {
-        $("#cam").attr("src", "../../ram/cam.jpg?" + new Date().getTime());
+        $("#cam").attr("src", "../../../ram/cam.jpg?" + new Date().getTime());
         timeoutId =  setTimeout(getPic,parseInt($('#slider').val()));
     }
 }
