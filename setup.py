@@ -22,6 +22,7 @@ call(['sudo','apt-get','install','apache2', 'php5', 'libapache2-mod-php5','git',
 call(['sudo','apt-get','upgrade','-y'])
 os.chdir('/var/www')
 call('sudo mkdir git'.split(' '))
+call('sudo mkdir ram'.split(' '))
 os.chdir('git')
 call('sudo git clone https://github.com/silvanmelchior/RPi_Cam_Web_Interface.git cam'.split(' '))
 os.chdir('cam')
