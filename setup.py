@@ -28,7 +28,7 @@ for line in fileinput.input('cam/RPi_Cam_Web_Interface_Installer.sh', inplace=Tr
     print(line.replace('rpicamdir=""', 'rpicamdir="rpicam"'),end='')
 call('sudo git clone https://github.com/sachinio/redalert.git redalert'.split(' '))
 os.chdir('redalert/camera')
-print 'Compiling servo.c'
+print('Compiling servo.c')
 call('sudo gcc -o servo servo.c -lwiringPi'.split(' '))
 os.chdir('../../')
 call('git clone https://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code.git adafruit'.split(' '))
