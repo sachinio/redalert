@@ -2,12 +2,12 @@
 # frameworks/libraries
 
 from subprocess import call
-from __future__ import print_function
+from __future__ import print_function # Get Python3 print fx
 import os
 import time
 import fileinput
 
-print "Setting things up for you.. go grab a coffee or something!"
+print("Setting things up for you.. go grab a coffee or something!")
 
 time.sleep(2)
 
