@@ -1,5 +1,5 @@
-#include <Adafruit_GFX.h>
-#include <Adafruit_NeoMatrix.h>
+//#include <Adafruit_GFX.h>
+//#include <Adafruit_NeoMatrix.h>
 #include <Adafruit_NeoPixel.h>
 #include <avr/power.h>
 #include <XBee.h>
@@ -29,13 +29,12 @@ ZBTxRequest zbTx = ZBTxRequest(addr64, payload, sizeof(payload));
 void setup() {
   pixels.begin(); 
   CMD[0] = 'O';
-  Serial1.begin(9600); 
-  setupAPI();
-//  setupMatrix();
-}
+  
+  //Change to Serial1 if using micro
+  Serial.begin(9600); 
+  xbee.begin(Serial);
 
-void setupAPI(){
-  xbee.begin(Serial1);
+  //setupMatrix()
 }
 
 /*void setupMatrix(){ 
@@ -267,7 +266,7 @@ void splitString(char* chars, char* cmd, int &num1, int &num2, int &num3, int &n
   char val5[MaxValLen]={};
   char val6[MaxValLen]={};
   
-  int len = 25;
+  int len = 40;
   int i=0;
   int j=0;
 
