@@ -1,9 +1,9 @@
+from __future__ import print_function # Py3 print fx
+
 # This file will aid in installing all required
 # frameworks/libraries
 
 from subprocess import call
-# Py3 print fx
-from __future__ import print_function
 import os
 import time
 import fileinput
