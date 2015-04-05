@@ -15,8 +15,8 @@ parser.add_argument("-r", "--rotation", help="camera rotation", action="stroe", 
 
 args = parser.parse_args()
 
-print args.delete
-print args.rotation
+print(args.delete)
+print(args.rotation)
 
 return
 
