@@ -35,7 +35,7 @@ for line in fileinput.input('/etc/raspimjpeg', inplace=True):
     print(line.replace('preview_path /dev/shm/mjpeg/cam.jpg', 'preview_path /var/www/ram/cam.jpg'),end='')
 
 for line in fileinput.input('/etc/raspimjpeg', inplace=True):
-    print(line.replace('divider 5', 'divider 1'),end='')
+    print(line.replace('divider 1', 'divider 5'),end='')
 
 for line in fileinput.input('/etc/raspimjpeg', inplace=True):
     print(line.replace('rotation 0', 'rotation 90'),end='')
@@ -47,7 +47,7 @@ print('Compiling servo.c')
 call('sudo gcc -o servo servo.c -lwiringPi'.split(' '))
 os.chdir('../../')
 call('git clone https://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code.git adafruit'.split(' '))
-#call(['sudo','rm', '-rf', cw])
+call(['sudo','rm', '-rf', cw])
 
 # other thinsgs to automate
 # 1. add apache to sudo
