@@ -1,11 +1,10 @@
 # This file will aid in installing all required
 # frameworks/libraries
 
-# IMPORTANT NOTE: Call this from the Redalert GIT root
-
 from subprocess import call
 import os
 import time
+import fileinput
 
 print "Setting things up for you.. go grab a coffee or something!"
 
@@ -22,14 +21,16 @@ cw = os.getcwd();
 os.chdir('/var/www')
 call('sudo mkdir git'.split(' '))
 os.chdir('git')
-call('git clone https://github.com/sachinio/redalert.git redalert'.split(' '))
-os.chdir('redalert/camera')
-print 'Compiling servo.c'
-call('sudo gcc -o servo servo.c -lwiringPi'.split(' '))
-os.chdir('../../')
-call('git clone https://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code.git adafruit'.split(' '))
-
-call(['sudo','rm', '-rf', cw])
+call('sudo git clone https://github.com/silvanmelchior/RPi_Cam_Web_Interface.git cam'.split(' '))
+for line in fileinput.input('cam/RPi_Cam_Web_Interface_Installer.sh', inplace=True):
+    print line.replace('rpicamdir=""', 'rpicamdir="rpicam"')
+#call('sudo git clone https://github.com/sachinio/redalert.git redalert'.split(' '))
+#os.chdir('redalert/camera')
+#print 'Compiling servo.c'
+#call('sudo gcc -o servo servo.c -lwiringPi'.split(' '))
+#os.chdir('../../')
+#call('git clone https://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code.git adafruit'.split(' '))
+#call(['sudo','rm', '-rf', cw])
 
 # other thinsgs to automate
 # 1. add apache to sudo
