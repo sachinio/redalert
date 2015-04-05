@@ -7,6 +7,18 @@ from subprocess import call
 import os
 import time
 import fileinput
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-d", "--delete", help="remove dir after install", action="store_true")
+parser.add_argument("-r", "--rotation", help="camera rotation", action="stroe", default=0)
+
+args = parser.parse_args()
+
+print args.delete
+print args.rotation
+
+return
 
 print("Setting things up for you... go grab a coffee or something?")
 
