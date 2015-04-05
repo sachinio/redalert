@@ -15,9 +15,6 @@ parser.add_argument("-r", "--rotation", help="camera rotation", action="store", 
 
 args = parser.parse_args()
 
-print(args.delete)
-print(args.rotation)
-
 print("Setting things up for you... go grab a coffee or something?")
 
 time.sleep(2)
@@ -61,7 +58,7 @@ for line in fileinput.input('/etc/raspimjpeg', inplace=True):
     print(line.replace('divider 1', 'divider 5'),end='')
 
 for line in fileinput.input('/etc/raspimjpeg', inplace=True):
-    print(line.replace('rotation 0', 'rotation 90'),end='')
+    print(line.replace('rotation 0', 'rotation '+args.rotation),end='')
 
 call(['sudo','./RPi_Cam_Web_Interface_Installer.sh', 'autostart_no'])
 
@@ -84,7 +81,8 @@ call('git clone https://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code.gi
 os.chdir('adafruit')
 call('sudo git pull'.split(' '))
 
-#call(['sudo','rm', '-rf', cwd])
+if(args.delete):
+    call(['sudo','rm', '-rf', cwd])
 print('\nSetup is complete!')
 
 # other thinsgs to automate
