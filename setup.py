@@ -43,7 +43,6 @@ for line in fileinput.input('RPi_Cam_Web_Interface_Installer.sh', inplace=True):
 
 call('chmod u+x RPi_Cam_Web_Interface_Installer.sh'.split(' '))
 call(['./RPi_Cam_Web_Interface_Installer.sh', 'install'])
-call(['./RPi_Cam_Web_Interface_Installer.sh', 'autostart_no'])
 
 for line in fileinput.input('/etc/raspimjpeg', inplace=True):
     print(line.replace('preview_path /dev/shm/mjpeg/cam.jpg', 'preview_path /var/www/ram/cam.jpg'),end='')
@@ -53,6 +52,8 @@ for line in fileinput.input('/etc/raspimjpeg', inplace=True):
 
 for line in fileinput.input('/etc/raspimjpeg', inplace=True):
     print(line.replace('rotation 0', 'rotation 90'),end='')
+
+call(['./RPi_Cam_Web_Interface_Installer.sh', 'autostart_no'])
 
 print('\nInstalling Red Alert ...\n')
 
