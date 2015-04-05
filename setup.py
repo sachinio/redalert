@@ -15,11 +15,13 @@ time.sleep(2)
 cwd = os.getcwd()
 
 # Get latest
+print('\nGetting latest ... \n')
 call(['sudo','apt-get','update'])
 
 # Install/Upgrade required libraries
-print('Installing & upgrading required libraries ...')
-call(['sudo','apt-get','install','apache2', 'php5', 'libapache2-mod-php5','git','mpg123' ,'pip','-y'])
+print('\nInstalling & upgrading required libraries ...\n')
+
+call(['sudo','apt-get','install','apache2', 'php5', 'libapache2-mod-php5', 'git', 'mpg123' , 'pip', '-y'])
 call('sudo pip install pyusb'.split(' '))
 call(['sudo','apt-get','upgrade','-y'])
 
@@ -30,16 +32,14 @@ call('sudo mkdir ram'.split(' '))
 
 os.chdir('git')
 
+print('\nInstalling Cam Interface ...\n')
+
 call('sudo git clone https://github.com/silvanmelchior/RPi_Cam_Web_Interface.git cam'.split(' '))
-
 os.chdir('cam')
-
 call('sudo git pull'.split(' '))
 
 for line in fileinput.input('RPi_Cam_Web_Interface_Installer.sh', inplace=True):
     print(line.replace('rpicamdir=""', 'rpicamdir="rpicam"'),end='')
-
-print('Installing Cam Interface ..')
 
 call('chmod u+x RPi_Cam_Web_Interface_Installer.sh'.split(' '))
 call(['./RPi_Cam_Web_Interface_Installer.sh','install'])
@@ -53,13 +53,19 @@ for line in fileinput.input('/etc/raspimjpeg', inplace=True):
 for line in fileinput.input('/etc/raspimjpeg', inplace=True):
     print(line.replace('rotation 0', 'rotation 90'),end='')
 
+print('\nInstalling Red Alert ...\n')
+
 os.chdir('../')
 call('sudo git clone https://github.com/sachinio/redalert.git redalert'.split(' '))
 os.chdir('redalert')
 call('sudo git pull'.split(' '))
 os.chdir('camera')
-print('Compiling servo.c')
+
+print('\nCompiling Servo.c ...\n')
+
 call('sudo gcc -o servo servo.c -lwiringPi'.split(' '))
+
+print('\nInstalling Adafruit Servo library ...\n')
 
 os.chdir('../../')
 call('git clone https://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code.git adafruit'.split(' '))
