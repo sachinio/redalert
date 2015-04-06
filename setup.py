@@ -46,7 +46,7 @@ if not args.skipupdate:
     # Install/Upgrade required libraries
     print('\nInstalling & upgrading required libraries ...\n')
 
-    call(['sudo','apt-get','install','apache2', 'php5', 'libapache2-mod-php5', 'git', 'mpg123' , 'pip', '-y'])
+    call('sudo apt-get install apache2 php5 libapache2-mod-php5 git mpg123 pip -y'.split(' '))
     call('sudo pip install pyusb'.split(' '))
     call(['sudo','apt-get','upgrade','-y'])
 else:
