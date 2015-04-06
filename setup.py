@@ -41,14 +41,17 @@ os.chdir('/var/www')
 call('sudo mkdir git'.split(' '))
 call('sudo mkdir ram'.split(' '))
 
-hasLine = False;
+hasRam = False;
 with open('/etc/fstab', 'r') as inF:
     for line in inF:
         if 'tmpfs /var/www/ram' in line:
-            print('found it!')
-            hasLine = True
+            print('found ram!')
+            hasRam = True
 
-print(hasLine)
+if not hasRam:
+    print('Creating a temporary file system (RAM)')
+    with open("/etc/fstab", "a") as myfile:
+        myfile.write("tmpfs /var/www/ram tmpfs nodev,nosuid,size=1M 0 0")
 
 os.chdir('git')
 
