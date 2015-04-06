@@ -9,6 +9,18 @@ import time
 import fileinput
 import argparse
 
+class color:
+    PURPLE = '\033[95m'
+    CYAN = '\033[96m'
+    DARKCYAN = '\033[36m'
+    BLUE = '\033[94m'
+    GREEN = '\033[92m'
+    YELLOW = '\033[93m'
+    RED = '\033[91m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+    END = '\033[0m'
+
 parser = argparse.ArgumentParser()
 parser.add_argument("-s", "--skipupdate", help="skip update",
                     action="store_true")
@@ -20,7 +32,7 @@ parser.add_argument("-c", "--cron", help="enable cron jobs", action="store_true"
 
 args = parser.parse_args()
 
-print("Setting things up for you... go grab a coffee or something?")
+print("Setting things up for you... go grab a "+color.YELLOW+'coffee'+color.END+" or something?")
 
 time.sleep(2)
 
@@ -123,4 +135,4 @@ if(args.delete):
 print('\nSetup is complete!')
 
 if not hasRam or not apacheHasPerms or args.cron:
-    print('You will need to reboot your system.')
+    print('You will need to '+color.BOLD +'reboot' + color.END + ' your system.')
