@@ -11,7 +11,7 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-d", "--delete", help="remove dir after install", action="store_true")
-parser.add_argument("-r", "--rotation", help="rotation of the camera", action="store", default=0)
+parser.add_argument("-r", "--rotation", help="rotation of the camera", action="store", default='0')
 parser.add_argument("-s", "--skipupdate", help="skip update", action="store_true")
 
 args = parser.parse_args()
