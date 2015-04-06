@@ -48,7 +48,7 @@ else:
 # Install/Upgrade required libraries
 print('\nInstalling & upgrading required libraries ...\n')
 
-packs = ['apache2', 'php5', 'libapache2-mod-php5', 'git', 'mpg123', 'pip']
+packs = ['apache2', 'php5', 'libapache2-mod-php5', 'git', 'mpg123', 'python-pip']
 
 for pack in packs:
     call(['sudo', 'apt-get', 'install',pack,' -y'])
