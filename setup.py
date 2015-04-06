@@ -42,6 +42,7 @@ if not args.skipupdate:
     # Get latest
     print('\nGetting latest ... \n')
     call(['sudo','apt-get','update'])
+    call(['sudo','apt-get','upgrade','-y'])
 else:
     print('\nSkipping update ...\n')
 
@@ -54,7 +55,6 @@ for pack in packs:
     call(['sudo', 'apt-get', 'install',pack,'-y'])
 
 call('sudo pip install pyusb'.split(' '))
-call(['sudo','apt-get','upgrade','-y'])
 
 os.chdir('/var/www')
 
