@@ -32,7 +32,7 @@ parser.add_argument("-c", "--cron", help="enable cron jobs", action="store_true"
 
 args = parser.parse_args()
 
-print("Setting things up for you... go grab a "+color.YELLOW+'coffee'+color.END+" or something?")
+print("Setting things up for you... go grab a "+color.BOLD+'coffee'+color.END+" or something?")
 
 time.sleep(2)
 
