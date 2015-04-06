@@ -11,7 +11,8 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-d", "--delete", help="remove dir after install", action="store_true")
-parser.add_argument("-r", "--rotation", help="camera rotation", action="store", default=0)
+parser.add_argument("-r", "--rotation", help="rotation of the camera", action="store", default=0)
+parser.add_argument("-s", "--skipupdate", help="skip update", action="store_true")
 
 args = parser.parse_args()
 
@@ -21,16 +22,19 @@ time.sleep(2)
 
 cwd = os.getcwd()
 
-# Get latest
-print('\nGetting latest ... \n')
-call(['sudo','apt-get','update'])
+if not args.skipupdate:
+    # Get latest
+    print('\nGetting latest ... \n')
+    call(['sudo','apt-get','update'])
 
-# Install/Upgrade required libraries
-print('\nInstalling & upgrading required libraries ...\n')
+    # Install/Upgrade required libraries
+    print('\nInstalling & upgrading required libraries ...\n')
 
-call(['sudo','apt-get','install','apache2', 'php5', 'libapache2-mod-php5', 'git', 'mpg123' , 'pip', '-y'])
-call('sudo pip install pyusb'.split(' '))
-call(['sudo','apt-get','upgrade','-y'])
+    call(['sudo','apt-get','install','apache2', 'php5', 'libapache2-mod-php5', 'git', 'mpg123' , 'pip', '-y'])
+    call('sudo pip install pyusb'.split(' '))
+    call(['sudo','apt-get','upgrade','-y'])
+else:
+    print('Skipping update ...')
 
 os.chdir('/var/www')
 
