@@ -41,17 +41,31 @@ os.chdir('/var/www')
 call('sudo mkdir git'.split(' '))
 call('sudo mkdir ram'.split(' '))
 
-hasRam = False;
+hasRam = False
 with open('/etc/fstab', 'r') as inF:
     for line in inF:
         if 'tmpfs /var/www/ram' in line:
-            print('found ram!')
             hasRam = True
 
 if not hasRam:
-    print('Creating a temporary file system (RAM)')
+    print('\nCreating a temporary file system (RAM) ...\n')
     with open("/etc/fstab", "a") as myfile:
         myfile.write("tmpfs /var/www/ram tmpfs nodev,nosuid,size=1M 0 0")
+else:
+    print('\nRam already added to tempfs')
+
+apacheHasPerms = False
+with open('/etc/sudoers', 'r') as inF:
+    for line in inF:
+        if 'www-data ALL=(ALL) NOPASSWD: ALL' in line:
+            apacheHasPerms = True
+
+if not apacheHasPerms:
+    print('\nGranting Apache Sudo Permissions ...\n')
+    with open("/etc/sudoers", "a") as myfile:
+        myfile.write("www-data ALL=(ALL) NOPASSWD: ALL")
+else:
+    print('\nApache already has permissions\n')
 
 os.chdir('git')
 
@@ -100,6 +114,8 @@ call('sudo git pull'.split(' '))
 if(args.delete):
     call(['sudo','rm', '-rf', cwd])
 print('\nSetup is complete!')
+if not hasRam:
+    print('You will need to reboot your system to activate tempFs.')
 
 # other thinsgs to automate
 # 1. add apache to sudo
