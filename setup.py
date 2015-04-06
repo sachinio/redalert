@@ -42,15 +42,15 @@ if not args.skipupdate:
     # Get latest
     print('\nGetting latest ... \n')
     call(['sudo','apt-get','update'])
-
-    # Install/Upgrade required libraries
-    print('\nInstalling & upgrading required libraries ...\n')
-
-    call('sudo apt-get install apache2 php5 libapache2-mod-php5 git mpg123 pip -y'.split(' '))
-    call('sudo pip install pyusb'.split(' '))
-    call(['sudo','apt-get','upgrade','-y'])
 else:
     print('\nSkipping update ...\n')
+
+# Install/Upgrade required libraries
+print('\nInstalling & upgrading required libraries ...\n')
+
+call('sudo apt-get install apache2 php5 libapache2-mod-php5 git mpg123 pip -y'.split(' '))
+call('sudo pip install pyusb'.split(' '))
+call(['sudo','apt-get','upgrade','-y'])
 
 os.chdir('/var/www')
 
