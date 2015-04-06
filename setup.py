@@ -41,6 +41,15 @@ os.chdir('/var/www')
 call('sudo mkdir git'.split(' '))
 call('sudo mkdir ram'.split(' '))
 
+hasLine = False;
+with open('/etc/fstab', 'r') as inF:
+    for line in inF:
+        if 'tmpfs /var/www/ram' in line:
+            print('found it!')
+            hasLine = True
+
+print(hasLine)
+
 os.chdir('git')
 
 print('\nInstalling Cam Interface ...\n')
@@ -91,5 +100,4 @@ print('\nSetup is complete!')
 
 # other thinsgs to automate
 # 1. add apache to sudo
-# 2. create temp fs for camera
-# 3. Add crone jobs for server
+# 2. Add crone jobs for server
