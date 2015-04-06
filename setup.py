@@ -1,7 +1,7 @@
 from __future__ import print_function # Py3 print fx
 
-# This file will aid in installing all required
-# frameworks/libraries
+# This will help setup the entire redalert installation
+# on a raspberry pi
 
 from subprocess import call
 import os
@@ -136,7 +136,7 @@ if(args.cron):
 
 if(args.delete):
     call(['sudo','rm', '-rf', cwd])
-print('\nSetup is complete ' +color.GREEN +':)' + color.END )
+print('\nSetup is complete ' + color.BOLD + color.GREEN +':)' + color.END )
 
 if not hasRam or not apacheHasPerms or args.cron:
     print('You will need to '+color.BOLD +'reboot' + color.END + ' your system for stuff to work correctly ')
