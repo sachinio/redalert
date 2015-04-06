@@ -10,9 +10,13 @@ import fileinput
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-d", "--delete", help="remove dir after install", action="store_true")
-parser.add_argument("-r", "--rotation", help="rotation of the camera", action="store", default='0')
-parser.add_argument("-s", "--skipupdate", help="skip update", action="store_true")
+parser.add_argument("-s", "--skipupdate", help="skip update",
+                    action="store_true")
+parser.add_argument("-d", "--delete", help="remove dir containing setup.py after install",
+                    action="store_true")
+parser.add_argument("-r", "--rotation", help="rotation of the camera", action="store",
+                    default='0')
+parser.add_argument("-c", "--cron", help="enable cron jobs", action="store_true")
 
 args = parser.parse_args()
 
@@ -111,12 +115,12 @@ call('git clone https://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code.gi
 os.chdir('adafruit')
 call('sudo git pull'.split(' '))
 
+if(args.cron):
+    print('Yet to do!')
+
 if(args.delete):
     call(['sudo','rm', '-rf', cwd])
 print('\nSetup is complete!')
-if not hasRam:
-    print('You will need to reboot your system to activate tempFs.')
 
-# other thinsgs to automate
-# 1. add apache to sudo
-# 2. Add crone jobs for server
+if not hasRam or not apacheHasPerms or args.cron:
+    print('You will need to reboot your system.')
