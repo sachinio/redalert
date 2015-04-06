@@ -34,7 +34,7 @@ if not args.skipupdate:
     call('sudo pip install pyusb'.split(' '))
     call(['sudo','apt-get','upgrade','-y'])
 else:
-    print('Skipping update ...')
+    print('\nSkipping update ...\n')
 
 os.chdir('/var/www')
 
