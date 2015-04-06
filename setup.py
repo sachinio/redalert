@@ -132,7 +132,8 @@ if(args.cron):
 
 if(args.delete):
     call(['sudo','rm', '-rf', cwd])
-print('\nSetup is complete!')
+print('\nSetup is complete :)')
 
 if not hasRam or not apacheHasPerms or args.cron:
-    print('You will need to '+color.BOLD +'reboot' + color.END + ' your system.')
+    print('You will need to '+color.BOLD +'reboot' + color.END + ' your system for stuff to work correctly '
+          +color.BOLD +':)' + color.END )
