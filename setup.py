@@ -131,6 +131,12 @@ call('git clone https://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code.gi
 os.chdir('adafruit')
 call('sudo git pull'.split(' '))
 
+os.chdir('../')
+call('git clone git://git.drogon.net/wiringPi'.split(' '))
+os.chdir('wiringPi')
+call('git pull origin'.split(' '))
+call('./build'.split(' '))
+
 if(args.cron):
     print('Yet to do!')
 

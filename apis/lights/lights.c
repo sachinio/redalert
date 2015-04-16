@@ -5,7 +5,7 @@
 #include <XBee.h>
 
 #define PIN       6
-#define NUMPIXELS 64
+#define NUMPIXELS 8
 
 char MSG[25], CMD[30];
 int DEL = 100, BRI = 20, R = 255, G = 100, B = 50, TOUT = 0;
