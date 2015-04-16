@@ -15,7 +15,7 @@ var send = function(){
 }
 
 var run = function(addr, cmd, del, bri, rgb, tout) {
-    var getCmd = "../lights/lights_cmd.php?cmd=" + cmd + "&del=" + del + "&bri="
+    var getCmd = "../api/lights/lights_cmd.php?cmd=" + cmd + "&del=" + del + "&bri="
             + bri + "&rgb=" + rgb + "&tout=" + tout+ '&addr="' + addr+'"';
     console.log('sending command');
     $.get(getCmd, function(d){
@@ -29,7 +29,7 @@ var party = function(){
    var bri = '30'
    run('00 00 00 00 00 00 FF FF','P','50',bri,'255,100,0','0');
 
-   $.get('../sounds/sound_cmd.php?name=eyemix.mp3');
+   $.get('../api/mona/sound_cmd.php?name=eyemix.mp3');
 
    clearTimeout(pTimeout);
    pTimeout = setTimeout(function(){
@@ -51,7 +51,7 @@ var party = function(){
 
 var stop = function(){
     clearTimeout(pTimeout);
-   $.get('../sounds/stop_cmd.php');
+   $.get('../api/mona/stop_cmd.php');
    run('00 00 00 00 00 00 FF FF','O','50','0','255,100,0','1');
 }
 

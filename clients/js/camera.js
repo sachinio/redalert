@@ -4,13 +4,13 @@ var angle = 80;
 var isCamOn = false;
 
 var makeServoCall = function(a,s,d){
-    $.get("../camera/servo_cmd.php?angle="+a+"&sno="+s +"&del="+d, function(output){
+    $.get("../api/camera/servo_cmd.php?angle="+a+"&sno="+s +"&del="+d, function(output){
         console.log('servo_cmd output: '+ output);
     });
 };
 
 var makeCamCall = function(state){
-    $.get("../camera/cam_cmd.php?on="+state, function(output){
+    $.get("../api/camera/cam_cmd.php?on="+state, function(output){
         console.log('cam_cmd output: '+ output);
     });
 }
@@ -35,7 +35,7 @@ var record = function(){
         cmd = "ca 0";
     }
 
-    $.get("../camera/pipe_cmd.php?cmd="+cmd,function(){
+    $.get("../api/camera/pipe_cmd.php?cmd="+cmd,function(){
         console.log("written to PIPE");
     });
 }
