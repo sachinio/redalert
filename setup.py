@@ -112,6 +112,20 @@ for line in fileinput.input('/etc/raspimjpeg', inplace=True):
 
 call(['sudo','./RPi_Cam_Web_Interface_Installer.sh', 'autostart_no'])
 
+
+print('\nInstalling Adafruit Servo library ...\n')
+
+os.chdir('../')
+call('sudo git clone https://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code.git adafruit'.split(' '))
+os.chdir('adafruit')
+call('sudo git pull'.split(' '))
+
+os.chdir('../')
+call('sudo git clone git://git.drogon.net/wiringPi'.split(' '))
+os.chdir('wiringPi')
+call('sudo git pull origin'.split(' '))
+call('./build'.split(' '))
+
 print('\nInstalling Red Alert ...\n')
 
 os.chdir('../')
@@ -123,19 +137,6 @@ os.chdir('apis/camera')
 print('\nCompiling Servo.c ...\n')
 
 call('sudo gcc -o servo servo.c -lwiringPi'.split(' '))
-
-print('\nInstalling Adafruit Servo library ...\n')
-
-os.chdir('../../../')
-call('sudo git clone https://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code.git adafruit'.split(' '))
-os.chdir('adafruit')
-call('sudo git pull'.split(' '))
-
-os.chdir('../')
-call('sudo git clone git://git.drogon.net/wiringPi'.split(' '))
-os.chdir('wiringPi')
-call('sudo git pull origin'.split(' '))
-call('./build'.split(' '))
 
 if(args.cron):
     print('Yet to do!')
