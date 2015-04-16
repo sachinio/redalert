@@ -17,7 +17,9 @@
     var run = function(cmd,val) {
         var input = $('#alturl').val();
         var suffix = input === '' ? '../' : input;
-        $.get(suffix+"api/missile/missile_cmd.php?cmd=" + cmd + "&val=" + val);
+        $.get(suffix+"api/missile/missile_cmd.php?cmd=" + cmd + "&val=" + val, function(d){
+        console.log(d);
+    });
     }
 </script>
 </body>
