@@ -118,7 +118,7 @@ os.chdir('../')
 call('sudo git clone https://github.com/sachinio/redalert.git redalert'.split(' '))
 os.chdir('redalert')
 call('sudo git pull'.split(' '))
-os.chdir('camera')
+os.chdir('apis/camera')
 
 print('\nCompiling Servo.c ...\n')
 
@@ -126,7 +126,7 @@ call('sudo gcc -o servo servo.c -lwiringPi'.split(' '))
 
 print('\nInstalling Adafruit Servo library ...\n')
 
-os.chdir('../../')
+os.chdir('../../../')
 call('git clone https://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code.git adafruit'.split(' '))
 os.chdir('adafruit')
 call('sudo git pull'.split(' '))
