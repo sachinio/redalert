@@ -8,7 +8,7 @@
 #define NUMPIXELS 8
 
 char MSG[25], CMD[30];
-int DEL = 100, BRI = 20, R = 255, G = 100, B = 50, TOUT = 0;
+int DEL = 100, BRI = 20, R = 255, G = 100, B = 50, TOUT = 5;
 int x;
 long t;
 /*Adafruit_NeoMatrix pixels = Adafruit_NeoMatrix(8, 8 , PIN,
@@ -28,7 +28,8 @@ ZBTxRequest zbTx = ZBTxRequest(addr64, payload, sizeof(payload));
 
 void setup() {
   pixels.begin(); 
-  CMD[0] = 'O';
+  t = millis() + TOUT * 1000;
+  CMD[0] = 'F';
   
   //Change to Serial1 if using micro
   Serial.begin(9600); 
