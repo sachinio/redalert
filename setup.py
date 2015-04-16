@@ -127,14 +127,14 @@ call('sudo gcc -o servo servo.c -lwiringPi'.split(' '))
 print('\nInstalling Adafruit Servo library ...\n')
 
 os.chdir('../../../')
-call('git clone https://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code.git adafruit'.split(' '))
+call('sudo git clone https://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code.git adafruit'.split(' '))
 os.chdir('adafruit')
 call('sudo git pull'.split(' '))
 
 os.chdir('../')
-call('git clone git://git.drogon.net/wiringPi'.split(' '))
+call('sudo git clone git://git.drogon.net/wiringPi'.split(' '))
 os.chdir('wiringPi')
-call('git pull origin'.split(' '))
+call('sudo git pull origin'.split(' '))
 call('./build'.split(' '))
 
 if(args.cron):
