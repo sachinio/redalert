@@ -60,6 +60,8 @@ os.chdir('/var/www')
 
 call('sudo mkdir git'.split(' '))
 call('sudo mkdir ram'.split(' '))
+call('sudo mkdir uploads'.split(' '))
+call('sudo chmod 0777 -R /var/www/uploads/'.split(' '))
 
 hasRam = False
 with open('/etc/fstab', 'r') as inF:
