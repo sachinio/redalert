@@ -67,7 +67,7 @@ class BuildNotifier:
 
     @staticmethod
     def notifyAllClear():
-        BuildNotifier.stillUnit(BuildNotifier.broadcast_address, '10', '10', '0, 255, 0', '0')
+        BuildNotifier.stillUnit(BuildNotifier.broadcast_address, '10', '10', '0, 255, 0', '5')
 
     @staticmethod
     def glowUnit(addr, delay, bri, color, tout):
