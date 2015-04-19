@@ -18,8 +18,7 @@ class Mona:
     @staticmethod
     def joke():
         jokes = ['newword.mp3','policechief.mp3']
-        i = round(random.random()*100) % len(jokes)
-        Mona.playSound(repo_root+'/resources/sounds/'+jokes[int(i)])
+        Mona.playSound(repo_root+'/resources/sounds/'+random.choice(jokes))
 
     @staticmethod
     def speak(msg):
