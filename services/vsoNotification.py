@@ -21,8 +21,8 @@ class VSO(IMonaJob):
         for build in data['value']:
             if self.isBroken(build):
                 brokenBuilds.append(build)
-            else: # We only want broken builds after last success
-                break
+            #else: # We only want broken builds after last success
+                #break
         return brokenBuilds
 
     def getBuildInfo(self):
@@ -36,10 +36,11 @@ class VSO(IMonaJob):
     def __run__(self, time, lock):
         broken = self.getBrokenBuilds(self.getBuildInfo())
 
-        if len(broken) == -1:
+        if len(broken) == 0:
             print 'No broken builds'
             buildNotifier.notifyAllClear()
         else:
+            culprits = []
             for b in broken:
-                print b['requests'][0]['requestedFor']['displayName']
-            buildNotifier.notifyOfBreak(['spatney@microsoft.com'])
+                culprits.append(b['requests'][0]['requestedFor'])
+            buildNotifier.notifyOfBreak(culprits)

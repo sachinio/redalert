@@ -18,15 +18,21 @@ def notifyOfBreak(culprits):
     stillUnit(broadcast_address, '10', '20', '255, 0, 0', '5')
     for c in culprits:
         for u in units:
-            if c == u['email']:
+            if c['uniqueName'] == u['email']:
                 glowUnit(u['addr'], '500', '100', '255, 0, 0', '5')
 
     announceBuildBreak()
+    announce(culprits[0]['displayName'] + ' please fix it')
+
+
+def announce(msg):
+    os.chdir(repo_root + '/apis/mona')
+    subprocess.call(['sudo', 'python', 'google.py', msg])
 
 
 def announceBuildBreak():
-    os.chdir(repo_root + '/apis/mona')
-    subprocess.call(['sudo', 'python', 'google.py', 'Attention. This is an important message. There has been a build break'])
+    announce('Attention. This is an important message. There has been a build break')
+
 
 def notifyAllClear():
     stillUnit(broadcast_address, '10', '10', '0, 255, 0', '0')
