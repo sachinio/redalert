@@ -42,4 +42,4 @@ class VSO(IMonaJob):
         else:
             for b in broken:
                 print b['requests'][0]['requestedFor']['displayName']
-                buildNotifier.notifyOfBreak([])
+            buildNotifier.notifyOfBreak([])
