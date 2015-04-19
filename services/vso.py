@@ -39,6 +39,7 @@ class VSO(IMonaTask):
     def getBuildInfo(self):
         request = urllib2.Request(VSO_API_Templates.getBuilds.format('pbix','powerbiclients','1.0'))
         auth = self.getAuth()
+        print auth
         base64string = base64.encodestring('%s:%s' % (auth[0], auth[1])).replace('\n', '')
         request.add_header("Authorization", "Basic %s" % base64string)
         result = urllib2.urlopen(request)
