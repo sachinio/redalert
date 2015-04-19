@@ -17,7 +17,7 @@ from datetime import datetime
 from common import IMonaTask
 from thread import start_new_thread
 from time import sleep
-from common import SOUND_CARD_LOCK
+from common import TALKING_PILLOW
 
 # tasks
 from vso import VSO
@@ -27,10 +27,10 @@ from stock import StockInfo
 
 class SampleTask(IMonaTask):
     def __run__(self, t):
-        SOUND_CARD_LOCK.acquire()
+        TALKING_PILLOW.acquire()
         print 'yawn, acquring sound card lock for fun :) Do not do this :P'
         sleep(10)
-        SOUND_CARD_LOCK.release()
+        TALKING_PILLOW.release()
 
 jobs = [VSO(), Joker(), StockInfo()]
 

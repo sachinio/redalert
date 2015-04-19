@@ -5,7 +5,7 @@ import os, subprocess, random
 from threading import Lock
 
 REPOSITORY_ROOT = '/var/www/git/redalert'
-SOUND_CARD_LOCK = Lock()
+TALKING_PILLOW = Lock()
 
 
 class IMonaTask():
@@ -21,10 +21,10 @@ def switchToMonaDir():
 class Mona:
     @staticmethod
     def playSound(name):
-        SOUND_CARD_LOCK.acquire()
+        TALKING_PILLOW.acquire()
         subprocess.call(['sudo','pkill','omxplayer'])
         subprocess.call(['sudo','omxplayer',name])
-        SOUND_CARD_LOCK.release()
+        TALKING_PILLOW.release()
 
     @staticmethod
     def tellARandomJoke():
@@ -33,10 +33,10 @@ class Mona:
 
     @staticmethod
     def speak(msg):
-        SOUND_CARD_LOCK.acquire()
+        TALKING_PILLOW.acquire()
         switchToMonaDir()
         subprocess.call(['sudo', 'python', 'mona.py', msg])
-        SOUND_CARD_LOCK.release()
+        TALKING_PILLOW.release()
 
 
 class BuildNotifier:
