@@ -33,7 +33,7 @@ def stillUnit(addr, delay, bri, color, tout):
 
 
 def switchToLightDir():
-    os.chdir('repo_root + /apis/lights')
+    os.chdir(repo_root + '/apis/lights')
 
 def stopAll():
     subprocess.call(['python', 'lights.py', broadcast_address, 'O', '500', '100', '0, 0, 0', '0'])
