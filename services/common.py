@@ -1,6 +1,6 @@
 __author__ = 'sachinpatney'
 
-import os, subprocess
+import os, subprocess, random
 repo_root = '/var/www/git/redalert'
 
 
@@ -17,7 +17,9 @@ class Mona:
 
     @staticmethod
     def joke():
-        Mona.playSound(repo_root+'/resources/sounds/newword.mp3')
+        jokes = ['newword.mp3','policechief.mp3']
+        i = random.random()*100 % len(jokes)
+        Mona.playSound(repo_root+'/resources/sounds/'+jokes[i])
 
     @staticmethod
     def speak(msg):
