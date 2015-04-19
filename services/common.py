@@ -4,11 +4,11 @@ import os, subprocess
 repo_root = '/var/www/git/redalert'
 
 
-class Mona:
-    @staticmethod
-    def switchToMonaDir():
-        os.chdir(repo_root + '/apis/mona')
+def switchToMonaDir():
+    os.chdir(repo_root + '/apis/mona')
 
+
+class Mona:
 
     @staticmethod
     def playSound(name):
@@ -21,7 +21,7 @@ class Mona:
 
     @staticmethod
     def speak(msg):
-        Mona.switchToMonaDir()
+        switchToMonaDir()
         subprocess.call(['sudo', 'python', 'google.py', msg])
 
 
