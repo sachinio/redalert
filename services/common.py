@@ -1,6 +1,6 @@
 __author__ = 'sachinpatney'
 
-import os
+import os, subprocess
 repo_root = '/var/www/git/redalert'
 
 
