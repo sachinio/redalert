@@ -21,10 +21,15 @@ def notifyOfBreak(culprits):
             if c == u['email']:
                 glowUnit(u['addr'], '500', '100', '255, 0, 0', '5')
 
+    announceBuildBreak()
+
+
+def announceBuildBreak():
+    os.chdir(repo_root + '/apis/mona')
+    subprocess.call(['python', 'google.py', 'Attention! This is an important message. There has been a build break!'])
 
 def notifyAllClear():
     stillUnit(broadcast_address, '10', '10', '0, 255, 0', '0')
-
 
 def glowUnit(addr, delay, bri, color, tout):
     switchToLightDir()

@@ -36,7 +36,7 @@ class VSO(IMonaJob):
     def __run__(self, time, lock):
         broken = self.getBrokenBuilds(self.getBuildInfo())
 
-        if len(broken) == 0:
+        if len(broken) == -1:
             print 'No broken builds'
             buildNotifier.notifyAllClear()
         else:
