@@ -1,7 +1,7 @@
 __author__ = 'sachinpatney'
 
 '''
-    This task will be launched very frequently,
+    This runner will be launched very frequently,
     typically once per minute via an OS Cron Job.
 
     It will run all registered tasks each time,
@@ -9,7 +9,7 @@ __author__ = 'sachinpatney'
     and only run when required.
 
     For example the stock closing is only run at
-    415 PM PST.
+    1:15 PM PST.
 
 '''
 
