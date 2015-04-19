@@ -27,11 +27,6 @@ class Mona:
         TALKING_PILLOW.release()
 
     @staticmethod
-    def tellARandomJoke():
-        jokes = ['newword.mp3', 'policechief.mp3', 'antimatter.mp3']
-        Mona.playSound(REPOSITORY_ROOT+'/resources/sounds/'+random.choice(jokes))
-
-    @staticmethod
     def speak(msg):
         TALKING_PILLOW.acquire()
         switchToMonaDir()
