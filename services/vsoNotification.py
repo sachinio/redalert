@@ -4,7 +4,7 @@ import json
 import urllib2
 import base64
 import buildNotifier
-from services.jobs.common import IMonaJob
+from common import IMonaJob
 
 
 class VSO_API_Templates:
