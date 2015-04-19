@@ -1,7 +1,10 @@
 __author__ = 'sachinpatney'
 
-import json, urllib2, base64, buildNotifier
-from common import IMonaJob
+import json
+import urllib2
+import base64
+import buildNotifier
+from services.jobs.common import IMonaJob
 
 
 class VSO_API_Templates:

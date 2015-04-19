@@ -1,5 +1,5 @@
 from datetime import datetime
-from common import IMonaJob
+from services.jobs.common import IMonaJob
 from thread import start_new_thread
 from threading import Lock
 from time import sleep

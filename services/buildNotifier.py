@@ -1,9 +1,9 @@
 __author__ = 'sachinpatney'
 
 import subprocess, os
+from common import Mona
 
 broadcast_address = '00 00 00 00 00 00 FF FF'
-repo_root = '/var/www/git/redalert'
 
 units = [
     {
@@ -22,16 +22,11 @@ def notifyOfBreak(culprits):
                 glowUnit(u['addr'], '500', '100', '255, 0, 0', '0')
 
     announceBuildBreak()
-    announce(culprits[0]['displayName'] + ', could you please fix it.')
-
-
-def announce(msg):
-    os.chdir(repo_root + '/apis/mona')
-    subprocess.call(['sudo', 'python', 'google.py', msg])
+    Mona.speak(culprits[0]['displayName'] + ', could you please fix it.')
 
 
 def announceBuildBreak():
-    announce('Attention. This is an important message. There has been a build break.')
+    Mona.speak('Attention. This is an important message. There has been a build break.')
 
 
 def notifyAllClear():
