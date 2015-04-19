@@ -18,7 +18,7 @@ class VSO(IMonaTask):
 
     def getAuth(self):
         with open('/var/www/tmp/vsoauth.txt','r') as auth:
-            return auth.read().split(':')
+            return auth.read().replace('\n', '').split(':')
         return None
 
     def isBroken(self, build):
