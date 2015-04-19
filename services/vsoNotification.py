@@ -3,8 +3,9 @@ __author__ = 'sachinpatney'
 import json
 import urllib2
 import base64
-import buildNotifier
+
 from common import IMonaJob
+from common import BuildNotifier
 
 
 class VSO_API_Templates:
@@ -41,9 +42,9 @@ class VSO(IMonaJob):
 
         if len(broken) == 0:
             print 'No broken builds'
-            buildNotifier.notifyAllClear()
+            BuildNotifier.notifyAllClear()
         else:
             culprits = []
             for b in broken:
                 culprits.append(b['requests'][0]['requestedFor'])
-            buildNotifier.notifyOfBreak(culprits)
+            BuildNotifier.notifyOfBreak(culprits)
