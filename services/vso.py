@@ -4,7 +4,7 @@ import json
 import urllib2
 import base64
 
-from common import IMonaJob
+from common import IMonaTask
 from common import BuildNotifier
 
 
@@ -12,9 +12,14 @@ class VSO_API_Templates:
     getBuilds = "https://{0}.visualstudio.com/defaultcollection/{1}/_apis/build/builds?api-version={2}"
 
 
-class VSO(IMonaJob):
+class VSO(IMonaTask):
 
     mona = None
+
+    def getAuth(self):
+        with open('/var/www/tmp/vsoauth.txt','r') as auth:
+            return auth.read().split(':')
+        return None
 
     def isBroken(self, build):
         if build['status'] == 'succeeded':
@@ -33,7 +38,8 @@ class VSO(IMonaJob):
 
     def getBuildInfo(self):
         request = urllib2.Request(VSO_API_Templates.getBuilds.format('pbix','powerbiclients','1.0'))
-        base64string = base64.encodestring('%s:%s' % ('spy', 'Ilovedogs2')).replace('\n', '')
+        auth = self.getAuth()
+        base64string = base64.encodestring('%s:%s' % (auth[0], auth[1])).replace('\n', '')
         request.add_header("Authorization", "Basic %s" % base64string)
         result = urllib2.urlopen(request)
 

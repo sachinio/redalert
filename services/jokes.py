@@ -1,7 +1,8 @@
 from common import Mona
-from common import IMonaJob
+from common import IMonaTask
 
-class Joker(IMonaJob):
 
+class Joker(IMonaTask):
     def __run__(self, time):
-        Mona.joke()
+        if time[1] == '15' or time[1] == '45':
+            Mona.tellARandomJoke()

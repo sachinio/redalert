@@ -61,6 +61,7 @@ os.chdir('/var/www')
 call('sudo mkdir git'.split(' '))
 call('sudo mkdir ram'.split(' '))
 call('sudo mkdir uploads'.split(' '))
+call('sudo mkdir tmp'.split(' '))
 call('sudo chmod 0777 -R /var/www/uploads/'.split(' '))
 
 hasRam = False

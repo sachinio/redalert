@@ -4,34 +4,34 @@ import os, subprocess, random
 
 from threading import Lock
 
-repo_root = '/var/www/git/redalert'
-COMMON_LOCK = Lock()
+REPOSITORY_ROOT = '/var/www/git/redalert'
+SOUND_CARD_LOCK = Lock()
 
 def switchToMonaDir():
-    os.chdir(repo_root + '/apis/mona')
+    os.chdir(REPOSITORY_ROOT + '/apis/mona')
 
 class Mona:
 
     @staticmethod
     def playSound(name):
-        COMMON_LOCK.acquire()
+        SOUND_CARD_LOCK.acquire()
         subprocess.call(['sudo','pkill','omxplayer'])
         subprocess.call(['sudo','omxplayer',name])
-        COMMON_LOCK.release()
+        SOUND_CARD_LOCK.release()
 
     @staticmethod
-    def joke():
+    def tellARandomJoke():
         jokes = ['newword.mp3','policechief.mp3']
-        Mona.playSound(repo_root+'/resources/sounds/'+random.choice(jokes))
+        Mona.playSound(REPOSITORY_ROOT+'/resources/sounds/'+random.choice(jokes))
 
     @staticmethod
     def speak(msg):
-        COMMON_LOCK.acquire()
+        SOUND_CARD_LOCK.acquire()
         switchToMonaDir()
         subprocess.call(['sudo', 'python', 'google.py', msg])
-        COMMON_LOCK.release()
+        SOUND_CARD_LOCK.release()
 
-class IMonaJob():
+class IMonaTask():
 
     def __run__(self, time):
         """Runs the job"""
@@ -80,7 +80,7 @@ class BuildNotifier:
 
     @staticmethod
     def switchToLightDir():
-        os.chdir(repo_root + '/apis/lights')
+        os.chdir(REPOSITORY_ROOT + '/apis/lights')
 
     @staticmethod
     def stopAll():
