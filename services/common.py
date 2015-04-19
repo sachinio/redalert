@@ -1,19 +1,23 @@
 __author__ = 'sachinpatney'
 
 import os, subprocess, random
-repo_root = '/var/www/git/redalert'
 
+from threading import Lock
+
+repo_root = '/var/www/git/redalert'
+COMMON_LOCK = Lock()
 
 def switchToMonaDir():
     os.chdir(repo_root + '/apis/mona')
-
 
 class Mona:
 
     @staticmethod
     def playSound(name):
+        COMMON_LOCK.acquire()
         subprocess.call(['sudo','pkill','omxplayer'])
         subprocess.call(['sudo','omxplayer',name])
+        COMMON_LOCK.release()
 
     @staticmethod
     def joke():
@@ -22,13 +26,14 @@ class Mona:
 
     @staticmethod
     def speak(msg):
+        COMMON_LOCK.acquire()
         switchToMonaDir()
         subprocess.call(['sudo', 'python', 'google.py', msg])
-
+        COMMON_LOCK.release()
 
 class IMonaJob():
 
-    def __run__(self, time, lock):
+    def __run__(self, time):
         """Runs the job"""
         raise Exception('You must implement __run__ method on your service')
 

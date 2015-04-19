@@ -14,6 +14,8 @@ class VSO_API_Templates:
 
 class VSO(IMonaJob):
 
+    mona = None
+
     def isBroken(self, build):
         if build['status'] == 'succeeded':
             return False
@@ -37,7 +39,7 @@ class VSO(IMonaJob):
 
         return json.loads(result.read())
 
-    def __run__(self, time, lock):
+    def __run__(self, time):
         broken = self.getBrokenBuilds(self.getBuildInfo())
 
         if len(broken) == 0:

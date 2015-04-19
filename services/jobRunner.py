@@ -1,24 +1,25 @@
 from datetime import datetime
 from common import IMonaJob
 from thread import start_new_thread
-from threading import Lock
 from time import sleep
+from common import COMMON_LOCK
 
 # jobs
 from vsoNotification import VSO
+from jokes import Joker
+from stock import StockInfo
 
 class SampleJob(IMonaJob):
-    def __run__(self, t, l):
-        l.acquire()
+    def __run__(self, t):
+        COMMON_LOCK.acquire()
         print 'yawn'
         sleep(10)
-        l.release()
+        COMMON_LOCK.release()
 
-lock = Lock()
-jobs = [SampleJob(), VSO()]
+jobs = [VSO(), Joker(), StockInfo()]
 
 hourAndMin = datetime.now().strftime('%H,%M').split(',')
 for job in jobs:
-    start_new_thread(job.__run__, (hourAndMin, lock))
+    start_new_thread(job.__run__, (hourAndMin,))
 
 sleep(30) # give jobs 30 seconds to run
