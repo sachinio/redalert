@@ -12,7 +12,7 @@ class Mona:
     @staticmethod
     def joke():
         Mona.switchToMonaDir()
-        subprocess.call(['sudo', 'php', 'play_sound_cmd', repo_root+'/resources/sounds/newword.mp3'])
+        subprocess.call(['sudo', 'php', 'play_sound_cmd.php', repo_root+'/resources/sounds/newword.mp3'])
 
     @staticmethod
     def speak(msg):
