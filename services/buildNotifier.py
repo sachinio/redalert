@@ -22,7 +22,7 @@ def notifyOfBreak(culprits):
                 glowUnit(u['addr'], '500', '100', '255, 0, 0', '0')
 
     announceBuildBreak()
-    announce(culprits[0]['displayName'] + ' please fix it')
+    announce(culprits[0]['displayName'] + ', could you please fix it.')
 
 
 def announce(msg):
