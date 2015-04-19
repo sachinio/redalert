@@ -11,7 +11,8 @@ praise = ['Great job guys!', 'Well done! Go treat yourself to some coffee.']
 
 class StockInfo(IMonaTask):
     def __run__(self, time):
-        if time[0] == '13' and time[1] == '15':
+        #if time[0] == '13' and time[1] == '15':
+        if time[1] == '43':
             result = urllib2.urlopen("http://finance.yahoo.com/d/quotes.csv?s=MSFT&f=spc1").read()
             result = result.strip().split(',')
 
