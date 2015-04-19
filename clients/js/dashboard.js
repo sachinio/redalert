@@ -29,7 +29,7 @@ var party = function(){
    var bri = '30'
    run('00 00 00 00 00 00 FF FF','P','50',bri,'255,100,0','0');
 
-   $.get('../apis/mona/play_sound_cmd.php?name=/var/www/redalert/resources/sounds/eyemix.mp3');
+   $.get('../apis/mona/play_sound_cmd.php?name=/var/www/redalert/resources/sounds/gfdr.mp3');
 
    clearTimeout(pTimeout);
    pTimeout = setTimeout(function(){
