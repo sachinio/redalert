@@ -31,7 +31,7 @@ def announce(msg):
 
 
 def announceBuildBreak():
-    announce('Attention. This is an important message. There has been a build break')
+    announce('Attention. This is an important message. There has been a build break.')
 
 
 def notifyAllClear():
