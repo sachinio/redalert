@@ -26,7 +26,7 @@ def notifyOfBreak(culprits):
 
 def announceBuildBreak():
     os.chdir(repo_root + '/apis/mona')
-    subprocess.call(['python', 'google.py', 'Attention! This is an important message. There has been a build break!'])
+    subprocess.call(['sudo', 'python', 'google.py', 'Attention. This is an important message. There has been a build break'])
 
 def notifyAllClear():
     stillUnit(broadcast_address, '10', '10', '0, 255, 0', '0')
