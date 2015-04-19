@@ -4,6 +4,7 @@ from common import REPOSITORY_ROOT
 
 import random
 
+
 class Joker(IMonaTask):
     def __run__(self, time):
         if int(time[1]) % 15 == 0:
