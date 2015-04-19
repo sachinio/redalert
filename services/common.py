@@ -10,12 +10,12 @@ class Mona:
         os.chdir(repo_root + '/apis/mona')
 
     @staticmethod
-    def speak(msg):
+    def joke():
         Mona.switchToMonaDir()
         subprocess.call(['sudo', 'php', 'play_sound_cmd', repo_root+'/resources/sounds/newword.mp3'])
 
     @staticmethod
-    def joke():
+    def speak(msg):
         Mona.switchToMonaDir()
         subprocess.call(['sudo', 'python', 'google.py', msg])
 
