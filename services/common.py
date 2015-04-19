@@ -7,11 +7,18 @@ from threading import Lock
 REPOSITORY_ROOT = '/var/www/git/redalert'
 SOUND_CARD_LOCK = Lock()
 
+
+class IMonaTask():
+    def __run__(self, time):
+        """Runs the job"""
+        raise Exception('You must implement __run__ method on your service')
+
+
 def switchToMonaDir():
     os.chdir(REPOSITORY_ROOT + '/apis/mona')
 
-class Mona:
 
+class Mona:
     @staticmethod
     def playSound(name):
         SOUND_CARD_LOCK.acquire()
@@ -21,21 +28,15 @@ class Mona:
 
     @staticmethod
     def tellARandomJoke():
-        jokes = ['newword.mp3','policechief.mp3']
+        jokes = ['newword.mp3', 'policechief.mp3', 'antimatter.mp3']
         Mona.playSound(REPOSITORY_ROOT+'/resources/sounds/'+random.choice(jokes))
 
     @staticmethod
     def speak(msg):
         SOUND_CARD_LOCK.acquire()
         switchToMonaDir()
-        subprocess.call(['sudo', 'python', 'google.py', msg])
+        subprocess.call(['sudo', 'python', 'mona.py', msg])
         SOUND_CARD_LOCK.release()
-
-class IMonaTask():
-
-    def __run__(self, time):
-        """Runs the job"""
-        raise Exception('You must implement __run__ method on your service')
 
 
 class BuildNotifier:
