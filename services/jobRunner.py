@@ -22,4 +22,4 @@ hourAndMin = datetime.now().strftime('%H,%M').split(',')
 for job in jobs:
     start_new_thread(job.__run__, (hourAndMin,))
 
-sleep(30) # give jobs 30 seconds to run
+sleep(45) # give jobs 45 seconds to run
