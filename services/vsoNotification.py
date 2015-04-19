@@ -36,9 +36,10 @@ class VSO(IMonaJob):
     def __run__(self, time, lock):
         broken = self.getBrokenBuilds(self.getBuildInfo())
 
-        buildNotifier.notifyOfBreak(['spatney@microsoft.com'])
         if len(broken) == 0:
             print 'No broken builds'
-
-        for b in broken:
-            print b['requests'][0]['requestedFor']['displayName']
+            buildNotifier.notifyAllClear()
+        else:
+            for b in broken:
+                print b['requests'][0]['requestedFor']['displayName']
+                buildNotifier.notifyOfBreak([])

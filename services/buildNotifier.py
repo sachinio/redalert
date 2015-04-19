@@ -15,11 +15,15 @@ units = [
 
 
 def notifyOfBreak(culprits):
-    stillUnit(broadcast_address, '500', '20', '255, 0, 0', '5')
+    stillUnit(broadcast_address, '10', '20', '255, 0, 0', '5')
     for c in culprits:
         for u in units:
             if c == u['email']:
                 glowUnit(u['addr'], '500', '100', '255, 0, 0', '5')
+
+
+def notifyAllClear():
+    stillUnit(broadcast_address, '10', '10', '0, 255, 0', '0')
 
 
 def glowUnit(addr, delay, bri, color, tout):
