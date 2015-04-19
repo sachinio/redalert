@@ -15,11 +15,11 @@ units = [
 
 
 def notifyOfBreak(culprits):
-    stillUnit(broadcast_address, '10', '20', '255, 0, 0', '5')
+    stillUnit(broadcast_address, '10', '20', '255, 0, 0', '0')
     for c in culprits:
         for u in units:
             if c['uniqueName'] == u['email']:
-                glowUnit(u['addr'], '500', '100', '255, 0, 0', '5')
+                glowUnit(u['addr'], '500', '100', '255, 0, 0', '0')
 
     announceBuildBreak()
     announce(culprits[0]['displayName'] + ' please fix it')
