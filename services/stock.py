@@ -9,8 +9,8 @@ template = "Microsoft stock closed at {0}, {1}, {2}."
 
 class stockInfo(IMonaJob):
     def __run__(self, time, lock):
-        result = urllib2.urlopen("http://finance.yahoo.com/d/quotes.csv?s=MSFT&f=spc1").read().strip()
-        result = result.split(',')
+        result = urllib2.urlopen("http://finance.yahoo.com/d/quotes.csv?s=MSFT&f=spc1").read()
+        result = result.strip().split(',')
 
         dir = 'down'
 
@@ -18,6 +18,6 @@ class stockInfo(IMonaJob):
             dir = 'up'
 
         msg = template.format(result[1].replace('.',' point '), dir, result[2].replace('.',' point ').replace('-', ''))
-        Mona.speak()
+        Mona.speak(msg)
 
 stockInfo().__run__(0, 0)
