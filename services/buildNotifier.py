@@ -23,12 +23,12 @@ def notifyOfBreak(culprits):
 
 
 def glowUnit(addr, delay, bri, color, tout):
-    os.chdir(os.join([repo_root,'/apis/lights']))
+    os.chdir(os.path.join([repo_root,'/apis/lights']))
     subprocess.call(['python', 'lights.py', addr, 'G', delay, bri, color, tout])
 
 
 def stillUnit(addr, delay, bri, color, tout):
-    os.chdir(os.join([repo_root,'/apis/lights']))
+    os.chdir(os.path.join([repo_root,'/apis/lights']))
     subprocess.call(['python', 'lights.py', addr, 'S', delay, bri, color, tout])
 
 
