@@ -6,7 +6,7 @@ import base64
 
 from common import IMonaTask
 from common import BuildNotifier
-
+from common import sync_read_status_file
 
 class VSO_API_Templates:
     getBuilds = "https://{0}.visualstudio.com/defaultcollection/{1}/_apis/build/builds?api-version={2}"
@@ -16,10 +16,9 @@ class VSO(IMonaTask):
 
     mona = None
 
-    def getAuth(self):
-        with open('/var/www/tmp/vsoauth.txt','r') as auth:
-            return auth.read().replace('\n', '').split(':')
-        return None
+    def get_auth(self):
+        d = sync_read_status_file()
+        return [d['vso_username'], d['vso_password']]
 
     def is_broken(self, build):
         if build['status'] == 'succeeded':
@@ -38,7 +37,7 @@ class VSO(IMonaTask):
 
     def get_build_info(self):
         request = urllib2.Request(VSO_API_Templates.getBuilds.format('pbix','powerbiclients','1.0'))
-        auth = self.getAuth()
+        auth = self.get_auth()
         base64string = base64.encodestring('%s:%s' % (auth[0], auth[1])).replace('\n', '')
         request.add_header("Authorization", "Basic %s" % base64string)
         result = urllib2.urlopen(request)

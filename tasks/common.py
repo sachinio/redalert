@@ -6,7 +6,7 @@ from threading import Lock
 
 REPOSITORY_ROOT = '/var/www/git/redalert'
 TMP_FOLDER_PATH = '/var/www/tmp'
-STATUS_FILE_PATH = TMP_FOLDER_PATH + '/vso_status.csv'
+STATUS_FILE_PATH = TMP_FOLDER_PATH + '/options.csv'
 
 TALKING_PILLOW = Lock()
 STATUS_FILE_LOCK = Lock()
@@ -39,7 +39,7 @@ def sync_write_to_file(name, operation, message):
         f.write(message)
 
 
-def sync_read_status_file()
+def sync_read_status_file():
     STATUS_FILE_LOCK.acquire()
     d = {}
     if os.path.isfile(STATUS_FILE_PATH):
