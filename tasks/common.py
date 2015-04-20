@@ -56,7 +56,8 @@ class BuildNotifier:
         {
             'id' : 0,
             'addr' : '00 00 00 00 00 00 FF FF',
-            'email': 'spatney@microsoft.com'
+            'email': 'spatney@microsoft.com',
+            'room': '3C'
         }
     ]
 
@@ -70,38 +71,38 @@ class BuildNotifier:
 
 
     @staticmethod
-    def notifyOfBreak(culprits):
-        BuildNotifier.stillUnit(BuildNotifier.broadcast_address, '10', '20', '255, 0, 0', '0')
+    def notify_build_break(culprits):
+        BuildNotifier.still_unit(BuildNotifier.broadcast_address, '10', '20', '255, 0, 0', '0')
         for c in culprits:
             for u in BuildNotifier.units:
                 if c['uniqueName'] == u['email']:
-                    BuildNotifier.glowUnit(u['addr'], '500', '100', '255, 0, 0', '0')
+                    BuildNotifier.glow_unit(u['addr'], '500', '100', '255, 0, 0', '0')
 
-        BuildNotifier.announceBuildBreak()
+        BuildNotifier.announce_build_break()
         Mona.speak(culprits[0]['displayName'] + ', could you please fix it!')
 
     @staticmethod
-    def announceBuildBreak():
+    def announce_build_break():
         Mona.speak('Attention. This is an important message. There has been a build break!')
 
     @staticmethod
-    def notifyAllClear():
-        BuildNotifier.stillUnit(BuildNotifier.broadcast_address, '10', '10', '0, 255, 0', '5')
+    def notify_all_clear():
+        BuildNotifier.still_unit(BuildNotifier.broadcast_address, '10', '10', '0, 255, 0', '5')
 
     @staticmethod
-    def glowUnit(addr, delay, bri, color, tout):
-        BuildNotifier.switchToLightDir()
+    def glow_unit(addr, delay, bri, color, tout):
+        BuildNotifier.switch_to_lights_path()
         subprocess.call(['python', 'lights.py', addr, 'G', delay, bri, color, tout])
 
     @staticmethod
-    def stillUnit(addr, delay, bri, color, tout):
-        BuildNotifier.switchToLightDir()
+    def still_unit(addr, delay, bri, color, tout):
+        BuildNotifier.switch_to_lights_path()
         subprocess.call(['python', 'lights.py', addr, 'S', delay, bri, color, tout])
 
     @staticmethod
-    def switchToLightDir():
+    def switch_to_lights_path():
         os.chdir(REPOSITORY_ROOT + '/apis/lights')
 
     @staticmethod
-    def stopAll():
+    def off_all_lights():
         subprocess.call(['python', 'lights.py', BuildNotifier.broadcast_address, 'O', '500', '100', '0, 0, 0', '0'])

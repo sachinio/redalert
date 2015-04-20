@@ -21,22 +21,22 @@ class VSO(IMonaTask):
             return auth.read().replace('\n', '').split(':')
         return None
 
-    def isBroken(self, build):
+    def is_broken(self, build):
         if build['status'] == 'succeeded':
             return False
         return True
 
-    def getBrokenBuilds(self, data):
+    def get_broken_builds(self, data):
         brokenBuilds = []
 
         for build in data['value']:
-            if self.isBroken(build):
+            if self.is_broken(build):
                 brokenBuilds.append(build)
             else:  # We only want broken builds after last success
                 break
         return brokenBuilds
 
-    def getBuildInfo(self):
+    def get_build_info(self):
         request = urllib2.Request(VSO_API_Templates.getBuilds.format('pbix','powerbiclients','1.0'))
         auth = self.getAuth()
         base64string = base64.encodestring('%s:%s' % (auth[0], auth[1])).replace('\n', '')
@@ -46,12 +46,12 @@ class VSO(IMonaTask):
         return json.loads(result.read())
 
     def __run__(self, time):
-        broken = self.getBrokenBuilds(self.getBuildInfo())
+        broken = self.get_broken_builds(self.get_build_info())
 
         if len(broken) == 0:
             if BuildNotifier.wasBroken():
                 BuildNotifier.writeStatus(False)
-                BuildNotifier.notifyAllClear()
+                BuildNotifier.notify_all_clear()
             else:
                 print 'Was not broken previously too, so do nothing new'
         else:
@@ -59,7 +59,7 @@ class VSO(IMonaTask):
                 culprits = []
                 for b in broken:
                     culprits.append(b['requests'][0]['requestedFor'])
-                BuildNotifier.notifyOfBreak(culprits)
+                BuildNotifier.notify_build_break(culprits)
                 BuildNotifier.writeStatus(True)
             else:
                 print 'Was broken previously too, so do nothing'
