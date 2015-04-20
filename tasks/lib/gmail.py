@@ -7,11 +7,14 @@ sys.path.append('/var/www/git/redalert/tasks')
 
 import common
 from common import TMP_FOLDER_PATH
+from subprocess import check_output
 
 fromaddr = 'sachinpatney@gmail.com'
 toaddrs = 'sachinpatney@gmail.com'
 
-msg = 'Raspberry PI here, Just checking how you are doing!'
+out = check_output(["ifconfig"])
+
+msg = out
 
 # Credentials (if needed)
 cred = common.read_csv(TMP_FOLDER_PATH + '/gmailcred.csv')
