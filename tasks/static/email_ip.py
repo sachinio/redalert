@@ -12,7 +12,11 @@ time.sleep(10)  # Let WIFI Connect
 
 ifconfig = check_output(["ifconfig"])
 
-public_ip = urllib2.urlopen('http://ip.42.pl/raw').read()
+public_ip = 'Could not be determined'
+try:
+    public_ip = urllib2.urlopen('http://ip.42.pl/raw').read()
+except:
+    print 'Exception'
 
 out = "ifconfig\n------------------------------\n\n {0}\n\nPublic IP: {1}".format(ifconfig, public_ip)
 
