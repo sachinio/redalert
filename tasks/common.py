@@ -32,8 +32,8 @@ def write_to_csv(dict, path):
 
 
 class Mona:
-    rooms = ['3A', '3B', '3C']
-    room_ip = {
+    rooms = ['3A', '3B', '3C']  # for future use
+    room_ip = {  # for future use
         '3A': '',
         '3B': '',
         '3C': 'localhost'
