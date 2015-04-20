@@ -52,6 +52,7 @@ class VSO(IMonaTask):
             if BuildNotifier.wasBroken() or True:
                 BuildNotifier.writeStatus(False)
                 BuildNotifier.notify_all_clear()
+                print 'Sent all clear notification'
             else:
                 print 'Was not broken previously too, so do nothing new'
         else:
@@ -61,5 +62,6 @@ class VSO(IMonaTask):
                     culprits.append(b['requests'][0]['requestedFor'])
                 BuildNotifier.notify_build_break(culprits)
                 BuildNotifier.writeStatus(True)
+                print 'Sent build break notification'
             else:
                 print 'Was broken previously too, so do nothing'
