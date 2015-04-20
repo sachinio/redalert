@@ -146,7 +146,7 @@ class EMail:
         self.msg = msg
 
     def send(self):
-        fromaddr = 'sachinpatney@gmail.com'
+        fromaddr = 'monapbix@gmail.com'
         toaddrs = 'sachinpatney@gmail.com'
 
         header = 'To:' + toaddrs + '\n' + 'From: ' + fromaddr + '\n' + 'Subject:{0}\n'.format(self.subject)
@@ -161,6 +161,6 @@ class EMail:
         # The actual mail send
         server = smtplib.SMTP('smtp.gmail.com:587')
         server.starttls()
-        server.login(username,password)
+        server.login(username, password)
         server.sendmail(fromaddr, toaddrs, msg)
         server.quit()
