@@ -36,7 +36,6 @@ var party = function(){
    clearTimeout(pTimeout);
    pTimeout = setTimeout(function(){
        run('00 00 00 00 00 00 FF FF','D','40',bri,'255,100,0','0');
-
    },14000);
 }
 

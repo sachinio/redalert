@@ -9,4 +9,4 @@ class Joker(IMonaTask):
     def __run__(self, time):
         if int(time[1]) % 15 == 0:
             jokes = ['newword.mp3', 'policechief.mp3', 'antimatte.mp3']
-            Mona.playSound(REPOSITORY_ROOT+'/resources/sounds/'+random.choice(jokes))
+            Mona.play_sound(REPOSITORY_ROOT+'/resources/sounds/'+random.choice(jokes))

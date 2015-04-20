@@ -1,10 +1,12 @@
 __author__ = 'sachinpatney'
 
-import os, subprocess, random
+import os, subprocess, random, csv
 
 from threading import Lock
 
 REPOSITORY_ROOT = '/var/www/git/redalert'
+TMP_FOLDER_PATH = '/var/www/tmp'
+
 TALKING_PILLOW = Lock()
 
 
@@ -14,13 +16,24 @@ class IMonaTask():
         raise Exception('You must implement __run__ method on your service')
 
 
-def switchToMonaDir():
+def switch_to_mona_path():
     os.chdir(REPOSITORY_ROOT + '/apis/mona')
+
+
+def read_csv(path):
+    reader = csv.reader(open(path, 'rb'))
+    return dict(x for x in reader)
+
+
+def write_to_csv(dict, path):
+    writer = csv.writer(open(path, 'wb'))
+    for key, value in dict.items():
+        writer.writerow([key, value])
 
 
 class Mona:
     @staticmethod
-    def playSound(name):
+    def play_sound(name):
         TALKING_PILLOW.acquire()
         subprocess.call(['sudo','pkill','omxplayer'])
         subprocess.call(['sudo','omxplayer',name])
@@ -29,13 +42,15 @@ class Mona:
     @staticmethod
     def speak(msg):
         TALKING_PILLOW.acquire()
-        switchToMonaDir()
+        switch_to_mona_path()
         subprocess.call(['sudo', 'python', 'mona.py', msg])
         TALKING_PILLOW.release()
 
 
 class BuildNotifier:
     broadcast_address = '00 00 00 00 00 00 FF FF'
+
+    statusFile = REPOSITORY_ROOT + '/vso_status.csv'
 
     units = [
         {
@@ -44,6 +59,15 @@ class BuildNotifier:
             'email': 'spatney@microsoft.com'
         }
     ]
+
+    @staticmethod
+    def wasBroken():
+        return read_csv(BuildNotifier.statusFile).broken
+
+    @staticmethod
+    def writeStatus(status):
+        write_to_csv({'broken': status})
+
 
     @staticmethod
     def notifyOfBreak(culprits):
