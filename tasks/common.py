@@ -62,7 +62,7 @@ class BuildNotifier:
 
     @staticmethod
     def wasBroken():
-        return read_csv(BuildNotifier.statusFile)['broken']
+        return read_csv(BuildNotifier.statusFile)['broken'] == 'True'
 
     @staticmethod
     def writeStatus(status):
