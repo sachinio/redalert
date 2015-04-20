@@ -49,13 +49,13 @@ class VSO(IMonaTask):
         broken = self.get_broken_builds(self.get_build_info())
 
         if len(broken) == 0:
-            if BuildNotifier.wasBroken():
+            if BuildNotifier.wasBroken() or True:
                 BuildNotifier.writeStatus(False)
                 BuildNotifier.notify_all_clear()
             else:
                 print 'Was not broken previously too, so do nothing new'
         else:
-            if not BuildNotifier.wasBroken():
+            if not BuildNotifier.wasBroken() or True:
                 culprits = []
                 for b in broken:
                     culprits.append(b['requests'][0]['requestedFor'])

@@ -91,8 +91,8 @@ class BuildNotifier:
                 if c['uniqueName'] == u['email']:
                     cls.glow_unit(u['addr'], '500', '100', '255, 0, 0', '0')
 
-        cls.announce_build_break()
-        Mona.speak(culprits[0]['displayName'] + ', could you please fix it!')
+        #cls.announce_build_break()
+        #Mona.speak(culprits[0]['displayName'] + ', could you please fix it!')
 
     @classmethod
     def announce_build_break(cls):
