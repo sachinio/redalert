@@ -50,7 +50,7 @@ class Mona:
 class BuildNotifier:
     broadcast_address = '00 00 00 00 00 00 FF FF'
 
-    statusFile = REPOSITORY_ROOT + '/vso_status.csv'
+    statusFile = TMP_FOLDER_PATH + '/vso_status.csv'
 
     units = [
         {
