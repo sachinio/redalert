@@ -35,20 +35,9 @@ var party = function(){
 
    clearTimeout(pTimeout);
    pTimeout = setTimeout(function(){
-        run('00 00 00 00 00 00 FF FF','G','800',bri,'30,120,230','0');
+       run('00 00 00 00 00 00 FF FF','D','40',bri,'255,100,0','0');
 
-        pTimeout = setTimeout(function(){
-            run('00 00 00 00 00 00 FF FF','D','40',bri,'255,100,0','0');
-
-            pTimeout = setTimeout(function(){
-                run('00 00 00 00 00 00 FF FF','G','800',bri,'78,174,71','0');
-                pTimeout = setTimeout(function(){
-                      run('00 00 00 00 00 00 FF FF','D','40',bri,'255,100,0','0');
-                },7000);
-            },15000);
-        },15000);
-
-   },15000);
+   },14000);
 }
 
 var stop = function(){
