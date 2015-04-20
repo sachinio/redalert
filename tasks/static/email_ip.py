@@ -1,11 +1,19 @@
 __author__ = 'sachinpatney'
 
 import sys
+import urllib2, time
+
 sys.path.append('/var/www/git/redalert/tasks')
 
 from common import EMail
 from subprocess import check_output
 
-out = check_output(["ifconfig"])
+time.sleep(10)  # Let WIFI Connect
+
+ifconfig = check_output(["ifconfig"])
+
+public_ip = urllib2.urlopen('http://ip.42.pl/raw').read()
+
+out = "ifconfig\n--------\n\n {0}\n\nPublic IP: {1}".format(ifconfig, public_ip)
 
 EMail('Red Alert controller boot info', out).send()
