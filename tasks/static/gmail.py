@@ -13,8 +13,8 @@ fromaddr = 'sachinpatney@gmail.com'
 toaddrs = 'sachinpatney@gmail.com'
 
 out = check_output(["ifconfig"])
-
-msg = out
+header = 'To:' + toaddrs + '\n' + 'From: ' + fromaddr + '\n' + 'Subject:Raspberry Pi IP\n'
+msg = header + out
 
 # Credentials (if needed)
 cred = common.read_csv(TMP_FOLDER_PATH + '/gmailcred.csv')
