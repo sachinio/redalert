@@ -22,22 +22,22 @@ from common import TALKING_PILLOW
 # tasks
 from vso import VSO
 from jokes import Joker
-from stock import StockInfo
+from stock import StockTicker
 
 
 class SampleTask(IMonaTask):
     def __run__(self, t):
         TALKING_PILLOW.acquire()
-        print 'yawn, acquring sound card lock for fun :) Do not do this :P'
+        print 'yawn, i have the talking pillow even though i am not talking :) Do not do this :P'
         sleep(10)
         TALKING_PILLOW.release()
 
-jobs = [VSO(), Joker(), StockInfo()]
+tasks = [VSO(), Joker(), StockTicker()]
 
 hourAndMin = datetime.now().strftime('%H,%M').split(',')
 # hourAndMin = ['1','15'] #test with specific time
 
-for job in jobs:
-    start_new_thread(job.__run__, (hourAndMin,))
+for task in tasks:
+    start_new_thread(task.__run__, (hourAndMin,))
 
 sleep(45)  # give jobs 45 seconds to run

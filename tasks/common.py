@@ -32,6 +32,13 @@ def write_to_csv(dict, path):
 
 
 class Mona:
+    rooms = ['3A', '3B', '3C']
+    room_ip = {
+        '3A': '',
+        '3B': '',
+        '3C': 'localhost'
+    }
+
     @staticmethod
     def play_sound(name):
         TALKING_PILLOW.acquire()

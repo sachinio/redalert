@@ -9,7 +9,7 @@ template = "Microsoft stock closed at {0}, {1}, {2}."
 motivate = ['come on people we can do better!', 'OK. Clearly you guys need to work harder.']
 praise = ['Great job guys!', 'Well done! Go treat yourself to some coffee.']
 
-class StockInfo(IMonaTask):
+class StockTicker(IMonaTask):
     def __run__(self, time):
         if time[0] == '13' and time[1] == '15':
             result = urllib2.urlopen("http://finance.yahoo.com/d/quotes.csv?s=MSFT&f=spc1").read()
