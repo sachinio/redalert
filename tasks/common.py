@@ -66,7 +66,7 @@ class BuildNotifier:
 
     @staticmethod
     def writeStatus(status):
-        write_to_csv({'broken': status})
+        write_to_csv({'broken': status}, BuildNotifier.statusFile)
 
 
     @staticmethod
