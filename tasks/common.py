@@ -31,6 +31,12 @@ def write_to_csv(dict, path):
         writer.writerow([key, value])
 
 
+def sync_write_to_file(name, operation, message):
+    with open(name, operation) as f:
+        fcntl.flock(f.fileno(), fcntl.LOCK_EX)
+        f.write(message)
+
+
 class Mona:
     rooms = ['3A', '3B', '3C']  # for future use
     room_ip = {  # for future use
@@ -39,15 +45,15 @@ class Mona:
         '3C': 'localhost'
     }
 
-    @staticmethod
-    def play_sound(name):
+    @classmethod
+    def play_sound(cls, name):
         TALKING_PILLOW.acquire()
         subprocess.call(['sudo','pkill','omxplayer'])
         subprocess.call(['sudo','omxplayer',name])
         TALKING_PILLOW.release()
 
-    @staticmethod
-    def speak(msg):
+    @classmethod
+    def speak(cls, msg):
         TALKING_PILLOW.acquire()
         switch_to_mona_path()
         subprocess.call(['sudo', 'python', 'mona.py', msg])
@@ -68,48 +74,48 @@ class BuildNotifier:
         }
     ]
 
-    @staticmethod
-    def wasBroken():
-        return read_csv(BuildNotifier.statusFile)['broken'] == 'True'
+    @classmethod
+    def wasBroken(cls):
+        return read_csv(cls.statusFile)['broken'] == 'True'
 
-    @staticmethod
-    def writeStatus(status):
-        write_to_csv({'broken': status}, BuildNotifier.statusFile)
+    @classmethod
+    def writeStatus(cls, status):
+        write_to_csv({'broken': status}, cls.statusFile)
 
 
-    @staticmethod
-    def notify_build_break(culprits):
-        BuildNotifier.still_unit(BuildNotifier.broadcast_address, '10', '20', '255, 0, 0', '0')
+    @classmethod
+    def notify_build_break(cls, culprits):
+        BuildNotifier.still_unit(cls.broadcast_address, '10', '20', '255, 0, 0', '0')
         for c in culprits:
-            for u in BuildNotifier.units:
+            for u in cls.units:
                 if c['uniqueName'] == u['email']:
-                    BuildNotifier.glow_unit(u['addr'], '500', '100', '255, 0, 0', '0')
+                    cls.glow_unit(u['addr'], '500', '100', '255, 0, 0', '0')
 
-        BuildNotifier.announce_build_break()
+        cls.announce_build_break()
         Mona.speak(culprits[0]['displayName'] + ', could you please fix it!')
 
-    @staticmethod
-    def announce_build_break():
+    @classmethod
+    def announce_build_break(cls):
         Mona.speak('Attention. This is an important message. There has been a build break!')
 
-    @staticmethod
-    def notify_all_clear():
-        BuildNotifier.still_unit(BuildNotifier.broadcast_address, '10', '10', '0, 255, 0', '5')
+    @classmethod
+    def notify_all_clear(cls):
+        cls.still_unit(cls.broadcast_address, '10', '10', '0, 255, 0', '5')
 
-    @staticmethod
-    def glow_unit(addr, delay, bri, color, tout):
-        BuildNotifier.switch_to_lights_path()
+    @classmethod
+    def glow_unit(cls, addr, delay, bri, color, tout):
+        cls.switch_to_lights_path()
         subprocess.call(['python', 'lights.py', addr, 'G', delay, bri, color, tout])
 
-    @staticmethod
-    def still_unit(addr, delay, bri, color, tout):
-        BuildNotifier.switch_to_lights_path()
+    @classmethod
+    def still_unit(cls, addr, delay, bri, color, tout):
+        cls.switch_to_lights_path()
         subprocess.call(['python', 'lights.py', addr, 'S', delay, bri, color, tout])
 
-    @staticmethod
-    def switch_to_lights_path():
+    @classmethod
+    def switch_to_lights_path(cls):
         os.chdir(REPOSITORY_ROOT + '/apis/lights')
 
-    @staticmethod
-    def off_all_lights():
-        subprocess.call(['python', 'lights.py', BuildNotifier.broadcast_address, 'O', '500', '100', '0, 0, 0', '0'])
+    @classmethod
+    def off_all_lights(cls):
+        subprocess.call(['python', 'lights.py', cls.broadcast_address, 'O', '500', '100', '0, 0, 0', '0'])
