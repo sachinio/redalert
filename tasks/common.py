@@ -6,7 +6,7 @@ from threading import Lock
 
 REPOSITORY_ROOT = '/var/www/git/redalert'
 TMP_FOLDER_PATH = '/var/www/tmp'
-STATUS_FILE_PATH = TMP_FOLDER_PATH + '/options.csv'
+OPTIONS_FILE_PATH = TMP_FOLDER_PATH + '/options.csv'
 
 TALKING_PILLOW = Lock()
 STATUS_FILE_LOCK = Lock()
@@ -42,8 +42,8 @@ def sync_write_to_file(name, operation, message):
 def sync_read_status_file():
     STATUS_FILE_LOCK.acquire()
     d = {}
-    if os.path.isfile(STATUS_FILE_PATH):
-        d = read_csv(STATUS_FILE_PATH)
+    if os.path.isfile(OPTIONS_FILE_PATH):
+        d = read_csv(OPTIONS_FILE_PATH)
     STATUS_FILE_LOCK.release()
     return d
 
@@ -51,10 +51,10 @@ def sync_read_status_file():
 def sync_write_to_status_file(key, value):
     STATUS_FILE_LOCK.acquire()
     d = {}
-    if os.path.isfile(STATUS_FILE_PATH):
-        d = read_csv(STATUS_FILE_PATH)
+    if os.path.isfile(OPTIONS_FILE_PATH):
+        d = read_csv(OPTIONS_FILE_PATH)
     d[key] = value
-    write_to_csv(d, STATUS_FILE_PATH)
+    write_to_csv(d, OPTIONS_FILE_PATH)
     STATUS_FILE_LOCK.release()
 
 
@@ -94,11 +94,11 @@ class BuildNotifier:
     ]
 
     @classmethod
-    def wasBroken(cls):
+    def build_was_broken(cls):
         return sync_read_status_file()['buildbroken'] == 'True'
 
     @classmethod
-    def writeStatus(cls, status):
+    def update_build_status(cls, status):
         sync_write_to_status_file('buildbroken', status)
 
 
