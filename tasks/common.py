@@ -1,6 +1,6 @@
 __author__ = 'sachinpatney'
 
-import os, subprocess, random, csv, fcntl
+import os, subprocess, random, csv, fcntl, smtplib, sys
 
 from threading import Lock
 
@@ -138,3 +138,29 @@ class BuildNotifier:
     @classmethod
     def off_all_lights(cls):
         subprocess.call(['python', 'lights.py', cls.broadcast_address, 'O', '500', '100', '0, 0, 0', '0'])
+
+
+class EMail:
+    def __init__(self, subject, msg):
+        self.subject = subject
+        self.msg = msg
+
+    def send(self):
+        fromaddr = 'sachinpatney@gmail.com'
+        toaddrs = 'sachinpatney@gmail.com'
+
+        header = 'To:' + toaddrs + '\n' + 'From: ' + fromaddr + '\n' + '{0}\n'.format(self.subject)
+        msg = header + self.msg
+
+        # Credentials (if needed)
+        cred = sync_read_status_file()
+
+        username = cred['gmail_username']
+        password = cred['gmail_password']
+
+        # The actual mail send
+        server = smtplib.SMTP('smtp.gmail.com:587')
+        server.starttls()
+        server.login(username,password)
+        server.sendmail(fromaddr, toaddrs, msg)
+        server.quit()
