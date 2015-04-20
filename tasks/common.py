@@ -149,7 +149,7 @@ class EMail:
         fromaddr = 'sachinpatney@gmail.com'
         toaddrs = 'sachinpatney@gmail.com'
 
-        header = 'To:' + toaddrs + '\n' + 'From: ' + fromaddr + '\n' + '{0}\n'.format(self.subject)
+        header = 'To:' + toaddrs + '\n' + 'From: ' + fromaddr + '\n' + 'Subject:{0}\n'.format(self.subject)
         msg = header + self.msg
 
         # Credentials (if needed)
