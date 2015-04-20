@@ -14,6 +14,6 @@ ifconfig = check_output(["ifconfig"])
 
 public_ip = urllib2.urlopen('http://ip.42.pl/raw').read()
 
-out = "ifconfig\n--------\n\n {0}\n\nPublic IP: {1}".format(ifconfig, public_ip)
+out = "ifconfig\n------------------------------\n\n {0}\n\nPublic IP: {1}".format(ifconfig, public_ip)
 
 EMail('Red Alert controller boot info', out).send()
