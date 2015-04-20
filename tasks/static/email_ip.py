@@ -6,7 +6,6 @@ import smtplib, sys
 sys.path.append('/var/www/git/redalert/tasks')
 
 import common
-from common import TMP_FOLDER_PATH
 from subprocess import check_output
 
 fromaddr = 'sachinpatney@gmail.com'
@@ -17,10 +16,10 @@ header = 'To:' + toaddrs + '\n' + 'From: ' + fromaddr + '\n' + 'Subject:Raspberr
 msg = header + out
 
 # Credentials (if needed)
-cred = common.read_csv(TMP_FOLDER_PATH + '/gmailcred.csv')
+cred = common.sync_read_status_file()
 
-username = cred['username']
-password = cred['password']
+username = cred['gmail_username']
+password = cred['gmail_password']
 
 # The actual mail send
 server = smtplib.SMTP('smtp.gmail.com:587')

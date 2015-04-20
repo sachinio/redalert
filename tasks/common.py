@@ -6,8 +6,10 @@ from threading import Lock
 
 REPOSITORY_ROOT = '/var/www/git/redalert'
 TMP_FOLDER_PATH = '/var/www/tmp'
+STATUS_FILE_PATH = TMP_FOLDER_PATH + '/vso_status.csv'
 
 TALKING_PILLOW = Lock()
+STATUS_FILE_LOCK = Lock()
 
 
 class IMonaTask():
@@ -37,6 +39,25 @@ def sync_write_to_file(name, operation, message):
         f.write(message)
 
 
+def sync_read_status_file()
+    STATUS_FILE_LOCK.acquire()
+    d = {}
+    if os.path.isfile(STATUS_FILE_PATH):
+        d = read_csv(STATUS_FILE_PATH)
+    STATUS_FILE_LOCK.release()
+    return d
+
+
+def sync_write_to_status_file(key, value):
+    STATUS_FILE_LOCK.acquire()
+    d = {}
+    if os.path.isfile(STATUS_FILE_PATH):
+        d = read_csv(STATUS_FILE_PATH)
+    d[key] = value
+    write_to_csv(d, STATUS_FILE_PATH)
+    STATUS_FILE_LOCK.release()
+
+
 class Mona:
     rooms = ['3A', '3B', '3C']  # for future use
     room_ip = {  # for future use
@@ -63,8 +84,6 @@ class Mona:
 class BuildNotifier:
     broadcast_address = '00 00 00 00 00 00 FF FF'
 
-    statusFile = TMP_FOLDER_PATH + '/vso_status.csv'
-
     units = [
         {
             'id' : 0,
@@ -76,11 +95,11 @@ class BuildNotifier:
 
     @classmethod
     def wasBroken(cls):
-        return read_csv(cls.statusFile)['broken'] == 'True'
+        return sync_read_status_file()['buildbroken'] == 'True'
 
     @classmethod
     def writeStatus(cls, status):
-        write_to_csv({'broken': status}, cls.statusFile)
+        sync_write_to_status_file('buildbroken', status)
 
 
     @classmethod
