@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<data>
+  <loop>false</loop>
+  <repeat_times>1</repeat_times>
+  <repeat_period>3000</repeat_period>
+  <frames_list>
+    <frame name="Running Lights">
+      <payload>7E00201001000000000000FFFFFFFE0000522C37302C32302C3235352C302C302C313073</payload>
+    </frame>
+    <frame name="Police">
+      <payload>7E001E1001000000000000FFFFFFFE0000502C35302C32302C302C302C302C3130E3</payload>
+    </frame>
+    <frame name="Flash">
+      <payload>7E00231001000000000000FFFFFFFE0000462C3330302C32302C33302C3235352C33302C3130ED</payload>
+    </frame>
+    <frame name="Still">
+      <payload>7E00221001000000000000FFFFFFFE0000532C32302C32302C3235352C31302C31302C313015</payload>
+    </frame>
+    <frame name="Message">
+      <payload>7E002C1001000000000000FFFFFFFE00004D4275696C6420427265616B2C3130302C32302C3235352C302C302C313059</payload>
+    </frame>
+    <frame name="Glow">
+      <payload>7E00241001000000000000FFFFFFFE0000472C3530302C32302C3130302C3235352C32302C3130BD</payload>
+    </frame>
+    <frame name="Disco">
+      <payload>7E001E1001000000000000FFFFFFFE0000442C33302C32302C302C302C302C3130F1</payload>
+    </frame>
+    <frame name="OFF">
+      <payload>7E001B1001000000000000FFFFFFFE00004F2C302C302C302C302C302C307C</payload>
+    </frame>
+  </frames_list>
+</data>

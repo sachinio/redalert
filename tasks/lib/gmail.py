@@ -15,7 +15,6 @@ msg = 'Raspberry PI here, Just checking how you are doing!'
 
 # Credentials (if needed)
 cred = common.read_csv(TMP_FOLDER_PATH + '/gmailcred.csv')
-print cred
 
 username = cred['username']
 password = cred['password']
