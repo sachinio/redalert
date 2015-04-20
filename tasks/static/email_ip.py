@@ -12,12 +12,12 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("-w", "--skipwifi", help="skip waiting for wifi to log on",
                     action="store_true")
-parser.add_argument("-s", "--skippublicip", help="skip getting public ip",
+parser.add_argument("-p", "--skippublicip", help="skip getting public ip",
                     action="store_true")
 
 args = parser.parse_args()
 
-if not args.skipwifi
+if not args.skipwifi:
     time.sleep(10)  # Let WIFI Connect
 
 ifconfig = check_output(["ifconfig"])
