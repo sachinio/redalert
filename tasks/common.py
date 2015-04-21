@@ -29,7 +29,7 @@ def read_csv(path):
 
 def read_csv_as_list(path):
     l = []
-    if os.path.isfile(OPTIONS_FILE_PATH):
+    if os.path.isfile(path):
         reader = csv.reader(open(path, 'rb'))
         l = list(reader)
     return l
