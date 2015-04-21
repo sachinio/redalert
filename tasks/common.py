@@ -27,11 +27,19 @@ def read_csv(path):
     return dict(x for x in reader)
 
 
+def read_csv_as_list(path):
+    reader = csv.reader(open(path, 'rb'))
+    return list(x for x in reader)
+
+
 def write_to_csv(dict, path):
     writer = csv.writer(open(path, 'wb'))
     for key, value in dict.items():
         writer.writerow([key, value])
 
+def write_to_csv_with_quote(l, path):
+    writer = csv.writer(open(path, 'wb'), quoting=csv.QUOTE_ALL)
+    writer.writerow(l)
 
 def sync_write_to_file(name, operation, message):
     with open(name, operation) as f:
@@ -169,5 +177,5 @@ class EMail:
 class Timeline:
     @classmethod
     def add_item(cls, name, title, content, img):
-        sync_write_to_file(TMP_FOLDER_PATH + '/timeline.txt', 'wb', '{0} {1} {2} {3}'.format(name, title, content, img))
-        print '{0} {1} {2} {3}'.format(name, title, content, img)
+        l = [{"name": name, "title": title, "content": content, "img": img}]
+        write_to_csv_with_quote(l, TMP_FOLDER_PATH + '/timeline.csv')
