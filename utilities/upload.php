@@ -1,7 +1,8 @@
 <?php
-$target_dir = "/var/www/uploads/";
-
 $name = $_POST['name'];
+
+$target_dir = "/var/www/uploads/" . $name . "/";
+
 $title = $_POST['title'];
 $content = $_POST['content'];
 $r = "" . basename($_FILES["fileToUpload"]["name"]);
