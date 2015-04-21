@@ -12,7 +12,7 @@ title = sys.argv[2]
 content = sys.argv[3]
 img = None
 
-if sys.argv.length > 4:
+if len(sys.argv) > 4:
     img = sys.argv[4]
 
 Timeline.add_item(name, title, content, img)
