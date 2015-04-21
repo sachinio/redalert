@@ -146,13 +146,13 @@ class EMail:
         self.msg = msg
 
     def send(self):
-        fromaddr = 'monapbix@gmail.com'
-        toaddrs = 'sachinpatney@gmail.com'
+        from_address = 'monapbix@gmail.com'
+        to_address = 'sachinpatney@gmail.com'
 
-        header = 'To:' + toaddrs + '\n' + 'From: ' + fromaddr + '\n' + 'Subject:{0}\n'.format(self.subject)
+        header = 'To:' + to_address + '\n' + 'From: ' + from_address + '\n' + 'Subject:{0}\n'.format(self.subject)
         msg = header + self.msg
 
-        # Credentials (if needed)
+        # Credentials
         cred = sync_read_status_file()
 
         username = cred['gmail_username']
@@ -162,5 +162,11 @@ class EMail:
         server = smtplib.SMTP('smtp.gmail.com:587')
         server.starttls()
         server.login(username, password)
-        server.sendmail(fromaddr, toaddrs, msg)
+        server.sendmail(from_address, to_address, msg)
         server.quit()
+
+
+class TimeLine:
+    @classmethod
+    def add_item(cls, title, content):
+        print ''
