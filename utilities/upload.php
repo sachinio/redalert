@@ -9,11 +9,11 @@ if(isset($_POST["submit"])) {
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     if($check !== false) {
         $uploadOk = 1;
-    } else {
-        $uploadOk = 0;
         if (!file_exists($target_dir)) {
             mkdir($target_dir, 0777, true);
         }
+    } else {
+        $uploadOk = 0;
     }
 }
 // Check if file already exists
