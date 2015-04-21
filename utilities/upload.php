@@ -1,5 +1,5 @@
 <?php
-$target_dir = "/var/www/uploads/" . $_POST['name'];
+$target_dir = "/var/www/uploads/" . $_POST['name'] . "/";
 
 if (!file_exists($target_dir)) {
     mkdir($target_dir, 0777, true);
