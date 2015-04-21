@@ -1,10 +1,6 @@
 <?php
 $target_dir = "/var/www/uploads/" . $_POST['name'] . "/";
 
-if (!file_exists($target_dir)) {
-    mkdir($target_dir, 0777, true);
-}
-
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -15,6 +11,9 @@ if(isset($_POST["submit"])) {
         $uploadOk = 1;
     } else {
         $uploadOk = 0;
+        if (!file_exists($target_dir)) {
+            mkdir($target_dir, 0777, true);
+        }
     }
 }
 // Check if file already exists
