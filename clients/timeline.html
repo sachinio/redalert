@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="timelineApp">
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="js/timeline.js"></script>
     <link rel="stylesheet" href="css\bootstrap.css">
     <link rel="stylesheet" href="css\timeline.css">
     <link rel="stylesheet" href="css\fonts.css">
@@ -14,78 +16,24 @@
         }
     </style>
 </head>
-<body>
+<body ng-controller="TimelineCtrl">
 <h1 style="text-align: center">Life @ Explore</h1>
 <div class="panel-body">
     <ul class="timeline">
-        <li>
-            <div class="timeline-badge"><i class="fa fa-check"></i>
+        <li ng-repeat="event in events track by $index" ng-class="{'timeline-inverted': $index % 2 !== 0}">
+            <div class="timeline-badge {{event.iconBackground}}">
+                <i class="fa {{event.icon}}"></i>
             </div>
             <div class="timeline-panel">
                 <div class="timeline-heading">
-                    <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                    <p><small class="text-muted"><i class="fa fa-clock-o"></i> 11 hours ago via Twitter</small>
+                    <h4 class="timeline-title">{{event.title}}</h4>
+                    <p>
+                        <small class="text-muted"><i class="fa fa-clock-o"></i>{{event.timeStamp}} - {{event.by}}</small>
                     </p>
                 </div>
                 <div class="timeline-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero laboriosam dolor perspiciatis omnis exercitationem. Beatae, officia pariatur? Est cum veniam excepturi. Maiores praesentium, porro voluptas suscipit facere rem dicta, debitis.</p>
-                </div>
-            </div>
-        </li>
-        <li class="timeline-inverted">
-            <div class="timeline-badge danger"><i class="fa fa-ambulance"></i>
-            </div>
-            <div class="timeline-panel">
-                <div class="timeline-heading">
-                    <h4 class="timeline-title">Build Break</h4>
-                    <p><small class="text-muted"><i class="fa fa-clock-o"></i> 11 hours ago</small>
-                    </p>
-                </div>
-                <div class="timeline-body">
-                    <p>Pedram broke the build</p>
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="timeline-badge success"><i class="fa fa-graduation-cap"></i>
-            </div>
-            <div class="timeline-panel">
-                <div class="timeline-heading">
-                    <h4 class="timeline-title">Learning ...</h4>
-                    <p><small class="text-muted"><i class="fa fa-clock-o"></i> 13 hours ago</small>
-                    </p>
-                </div>
-                <div class="timeline-body">
-                    <p>D3 Basics was conducted. Video can be found at www.youtube.com</p>
-                </div>
-            </div>
-        </li>
-        <li class="timeline-inverted">
-            <div class="timeline-badge info"><i class="fa  fa-bullhorn"></i>
-            </div>
-            <div class="timeline-panel">
-                <div class="timeline-heading">
-                    <h4 class="timeline-title">Exec Review</h4>
-                    <p><small class="text-muted"><i class="fa fa-clock-o"></i> 11 hours ago</small>
-                    </p>
-                </div>
-                <div class="timeline-body">
-                    <p>Satya just saw the new branding and LOVED IT!</p>
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="timeline-badge info"><i class="fa fa-users"></i>
-            </div>
-            <div class="timeline-panel">
-                <div class="timeline-heading">
-                    <h4 class="timeline-title">Team meeting</h4>
-                    <p><small class="text-muted"><i class="fa fa-clock-o"></i> 17 hours ago</small>
-                    </p>
-                </div>
-                <div class="timeline-body">
-                    <img src="http://www.online-image-editor.com//styles/2014/images/example_image.png">
-                    <p>Meow!</p>
+                    <img ng-if="event.img !== undefined" ng-src="{{event.img}}">
+                    <p>{{event.content}}</p>
                 </div>
             </div>
         </li>
