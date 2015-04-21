@@ -1,12 +1,5 @@
 <?php
-$name = $_POST['name'];
-
-$target_dir = "/var/www/uploads/" . $name . "/";
-
-$title = $_POST['title'];
-$content = $_POST['content'];
-$r = "" . basename($_FILES["fileToUpload"]["name"]);
-$output = shell_exec("sudo python addTimelineItem.py $name $title $content $r 2>&1");
+$target_dir = "/var/www/uploads/";
 
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -40,6 +33,11 @@ if ($uploadOk == 0) {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {} else {}
 }
 
+$name = $_POST['name'];
+$title = $_POST['title'];
+$content = $_POST['content'];
+$r = "" . basename($_FILES["fileToUpload"]["name"]);
+$output = shell_exec("sudo python addTimelineItem.py $name $title $content $r 2>&1");
 echo "<h1>Done!</h1><a href='../clients/timeline.html'>go back</a>";
 
 ?>
