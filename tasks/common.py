@@ -188,4 +188,4 @@ class Timeline:
         i = {"name": name, "title": title, "content": content, "img": img}
         l = read_csv_as_list(TMP_FOLDER_PATH + '/timeline.csv')
         l.append(i)
-        write_to_csv_with_quote(l, TMP_FOLDER_PATH + '/timeline.csv')
+        write_to_csv_as_list(['name', 'title', 'content', 'img'],l, TMP_FOLDER_PATH + '/timeline.csv')
