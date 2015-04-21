@@ -41,10 +41,13 @@ def write_to_csv(dict, path):
     for key, value in dict.items():
         writer.writerow([key, value])
 
-def write_to_csv_with_quote(list, path):
-    writer = csv.writer(open(path, 'wb'))
-    for l in list:
-        writer.writerow(l)
+def write_to_csv_as_list(fieldnames, list, path):
+    with open('names.csv', 'w') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+        writer.writeheader()
+        for l in list:
+            writer.writerow(l)
 
 def sync_write_to_file(name, operation, message):
     with open(name, operation) as f:
