@@ -28,13 +28,13 @@ def read_csv(path):
 
 
 def read_csv_as_list(path):
-    l = []
+    list = []
     if os.path.isfile(path):
-        reader = csv.reader(open(path, 'rb'))
-        header = reader.next()
-        for r in header:
-            l.append(r)
-    return l
+        reader = csv.DictReader(open(path, 'rb'))
+        for l in reader:
+            list.append(l)
+
+    return list
 
 
 def write_to_csv(dict, path):
