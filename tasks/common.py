@@ -6,6 +6,7 @@ from threading import Lock
 
 REPOSITORY_ROOT = '/var/www/git/redalert'
 TMP_FOLDER_PATH = '/var/www/tmp'
+UPLOAD_FOLDER_PATH = '/var/www/upload'
 OPTIONS_FILE_PATH = TMP_FOLDER_PATH + '/options.csv'
 
 TALKING_PILLOW = Lock()
@@ -22,7 +23,7 @@ def switch_to_mona_path():
     os.chdir(REPOSITORY_ROOT + '/apis/mona')
 
 
-def read_csv(path):
+def read_csv_as_dictionary(path):
     reader = csv.reader(open(path, 'rb'))
     return dict(x for x in reader)
 
@@ -37,12 +38,12 @@ def read_csv_as_list(path):
     return list
 
 
-def write_to_csv(dict, path):
+def write_dictionary_to_csv(dict, path):
     writer = csv.writer(open(path, 'wb'))
     for key, value in dict.items():
         writer.writerow([key, value])
 
-def write_to_csv_as_list(fieldnames, list, path):
+def write_list_to_csv_as(fieldnames, list, path):
     with open(path, 'w') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
@@ -60,7 +61,7 @@ def sync_read_status_file():
     STATUS_FILE_LOCK.acquire()
     d = {}
     if os.path.isfile(OPTIONS_FILE_PATH):
-        d = read_csv(OPTIONS_FILE_PATH)
+        d = read_csv_as_dictionary(OPTIONS_FILE_PATH)
     STATUS_FILE_LOCK.release()
     return d
 
@@ -69,9 +70,9 @@ def sync_write_to_status_file(key, value):
     STATUS_FILE_LOCK.acquire()
     d = {}
     if os.path.isfile(OPTIONS_FILE_PATH):
-        d = read_csv(OPTIONS_FILE_PATH)
+        d = read_csv_as_dictionary(OPTIONS_FILE_PATH)
     d[key] = value
-    write_to_csv(d, OPTIONS_FILE_PATH)
+    write_dictionary_to_csv(d, OPTIONS_FILE_PATH)
     STATUS_FILE_LOCK.release()
 
 
@@ -186,7 +187,9 @@ class EMail:
 class Timeline:
     @classmethod
     def add_item(cls, name, title, content, img):
+        if img != '':
+            img = '{0}/{1}/{2}'.format(UPLOAD_FOLDER_PATH,name,img)
         i = {"name": name, "title": title, "content": content, "img": img}
         l = read_csv_as_list(TMP_FOLDER_PATH + '/timeline.csv')
         l.append(i)
-        write_to_csv_as_list(['name', 'title', 'content', 'img'],l, TMP_FOLDER_PATH + '/timeline.csv')
+        write_list_to_csv_as(['name', 'title', 'content', 'img'],l, TMP_FOLDER_PATH + '/timeline.csv')
