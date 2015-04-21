@@ -39,7 +39,8 @@ def write_to_csv(dict, path):
 
 def write_to_csv_with_quote(l, path):
     writer = csv.writer(open(path, 'wb'), quoting=csv.QUOTE_ALL)
-    writer.writerow(l)
+    for item in l:
+        writer.writerow(item)
 
 def sync_write_to_file(name, operation, message):
     with open(name, operation) as f:
