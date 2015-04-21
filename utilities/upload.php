@@ -40,8 +40,8 @@ if ($uploadOk == 0) {
        $title = $_POST['title']
        $content = $_POST['content']
 
-       $output = shell_exec("sudo python addTimelineItem.py $name $title $content 2>&1");
-       echo $output;
+       exec("sudo python addTimelineItem.py $name $title $content");
+       echo "HELLO";
     } else {
         echo "Sorry uploading ". basename( $_FILES["fileToUpload"]["name"]). " Failed";
     }
