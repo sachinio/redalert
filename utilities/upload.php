@@ -1,5 +1,9 @@
 <?php
-$target_dir = "/var/www/uploads/";
+$target_dir = "/var/www/uploads/" . $_POST['name'];
+
+if (!file_exists($target_dir)) {
+    mkdir($target_dir, 0777, true);
+}
 
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -39,5 +43,4 @@ $content = $_POST['content'];
 $r = "" . basename($_FILES["fileToUpload"]["name"]);
 $output = shell_exec("sudo python addTimelineItem.py $name $title $content $r 2>&1");
 echo "<h1>Done!</h1><a href='../clients/timeline.html'>go back</a>";
-
 ?>
