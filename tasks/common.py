@@ -42,7 +42,7 @@ def write_to_csv(dict, path):
         writer.writerow([key, value])
 
 def write_to_csv_as_list(fieldnames, list, path):
-    with open('names.csv', 'w') as csvfile:
+    with open(path, 'w') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
         writer.writeheader()
