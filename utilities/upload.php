@@ -36,7 +36,12 @@ if ($uploadOk == 0) {
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+       $name = $_POST['name']
+       $title = $_POST['title']
+       $content = $_POST['content']
+
+       $output = shell_exec("sudo python addTimelineItem.py $name $title $content 2>&1");
+       echo $output;
     } else {
         echo "Sorry uploading ". basename( $_FILES["fileToUpload"]["name"]). " Failed";
     }

@@ -166,7 +166,8 @@ class EMail:
         server.quit()
 
 
-class TimeLine:
+class Timeline:
     @classmethod
-    def add_item(cls, title, content):
-        print ''
+    def add_item(cls, name, title, content, img):
+        sync_write_to_file(TMP_FOLDER_PATH + '/timeline.txt', 'wb', '{0} {1} {2} {3}'.format(name, title, content, img))
+        print '{0} {1} {2} {3}'.format(name, title, content, img)
