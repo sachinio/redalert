@@ -31,6 +31,7 @@ def read_csv_as_list(path):
     l = []
     if os.path.isfile(path):
         reader = csv.reader(open(path, 'rb'))
+        reader.next()
         for r in reader:
             l.append(r)
     return l
