@@ -30,11 +30,7 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
 if ($uploadOk == 0) {
 // if everything is ok, try to upload file
 } else {
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-
-    } else {
-        echo "Sorry uploading ". basename( $_FILES["fileToUpload"]["name"]). " Failed";
-    }
+    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {} else {}
 }
 
 $name = $_POST['name'];
