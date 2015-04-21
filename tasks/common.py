@@ -177,5 +177,7 @@ class EMail:
 class Timeline:
     @classmethod
     def add_item(cls, name, title, content, img):
-        l = [{"name": name, "title": title, "content": content, "img": img}]
+        i = {"name": name, "title": title, "content": content, "img": img}
+        l = read_csv_as_list(TMP_FOLDER_PATH + '/timeline.csv')
+        l.append(i)
         write_to_csv_with_quote(l, TMP_FOLDER_PATH + '/timeline.csv')
