@@ -36,7 +36,8 @@ if ($uploadOk == 0) {
 $name = $_POST['name'];
 $title = $_POST['title'];
 $content = $_POST['content'];
-$output = shell_exec("sudo python addTimelineItem.py $name $title $content basename($_FILES["fileToUpload"]["name"]) 2>&1");
+$r = "" . basename($_FILES["fileToUpload"]["name"]);
+$output = shell_exec("sudo python addTimelineItem.py $name $title $content 2>&1");
 echo "<h1>Done!</h1><a href='../clients/timeline.html'>go back</a>";
 
 ?>
