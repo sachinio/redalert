@@ -28,8 +28,11 @@ def read_csv(path):
 
 
 def read_csv_as_list(path):
-    reader = csv.reader(open(path, 'rb'))
-    return list(x for x in reader)
+    l = []
+    if os.path.isfile(OPTIONS_FILE_PATH):
+        reader = csv.reader(open(path, 'rb'))
+        l = list(x for x in reader)
+    return l
 
 
 def write_to_csv(dict, path):
