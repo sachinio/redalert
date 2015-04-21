@@ -31,7 +31,8 @@ def read_csv_as_list(path):
     l = []
     if os.path.isfile(path):
         reader = csv.reader(open(path, 'rb'))
-        l = list(reader)
+        for r in reader:
+            l.append(r)
     return l
 
 
@@ -40,9 +41,10 @@ def write_to_csv(dict, path):
     for key, value in dict.items():
         writer.writerow([key, value])
 
-def write_to_csv_with_quote(l, path):
+def write_to_csv_with_quote(list, path):
     writer = csv.writer(open(path, 'wb'))
-    writer.writerow(l)
+    for l in list:
+        writer.writerow(l)
 
 def sync_write_to_file(name, operation, message):
     with open(name, operation) as f:
