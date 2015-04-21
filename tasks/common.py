@@ -41,7 +41,7 @@ def write_to_csv(dict, path):
         writer.writerow([key, value])
 
 def write_to_csv_with_quote(l, path):
-    writer = csv.writer(open(path, 'wb'), quoting=csv.QUOTE_ALL)
+    writer = csv.writer(open(path, 'wb'))
     writer.writerow(l)
 
 def sync_write_to_file(name, operation, message):
