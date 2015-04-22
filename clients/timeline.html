@@ -32,7 +32,7 @@
 <h1 style="text-align: center"> <a class="upLink" href="upload.html"><i class="fa fa-comment add-comment"></i></a>Life @ Explore</h1>
 <div class="panel-body">
     <ul class="timeline">
-        <li ng-repeat="event in events track by $index" ng-class="{'timeline-inverted': $index % 2 !== 0}">
+        <li ng-animate="'animate'" ng-repeat="event in events track by $index" ng-class="{'timeline-inverted': $index % 2 !== 0}">
             <div class="timeline-badge {{event.iconBackground}}"><i class="fa {{event.icon}}"></i>
             </div>
             <div class="timeline-panel">
