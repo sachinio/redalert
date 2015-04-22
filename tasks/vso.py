@@ -32,8 +32,8 @@ class VSO(IMonaTask):
         for build in data['value']:
             if self.is_broken(build):
                 brokenBuilds.append(build)
-            #else:  # We only want broken builds after last success
-                #break
+            else:  # We only want broken builds after last success
+                break
         return brokenBuilds
 
     def get_build_info(self):
@@ -52,6 +52,7 @@ class VSO(IMonaTask):
             if BuildNotifier.build_was_broken():
                 BuildNotifier.update_build_status(False)
                 BuildNotifier.notify_all_clear()
+                Timeline.add_item('Mona', 'BUILD BREAK FIXED','Thank you for taking care of it', '', 'fa-bar-chart', 'success')
                 print 'Sent all clear notification'
             else:
                 print 'Was not broken previously too, so do nothing new'
