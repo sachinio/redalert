@@ -22,7 +22,7 @@ class StockTicker(IMonaTask):
 
             msg = template.format(result[1].replace('.',' point '), dir, result[2].replace('.',' point ').replace('-', ''),'')
             Mona.speak(msg);
-            Timeline.add_item('Mona', 'Stock update', template.format(result[1], dir, result[2], random.choice(motivate)), '', 'fa-bar-chart', 'success')
+            Timeline.add_item('Mona', 'Stock update', template.format(result[1], dir, result[2].replace('-', ''), random.choice(motivate)), '', 'fa-bar-chart', 'success')
 
             if dir == 'up':
                 Mona.speak(random.choice(praise))
