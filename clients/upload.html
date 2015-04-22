@@ -6,70 +6,7 @@
     <link rel="stylesheet" href="css\bootstrap.css">
     <link rel="stylesheet" href="css\timeline.css">
     <link rel="stylesheet" href="css\fonts.css">
-    <style>
-        form{
-            margin: 0.5em;
-        }
-        input[type=text]{
-            display: block;
-
-        }
-        input[type=radio]{
-            display: none;
-        }
-        input[type=radio]:checked + .radio{
-            border: 2px solid black;
-        }
-        .fa{
-            padding: 0.3em
-        }
-
-        .radio{
-            border: 2px solid white;
-            display:inline-block;
-            width:5em;
-            height:5em;
-        }
-
-        .red{
-            background-color: #d9534f;
-        }
-        .blue{
-            background-color: #5bc0de;
-        }
-        .green{
-            background-color: #3f903f;
-        }
-
-        .amber{
-            background-color: #f0ad4e;
-        }
-
-        label i{
-            color: white
-        }
-
-        input.holo[type='text'] {
-        /* You can set width to whatever you like */
-        width: 18em;
-        font-family: "Roboto", "Droid Sans", sans-serif;
-        font-size: 1em;
-        margin-left: 1.6em;
-        margin-top: 1em;
-        padding: 8px 8px 6px 8px;
-        position: relative;
-        display: block;
-        outline: none;
-        border: none;
-        background: bottom left linear-gradient(#a9a9a9, #a9a9a9) no-repeat, bottom center linear-gradient(#a9a9a9, #a9a9a9) repeat-x, bottom right linear-gradient(#a9a9a9, #a9a9a9) no-repeat;
-        background-size: 1px 6px, 1px 1px, 1px 6px;
-        }
-        input.holo[type='text']:hover, input.holo[type='text']:focus {
-        background: bottom left linear-gradient(#0099cc, #0099cc) no-repeat, bottom center linear-gradient(#0099cc, #0099cc) repeat-x, bottom right linear-gradient(#0099cc, #0099cc) no-repeat;
-        background-size: 1px 6px, 1px 1px, 1px 6px;
-        }
-
-    </style>
+    <link rel="stylesheet" href="css\upload.css">
     <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 </head>
 <body>
@@ -85,11 +22,8 @@
         <label class="radio green" for="r4"><i class="fa fa-bar-chart fa-3x"></i></label>
         <input type="radio" name="icon" value="fa-beer warning" id="r3">
         <label class="radio amber" for="r3"><i class="fa fa-beer fa-3x"></i></label>
-
-    <div>
         <input type="file" name="fileToUpload" id="fileToUpload">
-        <input type="submit" value="Post Comment" name="submit">
-    </div>
+        <input type="submit" class="btn" value="Post Comment" name="submit">
 </form>
 <script>
 </script>
