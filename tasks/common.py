@@ -196,7 +196,7 @@ class Timeline:
             "img": img,
             'icon': icon,
             'iconBackground': iconBack,
-            'timeStamp': 'now'
+            'timeStamp': datetime.datetime.now().strftime("%B %d, %Y @ %I:%M%p")
         }
 
         l = read_csv_as_list(TMP_FOLDER_PATH + '/timeline.csv')
