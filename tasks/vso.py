@@ -65,7 +65,7 @@ class VSO(IMonaTask):
                 Timeline.add_item('Mona', 'BUILD BREAK',
                                   '{0} broke the build. Change was requested by {1}'.format(
                                       broken[0]['buildNumber'],
-                                      broken[0]['requests'][0]['requestedFor']), '', 'fa-ambulance', 'danger')
+                                      broken[0]['requests'][0]['requestedFor']['displayName']), '', 'fa-ambulance', 'danger')
                 print 'Sent build break notification'
             else:
                 print 'Was broken previously too, so do nothing'
