@@ -1,7 +1,12 @@
 var timelineApp = angular.module('timelineApp', []);
 
 timelineApp.controller('TimelineCtrl', function ($scope) {
-  $scope.events = [
+
+$.get('../utilities/get_timeline.php', function(d){
+    $scope.events = JSON.parse(d)
+});
+
+ /*$scope.events = [
     {
         'title': 'Build break!',
         'content': 'Pedram broke the build',
@@ -35,5 +40,5 @@ timelineApp.controller('TimelineCtrl', function ($scope) {
         'iconBackground': 'success',
         'by':'Nick'
     },
-  ]
+  ]*/
 });

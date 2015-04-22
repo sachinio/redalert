@@ -12,19 +12,13 @@
 </head>
 <body>
 <form action="../utilities/upload.php" method="post" enctype="multipart/form-data">
-    <input type="text" name="title" id="title">
-    <input type="text" name="content" id="content">
-    <input type="text" name="name" id="name">
+    <input type="text" name="title" id="title" placeholder="title">
+    <input type="text" name="content" id="content" placeholder="content">
+    <input type="text" name="name" id="name" placeholder="your name">
     <input type="file" name="fileToUpload" id="fileToUpload">
     <input type="submit" value="Post Comment" name="submit">
 </form>
 <script>
-var awe;
-    $.get('../utilities/get_timeline.php', function(d){
-    awe = d;
-        console.log(d);
-        console.log(d[0].name);
-    });
 </script>
 </body>
 </html>
