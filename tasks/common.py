@@ -189,7 +189,18 @@ class Timeline:
     def add_item(cls, name, title, content, img):
         if img != '':
             img = '{0}/{1}/{2}'.format('../uploads',name,img)
-        i = {"name": name, "title": title, "content": content, "img": img, 'icon': 'fa-bullhorn', 'icon-background': 'info'}
+        i = {
+            "name": name,
+            "title": title,
+            "content": content,
+            "img": img,
+            'icon': 'fa-bullhorn',
+            'icon-background': 'info',
+            'timeStamp': 'now'
+        }
+
         l = read_csv_as_list(TMP_FOLDER_PATH + '/timeline.csv')
         l.append(i)
-        write_list_to_csv_as(['name', 'title', 'content', 'img', 'icon', 'iconBackground','timeStamp' ],l, TMP_FOLDER_PATH + '/timeline.csv')
+        write_list_to_csv_as(
+            ['name', 'title', 'content', 'img', 'icon', 'iconBackground', 'timeStamp']
+            , l, TMP_FOLDER_PATH + '/timeline.csv')
