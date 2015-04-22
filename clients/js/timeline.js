@@ -5,7 +5,7 @@ timelineApp.controller('TimelineCtrl', function ($scope) {
 $.get('../utilities/get_timeline.php', function(d){
     var evts = JSON.parse(d);
     $scope.events = evts;
-    $scope.apply()
+    $scope.$apply()
 });
 
  /*$scope.events = [
