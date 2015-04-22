@@ -3,7 +3,8 @@ var timelineApp = angular.module('timelineApp', []);
 timelineApp.controller('TimelineCtrl', function ($scope) {
 
 $.get('../utilities/get_timeline.php', function(d){
-    $scope.events = JSON.parse(d)
+    var evts = JSON.parse(d);
+    $scope.events = evts;
 });
 
  /*$scope.events = [
