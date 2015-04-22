@@ -17,10 +17,16 @@
             height: auto !important;
             margin-bottom: 0.5em;
         }
+        .add-comment{
+            color: #5bc0de;
+        }
+        .add-comment:hover{
+            color: #f0ad4e;
+        }
     </style>
 </head>
 <body ng-controller="TimelineCtrl">
-<h1 style="text-align: center">Life @ Explore</h1>
+<h1 style="text-align: center">Life @ Explore <a href="upload.html"><i class="fa fa-comment add-comment"></i></a></h1>
 <div class="panel-body">
     <ul class="timeline">
         <li ng-repeat="event in events track by $index" ng-class="{'timeline-inverted': $index % 2 !== 0}">
@@ -41,4 +47,6 @@
     </ul>
 </div>
 </body>
+<script>
+</script>
 </html>
