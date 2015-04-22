@@ -188,7 +188,7 @@ class Timeline:
     @classmethod
     def add_item(cls, name, title, content, img):
         if img != '':
-            img = '{0}/{1}/{2}'.format('../uploads',name,img)
+            img = '{0}/{1}/{2}'.format('../../../uploads',name,img)
         i = {
             "name": name,
             "title": title,
