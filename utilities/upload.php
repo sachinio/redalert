@@ -36,9 +36,9 @@ if ($uploadOk == 0) {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {} else {}
 }
 
-$name = $_POST['name'];
-$title = $_POST['title'];
-$content = $_POST['content'];
+$name = escapeshellarg($_POST['name']);
+$title = escapeshellarg($_POST['title']);
+$content = escapeshellarg($_POST['content']);
 $r = "" . basename($_FILES["fileToUpload"]["name"]);
 $output = shell_exec("sudo python addTimelineItem.py $name $title $content $r 2>&1");
 echo "<h1>Done!</h1><a href='../clients/timeline.html'>go back</a>";
