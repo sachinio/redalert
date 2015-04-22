@@ -11,7 +11,7 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js"></script>
 </head>
 <body>
-<form action="../utilities/upload.php" method="post" enctype="multipart/form-data">
+<form name="upForm" action="../utilities/upload.php" method="post" enctype="multipart/form-data" onsubmit="validateForm()">
     <input class="holo" type="text" name="title" id="title" placeholder="title">
     <input class="holo" type="text" name="content" id="content" placeholder="message">
     <input class="holo" type="text" name="name" id="name" placeholder="your name">
@@ -27,6 +27,13 @@
         <input type="submit" class="btn" value="Post Comment" name="submit">
 </form>
 <script>
+    function validateForm() {
+    var x = document.forms["upForm"]["title"].value;
+    if (x == null || x == "") {
+        alert("Title must be filled out");
+        return false;
+    }
+}
 </script>
 </body>
 </html>
