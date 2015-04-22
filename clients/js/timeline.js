@@ -4,16 +4,8 @@ timelineApp.controller('TimelineCtrl', function ($scope) {
 
 $.get('../utilities/get_timeline.php', function(d){
     var evts = JSON.parse(d);
-    $scope.events = [
-                        {
-                            'title': 'Build break!',
-                            'content': 'Pedram broke the build',
-                            'timeStamp': 'April 24th 2015',
-                            'icon': 'fa-ambulance',
-                            'iconBackground': 'danger',
-                            'by':'Mona'
-                        }
-                        ];
+    $scope.events = evts;
+    $scope.apply()
 });
 
  /*$scope.events = [
