@@ -24,11 +24,6 @@ if (file_exists($target_file)) {
 if ($_FILES["fileToUpload"]["size"] > 500000) {
     $uploadOk = 0;
 }
-// Allow certain file formats
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-&& $imageFileType != "gif" ) {
-    $uploadOk = 0;
-}
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
 // if everything is ok, try to upload file
