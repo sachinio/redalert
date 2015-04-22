@@ -21,7 +21,7 @@ if (file_exists($target_file)) {
     $uploadOk = 0;
 }
 // Check file size
-if ($_FILES["fileToUpload"]["size"] > 6000000) {
+if ($_FILES["fileToUpload"]["size"] > 3000000) {
     $uploadOk = 0;
 }
 // Check if $uploadOk is set to 0 by an error
