@@ -7,6 +7,7 @@ import base64
 from common import IMonaTask
 from common import BuildNotifier
 from common import sync_read_status_file
+from common import Timeline
 
 class VSO_API_Templates:
     getBuilds = "https://{0}.visualstudio.com/defaultcollection/{1}/_apis/build/builds?api-version={2}"
@@ -21,9 +22,9 @@ class VSO(IMonaTask):
         return [d['vso_username'], d['vso_password']]
 
     def is_broken(self, build):
-        if build['status'] == 'succeeded':
-            return False
-        return True
+        if build['status'] == 'failed':
+            return True
+        return False
 
     def get_broken_builds(self, data):
         brokenBuilds = []
@@ -61,6 +62,10 @@ class VSO(IMonaTask):
                     culprits.append(b['requests'][0]['requestedFor'])
                 BuildNotifier.notify_build_break(culprits)
                 BuildNotifier.update_build_status(True)
+                Timeline.add_item('Mona', 'BUILD BREAK',
+                                  '{0} broke the build. Change was requested by {1}'.format(
+                                      broken[0]['buildNumber'],
+                                      broken[0]['requests'][0]['requestedFor']))
                 print 'Sent build break notification'
             else:
                 print 'Was broken previously too, so do nothing'
