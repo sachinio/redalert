@@ -195,7 +195,7 @@ class Timeline:
             "content": content,
             "img": img,
             'icon': 'fa-bullhorn',
-            'icon-background': 'info',
+            'iconBackground': 'info',
             'timeStamp': 'now'
         }
 
