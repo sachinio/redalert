@@ -57,21 +57,49 @@ label i{
     color: white
 }
 
-input.holo[type='text'] {
-    width: 18em;
-    font-family: "Roboto", "Droid Sans", sans-serif;
-    font-size: 1em;
-    margin-left: 1.6em;
-    margin-top: 1em;
-    padding: 8px 8px 6px 8px;
-    position: relative;
-    display: block;
-    outline: none;
-    border: none;
-    background: bottom left linear-gradient(#a9a9a9, #a9a9a9) no-repeat, bottom center linear-gradient(#a9a9a9, #a9a9a9) repeat-x, bottom right linear-gradient(#a9a9a9, #a9a9a9) no-repeat;
-    background-size: 1px 6px, 1px 1px, 1px 6px;
-    }
-    input.holo[type='text']:hover, input.holo[type='text']:focus {
-    background: bottom left linear-gradient(#0099cc, #0099cc) no-repeat, bottom center linear-gradient(#0099cc, #0099cc) repeat-x, bottom right linear-gradient(#0099cc, #0099cc) no-repeat;
-    background-size: 1px 6px, 1px 1px, 1px 6px;
+input.holo {
+  display: block;
+  width: 20.6em;
+  margin-bottom: 1em;
+  border: 0;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+  outline: none;
+}
+
+input.holo {
+  background: transparent;
+  position: relative;
+  border: none;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 8px 8px 6px;
+  background: bottom left -moz-linear-gradient(#a9a9a9, #a9a9a9) no-repeat, bottom center -moz-linear-gradient(#a9a9a9, #a9a9a9) repeat-x, bottom right -moz-linear-gradient(#a9a9a9, #a9a9a9) no-repeat;
+  background: bottom left -webkit-linear-gradient(#a9a9a9, #a9a9a9) no-repeat, bottom center -webkit-linear-gradient(#a9a9a9, #a9a9a9) repeat-x, bottom right -webkit-linear-gradient(#a9a9a9, #a9a9a9) no-repeat;
+  background: bottom left linear-gradient(#a9a9a9, #a9a9a9) no-repeat, bottom center linear-gradient(#a9a9a9, #a9a9a9) repeat-x, bottom right linear-gradient(#a9a9a9, #a9a9a9) no-repeat;
+  -moz-background-size: 1px 6px, 1px 1px, 1px 6px;
+  -o-background-size: 1px 6px, 1px 1px, 1px 6px;
+  -webkit-background-size: 1px 6px, 1px 1px, 1px 6px;
+  background-size: 1px 6px, 1px 1px, 1px 6px;
+}
+input.holo[disabled], input.holo.disabled {
+  color: #a9a9a9;
+  background: bottom left -moz-linear-gradient(#cecece, #cecece) no-repeat, bottom center -moz-linear-gradient(#cecece, #cecece) repeat-x, bottom right -moz-linear-gradient(#cecece, #cecece) no-repeat;
+  background: bottom left -webkit-linear-gradient(#cecece, #cecece) no-repeat, bottom center -webkit-linear-gradient(#cecece, #cecece) repeat-x, bottom right -webkit-linear-gradient(#cecece, #cecece) no-repeat;
+  background: bottom left linear-gradient(#cecece, #cecece) no-repeat, bottom center linear-gradient(#cecece, #cecece) repeat-x, bottom right linear-gradient(#cecece, #cecece) no-repeat;
+  -moz-background-size: 1px 6px, 1px 1px, 1px 6px;
+  -o-background-size: 1px 6px, 1px 1px, 1px 6px;
+  -webkit-background-size: 1px 6px, 1px 1px, 1px 6px;
+  background-size: 1px 6px, 1px 1px, 1px 6px;
+}
+input.holo:focus {
+  background: bottom left -moz-linear-gradient(#0099cc, #0099cc) no-repeat, bottom center -moz-linear-gradient(#0099cc, #0099cc) repeat-x, bottom right -moz-linear-gradient(#0099cc, #0099cc) no-repeat;
+  background: bottom left -webkit-linear-gradient(#0099cc, #0099cc) no-repeat, bottom center -webkit-linear-gradient(#0099cc, #0099cc) repeat-x, bottom right -webkit-linear-gradient(#0099cc, #0099cc) no-repeat;
+  background: bottom left linear-gradient(#0099cc, #0099cc) no-repeat, bottom center linear-gradient(#0099cc, #0099cc) repeat-x, bottom right linear-gradient(#0099cc, #0099cc) no-repeat;
+  -moz-background-size: 1px 6px, 1px 1px, 1px 6px;
+  -o-background-size: 1px 6px, 1px 1px, 1px 6px;
+  -webkit-background-size: 1px 6px, 1px 1px, 1px 6px;
+  background-size: 1px 6px, 1px 1px, 1px 6px;
 }
