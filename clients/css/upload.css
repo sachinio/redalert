@@ -26,7 +26,7 @@ input[type=radio]{
     display: none;
 }
 input[type=radio]:checked + .radio{
-    border: 2px solid black;
+    border: 2px solid #666;
 }
 .fa{
     padding: 0.3em
