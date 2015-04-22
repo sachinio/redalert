@@ -188,7 +188,7 @@ class Timeline:
     @classmethod
     def add_item(cls, name, title, content, img):
         if img != '':
-            img = '{0}/{1}/{2}'.format(UPLOAD_FOLDER_PATH,name,img)
+            img = '{0}/{1}/{2}'.format('../uploads',name,img)
         i = {"name": name, "title": title, "content": content, "img": img}
         l = read_csv_as_list(TMP_FOLDER_PATH + '/timeline.csv')
         l.append(i)
