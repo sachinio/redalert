@@ -23,10 +23,13 @@
         .add-comment:hover{
             color: #f0ad4e;
         }
+        .upLink{
+            margin-right: 0.9em;
+        }
     </style>
 </head>
 <body ng-controller="TimelineCtrl">
-<h1 style="text-align: center"> <a href="upload.html"><i class="fa fa-comment add-comment"></i></a> Life @ Explore</h1>
+<h1 style="text-align: center"> <a class="upLink" href="upload.html"><i class="fa fa-comment add-comment"></i></a>Life @ Explore</h1>
 <div class="panel-body">
     <ul class="timeline">
         <li ng-repeat="event in events track by $index" ng-class="{'timeline-inverted': $index % 2 !== 0}">
