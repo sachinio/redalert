@@ -17,5 +17,10 @@
     <input type="file" name="fileToUpload" id="fileToUpload">
     <input type="submit" value="Post Comment" name="submit">
 </form>
+<script>
+    $.get('../utilities/get_timeline.php', function(d){
+        console.log(d);
+    });
+</script>
 </body>
 </html>
