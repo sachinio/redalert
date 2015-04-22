@@ -10,7 +10,7 @@ from common import Timeline
 name = sys.argv[1]
 title = sys.argv[2]
 content = sys.argv[3]
-img = None
+img = ''
 
 if len(sys.argv) > 4:
     img = sys.argv[4]
