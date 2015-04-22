@@ -19,7 +19,10 @@
     <input type="submit" value="Post Comment" name="submit">
 </form>
 <script>
+var awe;
     $.get('../utilities/get_timeline.php', function(d){
+    awe = d;
+        console.log(d);
         console.log(d[0].name);
     });
 </script>
