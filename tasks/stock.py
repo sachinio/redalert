@@ -7,7 +7,7 @@ import urllib2, random
 
 template = "Microsoft stock closed at {0}, {1}, {2}.{3}"
 motivate = [' Come on people we can do better!', ' OK. Clearly you guys need to work harder.']
-praise = [' Great job guys!', ' Well done! Go treat yourself to some coffee.']
+praise = [' Great job guys! Give yourself a pat on the back.', ' Well done! Go treat yourself to some coffee.']
 
 class StockTicker(IMonaTask):
     def __run__(self, time):
