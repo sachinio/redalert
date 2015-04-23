@@ -187,10 +187,10 @@ class EMail:
 class Timeline:
     @classmethod
     def add_item(cls, name, title, content, img, icon, iconBack):
-        if img is not None and img != '':
-            img = '{0}/{1}/{2}'.format('../../../uploads',name,img)
         if name == '':
             name = 'unknown'
+        if img is not None and img != '':
+            img = '{0}/{1}/{2}'.format('../../../uploads',name,img)
         i = {
             "name": name,
             "title": title,

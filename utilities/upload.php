@@ -1,5 +1,9 @@
 <?php
-$target_dir = "/var/www/uploads/" . $_POST['name'] . "/";
+$n = $_POST['name'];
+if($n == ''){
+    $n = "unknown";
+}
+$target_dir = "/var/www/uploads/" . $n . "/";
 
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
