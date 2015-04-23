@@ -190,7 +190,7 @@ class Timeline:
         if name == '':
             name = 'unknown'
         if img is not None and img != '':
-            img = '{0}/{1}/{2}'.format('../../../uploads',name,img)
+            img = '{0}/{1}/{2}'.format('../../../uploads',name.lower(),img)
         i = {
             "name": name,
             "title": title,

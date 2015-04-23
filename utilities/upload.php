@@ -1,5 +1,5 @@
 <?php
-$n = $_POST['name'];
+$n = strtolower($_POST['name']);
 if($n == ''){
     $n = "unknown";
 }
