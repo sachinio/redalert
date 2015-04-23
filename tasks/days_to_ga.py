@@ -15,5 +15,5 @@ class DaysToGA(IMonaTask):
             print delta.days
             Timeline.add_item('mona', '{0} days to GA'.format(str(delta.days)),
                               '',
-                              'owl.gif', 'fa-bar-chart',
-                              'success')
+                              'owl.gif', 'fa-bullhorn',
+                              'info')
