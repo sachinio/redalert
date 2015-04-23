@@ -23,7 +23,7 @@ from common import TALKING_PILLOW
 from vso import VSO
 from jokes import Joker
 from stock import StockTicker
-
+from days_to_ga import DaysToGA
 
 class SampleTask(IMonaTask):
     def __run__(self, t):
@@ -32,7 +32,7 @@ class SampleTask(IMonaTask):
         sleep(10)
         TALKING_PILLOW.release()
 
-tasks = [VSO(), Joker(), StockTicker()]
+tasks = [VSO(), Joker(), StockTicker(), DaysToGA()]
 
 hourAndMin = datetime.now().strftime('%H,%M').split(',')
 # hourAndMin = ['1','15'] #test with specific time
