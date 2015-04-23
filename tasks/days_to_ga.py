@@ -12,8 +12,8 @@ class DaysToGA(IMonaTask):
             d0 = datetime.datetime.now().date()
             d1 = datetime.date(2015,7,24)
             delta = d1 - d0
-            Timeline.add_item('mona',
-                              '{0} days to GA!'.format(delta.days),
+            Timeline.add_item('Mona',
+                              '{0} days to GA :)'.format(delta.days),
                               '',
                               'owl.gif',
                               'fa-bullhorn',
