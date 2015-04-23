@@ -31,7 +31,8 @@ class VSO(IMonaTask):
 
         for build in data['value']:
             if self.is_broken(build):
-                brokenBuilds.append(build)
+                if build['definition']['name'] == 'CI':
+                    brokenBuilds.append(build)
             else:  # We only want broken builds after last success
                 break
         return brokenBuilds
