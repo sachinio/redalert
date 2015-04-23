@@ -10,7 +10,7 @@
       <setting command="ZS">0</setting>
       <setting command="NJ">FF</setting>
       <setting command="NW">0</setting>
-      <setting command="JV">0</setting>
+      <setting command="JV">1</setting>
       <setting command="JN">0</setting>
       <setting command="DH">0</setting>
       <setting command="DL">FFFF</setting>
