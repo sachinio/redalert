@@ -137,7 +137,7 @@ class BuildNotifier:
 
     @classmethod
     def notify_all_clear(cls):
-        cls.still_unit(cls.broadcast_address, '10', '10', '0, 255, 0', '5')
+        cls.still_unit(cls.broadcast_address, '10', '10', '0, 255, 0', '30')
 
     @classmethod
     def glow_unit(cls, addr, delay, bri, color, tout):
