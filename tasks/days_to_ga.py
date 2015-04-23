@@ -8,7 +8,7 @@ import datetime
 
 class DaysToGA(IMonaTask):
     def __run__(self, time):
-        if time[0] == '00' and time[1] == '10':
+        if time[0] == '00' and time[1] == '14':
             d0 = datetime.datetime.now().date()
             d1 = datetime.date(2015,7,24)
             delta = d1 - d0
