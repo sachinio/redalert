@@ -29,7 +29,7 @@ class StockTicker(IMonaTask):
                 Mona.speak(speak)
             else:
                 speak = random.choice(motivate)
-                Mona.speak()
+                Mona.speak(speak)
 
             Timeline.add_item('Mona', 'Stock update', template.format(result[1], dir,
                                                                       result[2].replace('-', ''), speak),
