@@ -40,5 +40,5 @@ class StockTicker(IMonaTask):
                                               dir,
                                               result[2].replace('-', ''), speak),
                               '',
-                              'fa-bar-chart',
+                              'fa-line-chart',
                               iconBack)
