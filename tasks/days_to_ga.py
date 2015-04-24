@@ -15,6 +15,6 @@ class DaysToGA(IMonaTask):
             Timeline.add_item('Mona',
                               '{0} days to GA :)'.format(delta.days),
                               '',
-                               random.choice(['owl.gif','owl2.gif]),
+                               random.choice(['owl.gif','owl2.gif']),
                               'fa-bullhorn',
                               'info')
