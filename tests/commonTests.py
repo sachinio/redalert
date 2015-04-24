@@ -1,8 +1,8 @@
 __author__ = 'sachinpatney'
 
-import unittest, sys
+import unittest, sys, ast
 
-sys.path.append('/var/www/git/redalert/tasks')
+sys.path.append('../tasks')
 
 from common import write_dictionary_to_csv
 from common import read_csv_as_dictionary
@@ -19,10 +19,12 @@ class TestCSVMethods(unittest.TestCase):
         self.assertEqual(d['iam'], 'happy')
 
     def test_read_write_list(self):
-        write_list_to_csv(['A','B','C'],['10', 20, {'complex': 'list'}])
+        write_list_to_csv(['A', 'B', 'C'], [{'A': '20', 'B': 30, 'C': {'complex': 'iam'}}], CSV_TEST_FILE)
         l = read_csv_as_list(CSV_TEST_FILE)
-        self.assertEqual(l[1], '10')
-        self.assertEqual(l[2]['complex'], 'list')
+        self.assertEqual(len(l), 1)
+        self.assertEqual(l[0]['A'], '20')
+        self.assertEqual(l[0]['B'], '30')
+        self.assertEqual(ast.literal_eval(l[0]['C'])['complex'], 'iam')
 
 if __name__ == '__main__':
     unittest.main()
