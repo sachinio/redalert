@@ -19,7 +19,7 @@ class TestCSVMethods(unittest.TestCase):
         self.assertEqual(d['iam'], 'happy')
 
     def test_read_write_list(self):
-        write_list_to_csv(['10', 20, {'complex': 'list'}])
+        write_list_to_csv(['A','B','C'],['10', 20, {'complex': 'list'}])
         l = read_csv_as_list(CSV_TEST_FILE)
         self.assertEqual(l[1], '10')
         self.assertEqual(l[2]['complex'], 'list')
