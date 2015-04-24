@@ -38,8 +38,8 @@ tasks = [VSO(), Joker(), StockTicker(), DaysToGA()]
 
 hourAndMin = datetime.now().strftime('%H,%M').split(',')
 
-if len(sys.args) == 3:  # This is for testing the runner with a specific time
-    hourAndMin = [sys.args[1], sys.args[2]]
+if len(sys.argv) == 3:  # This is for testing the runner with a specific time
+    hourAndMin = [sys.argv[1], sys.argv[2]]
 
 for task in tasks:
     start_new_thread(task.__run__, (hourAndMin,))
