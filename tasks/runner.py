@@ -13,6 +13,8 @@ __author__ = 'sachinpatney'
 
 '''
 
+import sys
+
 from datetime import datetime
 from common import IMonaTask
 from thread import start_new_thread
@@ -35,7 +37,9 @@ class SampleTask(IMonaTask):
 tasks = [VSO(), Joker(), StockTicker(), DaysToGA()]
 
 hourAndMin = datetime.now().strftime('%H,%M').split(',')
-# hourAndMin = ['1','15'] #test with specific time
+
+if len(sys.args) == 3:  # This is for testing the runner with a specific time
+    hourAndMin = [sys.args[1], sys.args[2]]
 
 for task in tasks:
     start_new_thread(task.__run__, (hourAndMin,))

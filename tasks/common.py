@@ -43,7 +43,7 @@ def write_dictionary_to_csv(dict, path):
     for key, value in dict.items():
         writer.writerow([key, value])
 
-def write_list_to_csv_as(fieldnames, list, path):
+def write_list_to_csv(fieldnames, list, path):
     with open(path, 'w') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
@@ -203,6 +203,6 @@ class Timeline:
 
         l = read_csv_as_list(TMP_FOLDER_PATH + '/timeline.csv')
         l.append(i)
-        write_list_to_csv_as(
+        write_list_to_csv(
             ['name', 'title', 'content', 'img', 'icon', 'iconBackground', 'timeStamp']
             , l, TMP_FOLDER_PATH + '/timeline.csv')
