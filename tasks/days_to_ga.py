@@ -4,7 +4,7 @@ from common import IMonaTask
 from common import Timeline
 
 import datetime
-
+import random
 
 class DaysToGA(IMonaTask):
     def __run__(self, time):
@@ -15,6 +15,6 @@ class DaysToGA(IMonaTask):
             Timeline.add_item('Mona',
                               '{0} days to GA :)'.format(delta.days),
                               '',
-                              'owl.gif',
+                               random.choice(['owl.gif','owl2.gif]),
                               'fa-bullhorn',
                               'info')
