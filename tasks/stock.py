@@ -36,4 +36,4 @@ class StockTicker(IMonaTask):
 
             Timeline.add_item('Mona', 'Stock update', template.format(result[1], dir,
                                                                       result[2].replace('-', ''), speak),
-                              '', 'fa-bar-chart',iconBack )
+                              '', 'fa-bar-chart', iconBack)
