@@ -53,7 +53,7 @@ class VSO(IMonaTask):
             if BuildNotifier.build_was_broken():
                 BuildNotifier.update_build_status(False)
                 BuildNotifier.notify_all_clear()
-                Timeline.add_item('Mona', 'BUILD BREAK FIXED','Thank you for taking care of it', '', 'fa-bar-chart', 'success')
+                Timeline.add_item('Mona', 'BUILD BREAK FIXED','Thank you for taking care of it', '', 'fa-wrench', 'success')
                 print 'Sent all clear notification'
             else:
                 print 'Was not broken previously too, so do nothing new'

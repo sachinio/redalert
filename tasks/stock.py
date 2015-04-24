@@ -9,6 +9,7 @@ template = "Microsoft stock closed at {0}, {1}, {2}.{3}"
 motivate = [' Come on people we can do better!', ' OK. Clearly you guys need to work harder.']
 praise = [' Great job guys!', ' Well done! Go treat yourself to some coffee.']
 
+
 class StockTicker(IMonaTask):
     def __run__(self, time):
         if time[0] == '13' and time[1] == '15':
@@ -21,7 +22,7 @@ class StockTicker(IMonaTask):
                 dir = 'up'
 
             msg = template.format(result[1].replace('.',' point '), dir, result[2].replace('.',' point ').replace('-', ''),'')
-            Mona.speak(msg);
+            Mona.speak(msg)
 
             speak = ''
             iconBack = ''
@@ -34,6 +35,10 @@ class StockTicker(IMonaTask):
                 speak = random.choice(motivate)
                 Mona.speak(speak)
 
-            Timeline.add_item('Mona', 'Stock update', template.format(result[1], dir,
-                                                                      result[2].replace('-', ''), speak),
-                              '', 'fa-bar-chart', iconBack)
+            Timeline.add_item('Mona', 'Stock update',
+                              template.format(result[1],
+                                              dir,
+                                              result[2].replace('-', ''), speak),
+                              '',
+                              'fa-bar-chart',
+                              iconBack)
