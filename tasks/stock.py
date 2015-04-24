@@ -24,13 +24,16 @@ class StockTicker(IMonaTask):
             Mona.speak(msg);
 
             speak = ''
+            iconBack = ''
             if dir == 'up':
+                iconBack = 'success'
                 speak = random.choice(praise)
                 Mona.speak(speak)
             else:
+                iconBack = 'danger'
                 speak = random.choice(motivate)
                 Mona.speak(speak)
 
             Timeline.add_item('Mona', 'Stock update', template.format(result[1], dir,
                                                                       result[2].replace('-', ''), speak),
-                              '', 'fa-bar-chart', 'success')
+                              '', 'fa-bar-chart',iconBack )
