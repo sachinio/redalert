@@ -1,7 +1,7 @@
 __author__ = 'sachinpatney'
 
-from common import IMonaTask
-from common import Mona
+from common import ITask
+from common import Bot
 from common import Timeline
 import urllib2, random
 
@@ -10,9 +10,12 @@ motivate = [' Come on people we can do better!', ' OK. Clearly you guys need to 
 praise = [' Great job guys!', ' Well done! Go treat yourself to some coffee.']
 
 
-class StockTicker(IMonaTask):
+class StockTicker(ITask):
+    def __init__(self):
+        pass
+
     def __run__(self, time):
-        if time[0] == '13' and time[1] == '15':
+        if time['hour'] == '13' and time['min'] == '15':
             result = urllib2.urlopen("http://finance.yahoo.com/d/quotes.csv?s=MSFT&f=spc1").read()
             result = result.strip().split(',')
 
@@ -23,21 +26,21 @@ class StockTicker(IMonaTask):
 
             msg = template.format(result[1].replace('.', ' point '), direction,
                                   result[2].replace('.', ' point ').replace('-', ''), '')
-            Mona.speak(msg)
+            Bot.speak(msg)
 
             if direction == 'up':
                 icon_back = 'success'
                 speak = random.choice(praise)
-                Mona.speak(speak)
+                Bot.speak(speak)
             else:
                 icon_back = 'danger'
                 speak = random.choice(motivate)
-                Mona.speak(speak)
+                Bot.speak(speak)
 
-            Timeline.add_item('Mona', 'Stock update',
-                              template.format(result[1],
-                                              direction,
-                                              result[2].replace('-', ''), speak),
-                              '',
-                              'fa-line-chart',
-                              icon_back)
+            Timeline.add_item_from_bot('Stock update',
+                                       template.format(result[1],
+                                                       direction,
+                                                       result[2].replace('-', ''), speak),
+                                       '',
+                                       'fa-line-chart',
+                                       icon_back)

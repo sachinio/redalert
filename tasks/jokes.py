@@ -1,15 +1,15 @@
-from common import Mona
-from common import IMonaTask
+from common import Bot
+from common import ITask
 from common import REPOSITORY_ROOT
 
 import random
 
 
-class Joker(IMonaTask):
+class Joker(ITask):
     def __init__(self):
         pass
 
     def __run__(self, time):
-        if int(time[0]) % 5 == 0 and time[1] == '00':
+        if int(time['hour']) % 5 == 0 and time['min'] == '00':
             jokes = ['newword.mp3', 'policechief.mp3']
-            Mona.play_sound(REPOSITORY_ROOT + '/resources/sounds/' + random.choice(jokes))
+            Bot.play_sound(REPOSITORY_ROOT + '/assets/sounds/' + random.choice(jokes))

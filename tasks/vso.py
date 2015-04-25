@@ -4,22 +4,25 @@ import json
 import urllib2
 import base64
 
-from common import IMonaTask
+from common import ITask
 from common import BuildNotifier
 from common import sync_read_status_file
 from common import Timeline
+from common import safe_read_dictionary
 
 
 class VSO_API_Templates:
     getBuilds = "https://{0}.visualstudio.com/defaultcollection/{1}/_apis/build/builds?api-version={2}"
 
 
-class VSO(IMonaTask):
-    mona = None
+class VSO(ITask):
 
     def get_auth(self):
         d = sync_read_status_file()
-        return [d['vso_username'], d['vso_password']]
+        return [
+            safe_read_dictionary(d, 'vso_username'),
+            safe_read_dictionary(d, 'vso_password')
+        ]
 
     def is_broken(self, build):
         if build['status'] == 'failed':
@@ -53,8 +56,11 @@ class VSO(IMonaTask):
             if BuildNotifier.build_was_broken():
                 BuildNotifier.update_build_status(False)
                 BuildNotifier.notify_all_clear()
-                Timeline.add_item('Mona', 'BUILD BREAK FIXED', 'Thank you for taking care of it', '', 'fa-wrench',
-                                  'success')
+                Timeline.add_item_from_bot('BUILD BREAK FIXED',
+                                           'Thank you for taking care of it',
+                                           '',
+                                           'fa-wrench',
+                                           'success')
                 print 'Sent all clear notification'
             else:
                 print 'Was not broken previously too, so do nothing new'
@@ -65,11 +71,13 @@ class VSO(IMonaTask):
                     culprits.append(b['requests'][0]['requestedFor'])
                 BuildNotifier.notify_build_break(culprits)
                 BuildNotifier.update_build_status(True)
-                Timeline.add_item('Mona', 'BUILD BREAK',
-                                  '{0} broke the build. Change was requested by {1}'.format(
-                                      broken[0]['buildNumber'],
-                                      broken[0]['requests'][0]['requestedFor']['displayName']), '', 'fa-ambulance',
-                                  'danger')
+                Timeline.add_item_from_bot('BUILD BREAK',
+                                           '{0} broke the build. Change was requested by {1}'.format(
+                                               broken[len(broken) - 1]['buildNumber'],
+                                               broken[len(broken) - 1]['requests'][0]['requestedFor']['displayName']),
+                                           '',
+                                           'fa-ambulance',
+                                           'danger')
                 print 'Sent build break notification'
             else:
                 print 'Was broken previously too, so do nothing'

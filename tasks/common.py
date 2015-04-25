@@ -17,14 +17,25 @@ TALKING_PILLOW = Lock()
 STATUS_FILE_LOCK = Lock()
 
 
-class IMonaTask():
+class ITask():
+    def __init__(self):
+        raise Exception('ITask is abstract. Are you calling __init__ from derived class?')
+
     def __run__(self, time):
         """Runs the job"""
         raise Exception('You must implement __run__ method on your service')
 
 
-def switch_to_mona_path():
-    os.chdir(REPOSITORY_ROOT + '/apis/mona')
+def safe_read_dictionary(d, key):
+    try:
+        val = d[key]
+    except KeyError:
+        return None
+    return val
+
+
+def change_directory_to_bot_path():
+    os.chdir(REPOSITORY_ROOT + '/apis/bot')
 
 
 def read_csv_as_dictionary(path):
@@ -48,12 +59,17 @@ def write_dictionary_to_csv(dictionary, path):
         writer.writerow([key, value])
 
 
-def write_list_to_csv(fieldnames, list, path):
-    with open(path, 'w') as csvfile:
+def sync_write_list_to_csv(fieldnames, li, path, operation):
+    if not (operation == 'w' or operation == 'a'):
+        raise Exception('Unsupported operation \'{0}\''.format(operation))
+    write_header = not os.path.isfile(path)
+    with open(path, operation) as csvfile:
+        fcntl.flock(csvfile.fileno(), fcntl.LOCK_EX)
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
-        writer.writeheader()
-        for l in list:
+        if write_header or operation == 'w':
+            writer.writeheader()
+        for l in li:
             writer.writerow(l)
 
 
@@ -82,7 +98,7 @@ def sync_write_to_status_file(key, value):
     STATUS_FILE_LOCK.release()
 
 
-class Mona:
+class Bot:
     def __init__(self):
         pass
 
@@ -103,8 +119,8 @@ class Mona:
     @classmethod
     def speak(cls, msg):
         TALKING_PILLOW.acquire()
-        switch_to_mona_path()
-        subprocess.call(['sudo', 'python', 'mona.py', msg])
+        change_directory_to_bot_path()
+        subprocess.call(['sudo', 'python', 'google.py', msg])
         TALKING_PILLOW.release()
 
 
@@ -125,7 +141,7 @@ class BuildNotifier:
 
     @classmethod
     def build_was_broken(cls):
-        return sync_read_status_file()['buildbroken'] == 'True'
+        return safe_read_dictionary(sync_read_status_file(), 'buildbroken') == 'True'
 
     @classmethod
     def update_build_status(cls, status):
@@ -141,11 +157,11 @@ class BuildNotifier:
                     cls.glow_unit(u['addr'], '500', '100', '255, 0, 0', '0')
 
         cls.announce_build_break()
-        Mona.speak(culprits[0]['displayName'] + ', could you please fix it!')
+        Bot.speak(culprits[0]['displayName'] + ', could you please fix it!')
 
     @classmethod
     def announce_build_break(cls):
-        Mona.speak('Attention. This is an important message. There has been a build break!')
+        Bot.speak('Attention. This is an important message. There has been a build break!')
 
     @classmethod
     def notify_all_clear(cls):
@@ -185,8 +201,8 @@ class EMail:
         # Credentials
         cred = sync_read_status_file()
 
-        username = cred['gmail_username']
-        password = cred['gmail_password']
+        username = safe_read_dictionary(cred, 'gmail_username')
+        password = safe_read_dictionary(cred, 'gmail_password')
 
         # The actual mail send
         server = smtplib.SMTP('smtp.gmail.com:587')
@@ -201,23 +217,27 @@ class Timeline:
         pass
 
     @classmethod
-    def add_item(cls, name, title, content, img, icon, iconBack):
+    def add_item_from_bot(cls, title, content, img, icon, icon_back):
+        Timeline.add_item('Bot', title, content, img, icon, icon_back)
+
+    @classmethod
+    def add_item(cls, name, title, content, img, icon, icon_back):
         if name == '':
             name = 'unknown'
         if img is not None and img != '':
-            img = '{0}/{1}/{2}'.format('../../../uploads',name.lower(),img)
-        i = {
+            img = '{0}/{1}/{2}'.format('../../../uploads', name.lower(), img)
+        l = {
             "name": name,
             "title": title,
             "content": content,
             "img": img,
             'icon': icon,
-            'iconBackground': iconBack,
+            'iconBackground': icon_back,
             'timeStamp': datetime.datetime.now().strftime("%B %d, %Y @ %I:%M%p")
         }
 
-        l = read_csv_as_list(TMP_FOLDER_PATH + '/timeline.csv')
-        l.append(i)
-        write_list_to_csv(
-            ['name', 'title', 'content', 'img', 'icon', 'iconBackground', 'timeStamp']
-            , l, TMP_FOLDER_PATH + '/timeline.csv')
+        sync_write_list_to_csv(
+            ['name', 'title', 'content', 'img', 'icon', 'iconBackground', 'timeStamp'],
+            l,
+            TMP_FOLDER_PATH + '/timeline.csv',
+            'a')

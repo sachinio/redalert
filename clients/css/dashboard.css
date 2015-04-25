@@ -1,3 +1,17 @@
+.lightPanel{
+    padding: 10px;
+    display: inline-block;
+}
+
+.missilePanel{
+    padding: 10px;
+    display: inline-block;
+}
+
+.lightPanel, .missilePane{
+    float: left;
+}
+
 .nicebutton {
     height: 4em;
     text-align: center;

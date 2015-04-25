@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+<div class="lightPanel">
+    <select id="addr">
+        <option value='00 13 A2 00 40 C1 AC 62'>Sachin</option>
+        <option value='00 13 A2 00 40 CA B4 1E'>Diego</option>
+        <option value='00 00 00 00 00 00 FF FF'>Broadcast</option>
+    </select>
+    <select id="cmd">
+        <option value='R'>Running</option>
+        <option value='P'>Police</option>
+        <option value='F'>Flashing</option>
+        <option value='S'>Still</option>
+        <option value="D">Disco</option>
+        <option value="G">Glow</option>
+        <option value="O">Off</option>
+    </select>
+    <input id="del" type="number" placeholder="delay in ms" value="40">
+    <input id="bri" type="number" placeholder="Brightness(0-100)" value="20">
+    <input id="rgb" type="color" placeholder="R,G,B" value="#fffc00">
+    <input id="tout" type="number" placeholder="Timeout in seconds" value="5">
+    <button class="nicebutton green" onclick="send()">Send</button>
+    <button class="nicebutton green" onclick="party()">Party!</button>
+    <button class="nicebutton red" onclick="stop()">Stop</button>
+</div>
+
+<div class="missilePanel">
+    <input id="alturl" type="text" value="" placeholder="override default target">
+    <button onclick="missile('fire',0)">Fire</button>
+    <button onclick="missile('right',500)">Right</button>
+    <button onclick="missile('left',500)">Left</button>
+    <button onclick="missile('up',500)">Up</button>
+    <button onclick="missile('down',500)">Down</button>
+    <button onclick="missile('park',500)">Park</button>
+</div>
+</body>
+<script src="js/dashboard.js"></script>
+</html>
