@@ -1,7 +1,11 @@
 __author__ = 'sachinpatney'
 
-import os, subprocess, random, csv, fcntl, smtplib, sys, datetime
-
+import os
+import subprocess
+import csv
+import fcntl
+import smtplib
+import datetime
 from threading import Lock
 
 REPOSITORY_ROOT = '/var/www/git/redalert'
@@ -29,19 +33,20 @@ def read_csv_as_dictionary(path):
 
 
 def read_csv_as_list(path):
-    list = []
+    li = []
     if os.path.isfile(path):
         reader = csv.DictReader(open(path, 'rb'))
         for l in reader:
-            list.append(l)
+            li.append(l)
 
-    return list
+    return li
 
 
-def write_dictionary_to_csv(dict, path):
+def write_dictionary_to_csv(dictionary, path):
     writer = csv.writer(open(path, 'wb'))
-    for key, value in dict.items():
+    for key, value in dictionary.items():
         writer.writerow([key, value])
+
 
 def write_list_to_csv(fieldnames, list, path):
     with open(path, 'w') as csvfile:
@@ -50,6 +55,7 @@ def write_list_to_csv(fieldnames, list, path):
         writer.writeheader()
         for l in list:
             writer.writerow(l)
+
 
 def sync_write_to_file(name, operation, message):
     with open(name, operation) as f:
@@ -77,6 +83,9 @@ def sync_write_to_status_file(key, value):
 
 
 class Mona:
+    def __init__(self):
+        pass
+
     rooms = ['3A', '3B', '3C']  # for future use
     room_ip = {  # for future use
         '3A': '',
@@ -100,6 +109,9 @@ class Mona:
 
 
 class BuildNotifier:
+    def __init__(self):
+        pass
+
     broadcast_address = '00 00 00 00 00 00 FF FF'
 
     units = [
@@ -185,6 +197,9 @@ class EMail:
 
 
 class Timeline:
+    def __init__(self):
+        pass
+
     @classmethod
     def add_item(cls, name, title, content, img, icon, iconBack):
         if name == '':

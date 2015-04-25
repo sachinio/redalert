@@ -16,29 +16,28 @@ class StockTicker(IMonaTask):
             result = urllib2.urlopen("http://finance.yahoo.com/d/quotes.csv?s=MSFT&f=spc1").read()
             result = result.strip().split(',')
 
-            dir = 'down'
+            direction = 'down'
 
             if float(result[2]) > 0:
-                dir = 'up'
+                direction = 'up'
 
-            msg = template.format(result[1].replace('.',' point '), dir, result[2].replace('.',' point ').replace('-', ''),'')
+            msg = template.format(result[1].replace('.', ' point '), direction,
+                                  result[2].replace('.', ' point ').replace('-', ''), '')
             Mona.speak(msg)
 
-            speak = ''
-            iconBack = ''
-            if dir == 'up':
-                iconBack = 'success'
+            if direction == 'up':
+                icon_back = 'success'
                 speak = random.choice(praise)
                 Mona.speak(speak)
             else:
-                iconBack = 'danger'
+                icon_back = 'danger'
                 speak = random.choice(motivate)
                 Mona.speak(speak)
 
             Timeline.add_item('Mona', 'Stock update',
                               template.format(result[1],
-                                              dir,
+                                              direction,
                                               result[2].replace('-', ''), speak),
                               '',
                               'fa-line-chart',
-                              iconBack)
+                              icon_back)

@@ -1,6 +1,8 @@
 __author__ = 'sachinpatney'
 
-import unittest, sys, ast
+import unittest
+import sys
+import ast
 
 sys.path.append('../tasks')
 
@@ -31,6 +33,7 @@ class TestCSVMethods(unittest.TestCase):
         self.assertEqual(l[0]['B'], '30')
         self.assertEqual(ast.literal_eval(l[0]['C'])['complex'], 'iam')
         self.assertEqual(ast.literal_eval(l[1]['C'])[1], 'you')
+
 
 if __name__ == '__main__':
     unittest.main()

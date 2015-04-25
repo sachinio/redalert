@@ -27,12 +27,17 @@ from jokes import Joker
 from stock import StockTicker
 from days_to_ga import DaysToGA
 
+
 class SampleTask(IMonaTask):
+    def __init__(self):
+        pass
+
     def __run__(self, t):
         TALKING_PILLOW.acquire()
         print 'yawn, i have the talking pillow even though i am not talking :) Do not do this :P'
         sleep(10)
         TALKING_PILLOW.release()
+
 
 tasks = [VSO(), Joker(), StockTicker(), DaysToGA()]
 
