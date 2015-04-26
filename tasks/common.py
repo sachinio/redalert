@@ -226,7 +226,7 @@ class Timeline:
             name = 'unknown'
         if img is not None and img != '':
             img = '{0}/{1}/{2}'.format('../../../uploads', name.lower(), img)
-        l = {
+        list_item = {
             "name": name,
             "title": title,
             "content": content,
@@ -238,6 +238,6 @@ class Timeline:
 
         sync_write_list_to_csv(
             ['name', 'title', 'content', 'img', 'icon', 'iconBackground', 'timeStamp'],
-            [l],
+            [list_item],
             TMP_FOLDER_PATH + '/timeline.csv',
             'a')
