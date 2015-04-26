@@ -238,6 +238,6 @@ class Timeline:
 
         sync_write_list_to_csv(
             ['name', 'title', 'content', 'img', 'icon', 'iconBackground', 'timeStamp'],
-            l,
+            [l],
             TMP_FOLDER_PATH + '/timeline.csv',
             'a')
