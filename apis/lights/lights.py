@@ -1,5 +1,6 @@
 import fcntl
 import sys
+import codecs
 
 import serial
 
@@ -22,7 +23,7 @@ def createFrame(address, data):
     d = ' '.join([frameType, frameId, address, destAdd, broadcastR, options])
     arr = d.split(' ')
     for a in data:
-        arr.append(a.encode("hex"))
+        arr.append(codecs.encode(a, "hex"))
 
     checksum = calChecksum(arr)
     arr = arr[::-1]
