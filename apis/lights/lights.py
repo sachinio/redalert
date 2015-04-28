@@ -45,4 +45,6 @@ ser = serial.Serial('/dev/ttyUSB0', baudrate=9600, timeout=3.0)
 # locking port
 fcntl.flock(ser.fileno(), fcntl.LOCK_EX)
 ser.write(frame.encode('utf-8'))
+for b in frame.encode('utf-8'):
+    print(b)
 print(sys.argv)
