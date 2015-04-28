@@ -7,11 +7,13 @@ import os
 
 sys.path.append('../tasks')
 
+from vso import VSO
 from common import write_dictionary_to_csv
 from common import read_csv_as_dictionary
 from common import sync_write_list_to_csv
 from common import read_csv_as_list
 from common import safe_read_dictionary
+from unittest.mock import MagicMock
 
 CSV_TEST_FILE = 'test.csv'
 
@@ -62,6 +64,23 @@ class TestSafeReadMethods(unittest.TestCase):
 
         self.assertIsNone(v)
 
+
+class TestVSO(unittest.TestCase):
+    def test_get_builds_with_broken(self):
+        morphine = VSO()
+        morphine.is_broken = MagicMock(return_value=True)
+        morphine.get_auth = MagicMock(return_value=['spy', 'Ilovedogs2'])
+        info = morphine.get_broken_builds(morphine.get_build_info())
+
+        self.assertTrue(len(info) > 0)
+
+    def test_get_builds_without_broken(self):
+        morphine = VSO()
+        morphine.is_broken = MagicMock(return_value=False)
+        morphine.get_auth = MagicMock(return_value=['spy', 'Ilovedogs2'])
+        info = morphine.get_broken_builds(morphine.get_build_info())
+
+        self.assertEqual(len(info), 0)
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,6 +1,7 @@
 __author__ = 'sachinpatney'
 
-import json, sys
+import json
+import sys
 
 sys.path.append('/var/www/git/redalert/tasks')
 

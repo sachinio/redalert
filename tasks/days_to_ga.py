@@ -16,7 +16,7 @@ class DaysToGA(ITask):
             d1 = datetime.date(2015, 7, 24)
             delta = d1 - d0
             Timeline.add_item_from_bot('{0} days to GA :)'.format(delta.days),
-                              '',
-                              ['owl.gif', 'owl2.gif'][delta.days % 2],
-                              'fa-bullhorn',
-                              'info')
+                                       '',
+                                       ['owl.gif', 'owl2.gif'][delta.days % 2],
+                                       'fa-bullhorn',
+                                       'info')

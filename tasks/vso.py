@@ -43,7 +43,6 @@ class VSO(ITask):
 
     def get_build_info(self):
         request = Request(VSO_API_Templates.getBuilds.format('pbix', 'powerbiclients', '1.0'))
-        print(VSO_API_Templates.getBuilds.format('pbix', 'powerbiclients', '1.0'))
         auth = self.get_auth()
         username_password = base64.b64encode(("%s:%s" % (auth[0], auth[1])).encode('utf-8')).decode("ascii")
         request.add_header("Authorization", "Basic %s" % username_password)
