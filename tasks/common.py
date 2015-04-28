@@ -202,6 +202,8 @@ class EMail:
         # Credentials
         cred = sync_read_status_file()
 
+        print(cred)
+
         username = safe_read_dictionary(cred, 'gmail_username')
         password = safe_read_dictionary(cred, 'gmail_password')
 

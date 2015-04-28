@@ -10,6 +10,7 @@ def calChecksum(frameData):
         checksum+=int(a,16)
     return hex(int('0xFF',16)-int(str(hex(checksum))[-2:],16))
 
+
 def createFrame(address, data):
     frameDelimiter = "7E"
     frameType = "10"
@@ -40,7 +41,7 @@ data = sys.argv[2]+","+sys.argv[3]+","+sys.argv[4]+","+sys.argv[5]+","+sys.argv[
 frame = createFrame(address, data)
 
 ser = serial.Serial('/dev/ttyUSB0', baudrate=9600, timeout=3.0)
-#locking port
+# locking port
 fcntl.flock(ser.fileno(), fcntl.LOCK_EX)
 ser.write(frame)
 print(sys.argv)

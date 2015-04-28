@@ -18,10 +18,12 @@ LED     = 0x03
 
 Launcher = None
 
+
 def usage():
     print("============ USAGE =============")
     print("missile.py [command] [value]")
     print("commands: right, left, up, down, fire, sleep, park, led")
+
 
 def init():
     global Launcher
@@ -39,16 +41,20 @@ def init():
 
     Launcher.set_configuration()
 
+
 def send(cmd):
     Launcher.ctrl_transfer(0x21, 0x09, 0, 0, [MOTOR, cmd, 0x00,0x00,0x00,0x00,0x00,0x00])
 
+
 def led(cmd):
     Launcher.ctrl_transfer(0x21, 0x09, 0, 0, [LED, cmd, 0x00,0x00,0x00,0x00,0x00,0x00])
+
 
 def move(cmd, duration_ms):
     send(cmd)
     time.sleep(duration_ms / 1000.0)
     send(STOP)
+
 
 def execute(cmd, value):
     cmd = cmd.lower()
@@ -80,6 +86,7 @@ def execute(cmd, value):
             time.sleep(4.5)
     else:
         print("Error: Unknown command: '%s'" % cmd)
+
 
 def main(args):
     if len(args) < 2:
