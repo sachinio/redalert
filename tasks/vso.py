@@ -49,8 +49,9 @@ class VSO(ITask):
                                              .encode('utf-8')).decode("ascii")
         request.add_header("Authorization", "Basic %s" % username_password)
         result = urlopen(request)
-        response = result.read().decode('ascii')
-        return json.loads(response)
+        response = result.read()
+        print(response)
+        return json.loads(response.decode('ascii'))
 
     def __run__(self, time):
         broken = self.get_broken_builds(self.get_build_info())
