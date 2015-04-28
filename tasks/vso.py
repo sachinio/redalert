@@ -45,13 +45,11 @@ class VSO(ITask):
         request = Request(VSO_API_Templates.getBuilds.format('pbix', 'powerbiclients', '1.0'))
         print(VSO_API_Templates.getBuilds.format('pbix', 'powerbiclients', '1.0'))
         auth = self.get_auth()
-        username_password = base64.b64encode(("%s:%s" % (auth[0], auth[1])).replace('\n', '')
-                                             .encode('utf-8')).decode("ascii")
+        username_password = base64.b64encode(("%s:%s" % (auth[0], auth[1])).encode('utf-8')).decode("ascii")
         request.add_header("Authorization", "Basic %s" % username_password)
         result = urlopen(request)
-        response = result.read()
-        print(response)
-        return json.loads(response.decode('ascii'))
+        response = result.read().decode('ascii')
+        return json.loads(response)
 
     def __run__(self, time):
         broken = self.get_broken_builds(self.get_build_info())
