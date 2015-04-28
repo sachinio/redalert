@@ -19,7 +19,8 @@ STATUS_FILE_LOCK = Lock()
 
 class ITask():
     def __init__(self):
-        raise Exception('ITask is abstract. Are you calling __init__ from derived class?')
+        pass
+        # raise Exception('ITask is abstract. Are you calling __init__ from derived class?')
 
     def __run__(self, time):
         """Runs the job"""
@@ -39,14 +40,14 @@ def change_directory_to_bot_path():
 
 
 def read_csv_as_dictionary(path):
-    reader = csv.reader(open(path, 'rb'))
+    reader = csv.reader(open(path, 'r'))
     return dict(x for x in reader)
 
 
 def read_csv_as_list(path):
     li = []
     if os.path.isfile(path):
-        reader = csv.DictReader(open(path, 'rb'))
+        reader = csv.DictReader(open(path, 'r'))
         for l in reader:
             li.append(l)
 
@@ -54,7 +55,7 @@ def read_csv_as_list(path):
 
 
 def write_dictionary_to_csv(dictionary, path):
-    writer = csv.writer(open(path, 'wb'))
+    writer = csv.writer(open(path, 'w'))
     for key, value in dictionary.items():
         writer.writerow([key, value])
 

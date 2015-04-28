@@ -1,9 +1,12 @@
 __author__ = 'sachinpatney'
 
+from urllib.request import urlopen
+import random
+
 from common import ITask
 from common import Bot
 from common import Timeline
-import urllib2, random
+
 
 template = "Microsoft stock closed at {0}, {1}, {2}.{3}"
 motivate = [' Come on people we can do better!', ' OK. Clearly you guys need to work harder.']
@@ -16,7 +19,7 @@ class StockTicker(ITask):
 
     def __run__(self, time):
         if time['hour'] == '13' and time['min'] == '15':
-            result = urllib2.urlopen("http://finance.yahoo.com/d/quotes.csv?s=MSFT&f=spc1").read()
+            result = urlopen("http://finance.yahoo.com/d/quotes.csv?s=MSFT&f=spc1").read()
             result = result.strip().split(',')
 
             direction = 'down'

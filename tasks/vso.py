@@ -1,9 +1,10 @@
 __author__ = 'sachinpatney'
 
 import json
-import urllib2
 import base64
 
+from urllib.request import urlopen
+from urllib.request import Request
 from common import ITask
 from common import BuildNotifier
 from common import sync_read_status_file
@@ -41,13 +42,14 @@ class VSO(ITask):
         return broken_builds
 
     def get_build_info(self):
-        request = urllib2.Request(VSO_API_Templates.getBuilds.format('pbix', 'powerbiclients', '1.0'))
+        request = Request(VSO_API_Templates.getBuilds.format('pbix', 'powerbiclients', '1.0'))
+        print(VSO_API_Templates.getBuilds.format('pbix', 'powerbiclients', '1.0'))
         auth = self.get_auth()
-        base64string = base64.encodestring('%s:%s' % (auth[0], auth[1])).replace('\n', '')
-        request.add_header("Authorization", "Basic %s" % base64string)
-        result = urllib2.urlopen(request)
-
-        return json.loads(result.read())
+        username_password = base64.b64encode(("%s:%s" % (auth[0], auth[1])).encode('utf-8')).decode("ascii")
+        request.add_header("Authorization", "Basic %s" % username_password)
+        result = urlopen(request)
+        response = result.read().decode('ascii')
+        return json.loads(response)
 
     def __run__(self, time):
         broken = self.get_broken_builds(self.get_build_info())
@@ -61,9 +63,9 @@ class VSO(ITask):
                                            '',
                                            'fa-wrench',
                                            'success')
-                print 'Sent all clear notification'
+                print('Sent all clear notification')
             else:
-                print 'Was not broken previously too, so do nothing new'
+                print('Was not broken previously too, so do nothing new')
         else:
             if not BuildNotifier.build_was_broken():
                 culprits = []
@@ -78,6 +80,6 @@ class VSO(ITask):
                                            '',
                                            'fa-ambulance',
                                            'danger')
-                print 'Sent build break notification'
+                print('Sent build break notification')
             else:
-                print 'Was broken previously too, so do nothing'
+                print('Was broken previously too, so do nothing')

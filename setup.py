@@ -1,5 +1,3 @@
-from __future__ import print_function # Py3 print fx
-
 # This will help setup the entire redalert installation
 # on a raspberry pi
 
@@ -49,12 +47,13 @@ else:
 # Install/Upgrade required libraries
 print('\nInstalling & upgrading required libraries ...\n')
 
-packs = ['apache2', 'php5', 'libapache2-mod-php5', 'git', 'mpg123', 'python-pip']
+packs = ['apache2', 'php5', 'libapache2-mod-php5', 'git', 'mpg123', 'python-pip3']
 
 for pack in packs:
     call(['sudo', 'apt-get', 'install',pack,'-y'])
 
-call('sudo pip install pyusb'.split(' '))
+call('sudo pip3 install pyusb'.split(' '))
+call('sudo pip3 install pyserial'.split(' '))
 
 os.chdir('/var/www')
 

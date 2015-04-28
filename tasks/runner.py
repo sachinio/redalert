@@ -14,9 +14,9 @@ __author__ = 'sachinpatney'
 '''
 
 import sys
+import threading
 
 from datetime import datetime
-from thread import start_new_thread
 from time import sleep
 
 # tasks
@@ -31,12 +31,15 @@ time_info_list = datetime.now().strftime('%H,%M').split(',')
 
 options = {'hour': time_info_list[0], 'min': time_info_list[1]}
 
-print options
-
 if len(sys.argv) == 3:  # This is for testing the runner with a specific time
     options = {'hour': sys.argv[1], 'min': sys.argv[2]}
 
 for task in tasks:
-    start_new_thread(task.__run__, (options,))
+    threading.Thread(target=task.__run__,
+                     args=(options,),
+                     kwargs=None,
+                     ).start()
+
+    # start_new_thread(task.__run__, (options,))
 
 sleep(45)  # give jobs 45 seconds to run

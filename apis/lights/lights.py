@@ -1,6 +1,8 @@
-import serial, fcntl
-import time
+import fcntl
 import sys
+
+import serial
+
 
 def calChecksum(frameData):
     checksum=0
@@ -16,7 +18,7 @@ def createFrame(address, data):
     broadcastR = "00"
     options = "00"
 
-    d = ' '.join([frameType, frameId, address, destAdd, broadcastR, options]);
+    d = ' '.join([frameType, frameId, address, destAdd, broadcastR, options])
     arr = d.split(' ')
     for a in data:
         arr.append(a.encode("hex"))
@@ -37,8 +39,8 @@ data = sys.argv[2]+","+sys.argv[3]+","+sys.argv[4]+","+sys.argv[5]+","+sys.argv[
 
 frame = createFrame(address, data)
 
-ser = serial.Serial('/dev/ttyUSB0', baudrate=9600, timeout=3.0);
+ser = serial.Serial('/dev/ttyUSB0', baudrate=9600, timeout=3.0)
 #locking port
 fcntl.flock(ser.fileno(), fcntl.LOCK_EX)
 ser.write(frame)
-print sys.argv
+print(sys.argv)

@@ -1,9 +1,12 @@
 __author__ = 'sachinpatney'
 
-import sys, urllib2, time, argparse
+import sys
+import time
+import argparse
 
 sys.path.append('/var/www/git/redalert/tasks')
 
+from urllib.request import urlopen
 from common import EMail
 from subprocess import check_output
 
@@ -21,7 +24,7 @@ ifconfig = check_output(["ifconfig"])
 public_ip = 'Not requested'
 if args.public_ip:
     try:
-        public_ip = urllib2.urlopen('http://ip.42.pl/raw').read()
+        public_ip = urlopen('http://ip.42.pl/raw').read()
     except:
         public_ip = 'Could not determine Public IP'
 

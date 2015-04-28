@@ -19,9 +19,9 @@ LED     = 0x03
 Launcher = None
 
 def usage():
-    print "============ USAGE ============="
-    print "missile.py [command] [value]"
-    print "commands: right, left, up, down, fire, sleep, park, led"
+    print("============ USAGE =============")
+    print("missile.py [command] [value]")
+    print("commands: right, left, up, down, fire, sleep, park, led")
 
 def init():
     global Launcher
@@ -34,8 +34,8 @@ def init():
     if "Linux" == platform.system():
         try:
             Launcher.detach_kernel_driver(0)
-        except Exception, e:
-            pass #already done :)
+        except Exception:
+            pass  #already done :)
 
     Launcher.set_configuration()
 
@@ -79,7 +79,7 @@ def execute(cmd, value):
             send(FIRE)
             time.sleep(4.5)
     else:
-        print "Error: Unknown command: '%s'" % cmd
+        print("Error: Unknown command: '%s'" % cmd)
 
 def main(args):
     if len(args) < 2:

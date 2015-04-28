@@ -42,5 +42,5 @@ $title = escapeshellarg($_POST['title']);
 $content = escapeshellarg($_POST['content']);
 $icon = $_POST['icon'];
 $r = "" . escapeshellarg(basename($_FILES["fileToUpload"]["name"]));
-$output = shell_exec("sudo python add_time_line_item.py $name $title $content $icon $r 2>&1");
+$output = shell_exec("sudo python3 add_time_line_item.py $name $title $content $icon $r 2>&1");
 echo "<script>window.location = '../clients/timeline.html'</script>";

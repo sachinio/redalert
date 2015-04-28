@@ -1,3 +1,3 @@
 <?php
   $msg = $_GET['msg'];
-  exec("sudo python google.py $msg");
+  exec("sudo python3 google.py $msg");
