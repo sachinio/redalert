@@ -3,7 +3,7 @@ import sys
 import codecs
 
 import serial
-
+import binascii
 
 def calChecksum(frameData):
     checksum=0
@@ -23,16 +23,17 @@ def createFrame(address, data):
     d = ' '.join([frameType, frameId, address, destAdd, broadcastR, options])
     arr = d.split(' ')
     for a in data:
-        arr.append(codecs.encode(a.encode('utf-8'), "hex_codec"))
+        arr.append(str(binascii.hexlify(a.encode('utf-8')), 'ascii'))
 
     checksum = calChecksum(arr)
     arr = arr[::-1]
-    arr.append(hex(len(arr)))
+    arr.append(str(hex(len(arr))).replace('0x',''))
     arr.append("00")
     arr.append(frameDelimiter)
     arr = arr[::-1]
-    arr.append(checksum)
-    cmd = ''.join(b.ecode('utf-8') for b in arr)
+    arr.append(str(checksum).replace('0x',''))
+    print(arr)
+    cmd = ''.join(b for b in arr)
 
     return cmd
 
@@ -42,9 +43,8 @@ data = sys.argv[2]+","+sys.argv[3]+","+sys.argv[4]+","+sys.argv[5]+","+sys.argv[
 frame = createFrame(address, data)
 
 ser = serial.Serial('/dev/ttyUSB0', baudrate=9600, timeout=3.0)
-# locking port
 fcntl.flock(ser.fileno(), fcntl.LOCK_EX)
-ser.write(frame)
-for b in frame:
-    print(b)
+ser.write(bytearray.fromhex(frame))
+print(frame)
+print(bytearray.fromhex(frame))
 print(sys.argv)
