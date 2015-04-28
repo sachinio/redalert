@@ -193,7 +193,7 @@ class EMail:
         self.msg = msg
 
     def send(self):
-        from_address = 'monapbix@gmail.com'
+        from_address = 'pbixbot@gmail.com'
         to_address = 'sachinpatney@gmail.com'
 
         header = 'To:' + to_address + '\n' + 'From: ' + from_address + '\n' + 'Subject:{0}\n'.format(self.subject)
