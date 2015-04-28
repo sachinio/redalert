@@ -23,7 +23,7 @@ def createFrame(address, data):
     d = ' '.join([frameType, frameId, address, destAdd, broadcastR, options])
     arr = d.split(' ')
     for a in data:
-        arr.append(codecs.encode(a, "hex"))
+        arr.append(codecs.encode(a, "hex_codec"))
 
     checksum = calChecksum(arr)
     arr = arr[::-1]
