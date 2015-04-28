@@ -5,6 +5,7 @@ import codecs
 import serial
 import binascii
 
+
 def calChecksum(frameData):
     checksum=0
     for a in frameData:
@@ -27,11 +28,11 @@ def createFrame(address, data):
 
     checksum = calChecksum(arr)
     arr = arr[::-1]
-    arr.append(str(hex(len(arr))).replace('0x',''))
+    arr.append(str(hex(len(arr))).replace('0x', ''))
     arr.append("00")
     arr.append(frameDelimiter)
     arr = arr[::-1]
-    arr.append(str(checksum).replace('0x',''))
+    arr.append(str(checksum).replace('0x', ''))
     print(arr)
     cmd = ''.join(b for b in arr)
 
