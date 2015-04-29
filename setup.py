@@ -63,8 +63,8 @@ packs = ['apache2', 'php5', 'libapache2-mod-php5', 'git', 'mpg123', 'python3-pip
 for pack in packs:
     call(['sudo', 'apt-get', 'install',pack,'-y'])
 
-call('sudo pip3 install pyusb'.split(' '))
-call('sudo pip3 install pyserial'.split(' '))
+call('sudo pip install pyusb'.split(' '))
+call('sudo pip install pyserial'.split(' '))
 
 os.chdir('/var/www')
 
