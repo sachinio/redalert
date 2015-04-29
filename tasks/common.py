@@ -10,7 +10,7 @@ from threading import Lock
 
 REPOSITORY_ROOT = '/var/www/git/redalert'
 TMP_FOLDER_PATH = '/var/www/tmp'
-UPLOAD_FOLDER_PATH = '/var/www/upload'
+UPLOAD_FOLDER_PATH = '/var/www/uploads'
 OPTIONS_FILE_PATH = TMP_FOLDER_PATH + '/options.csv'
 
 TALKING_PILLOW = Lock()
