@@ -12,7 +12,7 @@ class DaysToGA(ITask):
 
     def __run__(self, time):
         if time['hour'] == '8' and time['min'] == '15':
-            pictures = ['owl.gif', 'owl2.gif']
+            pictures = ['dancingbat.gif', 'owl.gif', 'skeleton.gif']
             d0 = datetime.datetime.now().date()
             d1 = datetime.date(2015, 7, 24)
             delta = d1 - d0
