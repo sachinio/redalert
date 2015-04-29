@@ -1,7 +1,7 @@
 var missile = function(cmd,val) {
     var input = $('#alturl').val();
     var suffix = input === '' ? '../' : input;
-    $.get(suffix+"apis/missile/missile_cmd.php?cmd=" + cmd + "&val=" + val, function(d){
+    $.get(suffix+"hardware/missile/missile_cmd.php?cmd=" + cmd + "&val=" + val, function(d){
         console.log(d);
     });
 };
@@ -23,7 +23,7 @@ var send = function () {
 };
 
 var run = function (addr, cmd, del, bri, rgb, tout) {
-    var getCmd = "../apis/lights/lights_cmd.php?cmd=" + cmd + "&del=" + del + "&bri="
+    var getCmd = "../hardware/lights/lights_cmd.php?cmd=" + cmd + "&del=" + del + "&bri="
         + bri + "&rgb=" + rgb + "&tout=" + tout + '&addr="' + addr + '"';
     console.log('sending command');
     $.get(getCmd, function (d) {
@@ -37,7 +37,7 @@ var party = function () {
     var bri = '30';
     run('00 00 00 00 00 00 FF FF', 'P', '50', bri, '255,100,0', '0');
 
-    $.get('../apis/bot/play_sound_cmd.php?name=/var/www/git/redalert/assets/sounds/gfdr.mp3', function (d) {
+    $.get('../hardware/sound/play_sound_cmd.php?name=/var/www/git/redalert/assets/sounds/gfdr.mp3', function (d) {
         console.log(d);
     });
 
@@ -49,7 +49,7 @@ var party = function () {
 
 var stop = function () {
     clearTimeout(pTimeout);
-    $.get('../apis/bot/kill_player_cmd.php');
+    $.get('../hardware/sound/kill_player_cmd.php');
     run('00 00 00 00 00 00 FF FF', 'O', '50', '0', '255,100,0', '1');
 };
 

@@ -35,8 +35,8 @@ def safe_read_dictionary(d, key):
     return val
 
 
-def change_directory_to_bot_path():
-    os.chdir(REPOSITORY_ROOT + '/apis/bot')
+def text_to_speech_path():
+    return REPOSITORY_ROOT + '/utilities/speech/text_to_speech.py'
 
 
 def read_csv_as_dictionary(path):
@@ -120,16 +120,40 @@ class Bot:
     @classmethod
     def speak(cls, msg):
         TALKING_PILLOW.acquire()
-        change_directory_to_bot_path()
-        subprocess.call(['sudo', 'python', 'google.py', msg])
+        subprocess.call(['sudo', 'python3', text_to_speech_path(), msg])
         TALKING_PILLOW.release()
+
+
+class NeoPixels:
+    broadcast_address = '00 00 00 00 00 00 FF FF'
+    lights_path = REPOSITORY_ROOT + '/hardware/lights/lights.py'
+    full_brightness = '100'
+    no_timeout = '0'
+
+    @classmethod
+    def glow(cls, address, delay, bri, color, tout=no_timeout):
+        subprocess.call(['python3', cls.lights_path, address, 'G', delay, bri, color, tout])
+
+    @classmethod
+    def running(cls, address, delay, bri, color, tout=no_timeout):
+        subprocess.call(['python3', cls.lights_path, address, 'R', delay, bri, color, tout])
+
+    @classmethod
+    def still(cls, address, delay, bri, color, tout=no_timeout):
+        subprocess.call(['python3', cls.lights_path, address, 'S', delay, bri, color, tout])
+
+    @classmethod
+    def police(cls, address, bri=full_brightness, tout=no_timeout):
+        subprocess.call(['python3', cls.lights_path, address, 'P', '50', bri, '0, 0, 0', tout])
+
+    @classmethod
+    def off(cls, address):
+        subprocess.call(['python3', cls.lights_path, address, 'O', '1', '1', '0, 0, 0', '0'])
 
 
 class BuildNotifier:
     def __init__(self):
         pass
-
-    broadcast_address = '00 00 00 00 00 00 FF FF'
 
     units = [
         {
@@ -151,11 +175,11 @@ class BuildNotifier:
 
     @classmethod
     def notify_build_break(cls, culprits):
-        BuildNotifier.still_unit(cls.broadcast_address, '10', '20', '255, 0, 0', '0')
+        NeoPixels.still(NeoPixels.broadcast_address, '10', '20', '255, 0, 0', '0')
         for c in culprits:
             for u in cls.units:
                 if c['uniqueName'] == u['email']:
-                    cls.glow_unit(u['addr'], '500', '100', '255, 0, 0', '0')
+                    NeoPixels.glow(u['addr'], '500', '100', '255, 0, 0', '0')
 
         cls.announce_build_break()
         Bot.speak(culprits[0]['displayName'] + ', could you please fix it!')
@@ -166,25 +190,7 @@ class BuildNotifier:
 
     @classmethod
     def notify_all_clear(cls):
-        cls.still_unit(cls.broadcast_address, '10', '10', '0, 255, 0', '30')
-
-    @classmethod
-    def glow_unit(cls, addr, delay, bri, color, tout):
-        cls.switch_to_lights_path()
-        subprocess.call(['python', 'lights.py', addr, 'G', delay, bri, color, tout])
-
-    @classmethod
-    def still_unit(cls, addr, delay, bri, color, tout):
-        cls.switch_to_lights_path()
-        subprocess.call(['python', 'lights.py', addr, 'S', delay, bri, color, tout])
-
-    @classmethod
-    def switch_to_lights_path(cls):
-        os.chdir(REPOSITORY_ROOT + '/apis/lights')
-
-    @classmethod
-    def off_all_lights(cls):
-        subprocess.call(['python', 'lights.py', cls.broadcast_address, 'O', '500', '100', '0, 0, 0', '0'])
+        NeoPixels.still(NeoPixels.broadcast_address, '10', '10', '0, 255, 0', '30')
 
 
 class EMail:

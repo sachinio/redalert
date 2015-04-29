@@ -134,7 +134,7 @@ os.chdir('../')
 call('sudo git clone https://github.com/sachinio/redalert.git redalert'.split(' '))
 os.chdir('redalert')
 call('sudo git pull'.split(' '))
-os.chdir('apis/camera')
+os.chdir('hardware/camera')
 
 print('\nCompiling Servo.c ...\n')
 

@@ -4,41 +4,42 @@ var angle = 80;
 var isCamOn = false;
 
 var makeServoCall = function(a,s,d){
-    $.get("../apis/camera/servo_cmd.php?angle="+a+"&sno="+s +"&del="+d, function(output){
+    $.get("../hardware/camera/servo_cmd.php?angle="+a+"&sno="+s +"&del="+d, function(output){
         console.log('servo_cmd output: '+ output);
     });
 };
 
 var makeCamCall = function(state){
-    $.get("../apis/camera/cam_cmd.php?on="+state, function(output){
+    $.get("../hardware/camera/cam_cmd.php?on="+state, function(output){
         console.log('cam_cmd output: '+ output);
     });
-}
+};
 
 var center = function(){
     angle = 80;
     angleV = 80;
     send(1,1,800);
     send(0,1,800);
-}
+};
 
 var record = function(){
-    var state = $('#record').attr('record');
+    var rec = $('#record');
+    var state = rec.attr('record');
     var cmd;
     if(state === 'false'){
-        $('#record').attr('record','true');
-        $('#record').text('Stop Recording');
+        rec.attr('record','true');
+        rec.text('Stop Recording');
         cmd = "ca 1";
     }else{
-        $('#record').attr('record','false');
-        $('#record').text('Start Recording');
+        rec.attr('record','false');
+        rec.text('Start Recording');
         cmd = "ca 0";
     }
 
-    $.get("../apis/camera/pipe_cmd.php?cmd="+cmd,function(){
+    $.get("../hardware/camera/pipe_cmd.php?cmd="+cmd,function(){
         console.log("written to PIPE");
     });
-}
+};
 
 var send = function(s,p,d){
     d = d || 300;
@@ -61,7 +62,7 @@ var send = function(s,p,d){
     a = Math.min(s===1?170:180, a);
 
     makeServoCall(a,s,d);
-}
+};
 
 var toggleCam = function () {
     var checked = $('.camButton').attr('checked');
@@ -76,13 +77,13 @@ var toggleCam = function () {
         makeCamCall(1);
         getPic();
     }
-}
+};
 
 var getPic = function(){
     if(isCamOn) {
         $("#cam").attr("src", "../../../ram/cam.jpg?" + new Date().getTime());
         timeoutId =  setTimeout(getPic,parseInt($('#slider').val()));
     }
-}
+};
 
 center();

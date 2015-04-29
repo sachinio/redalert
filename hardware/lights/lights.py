@@ -1,6 +1,5 @@
 import fcntl
 import sys
-import codecs
 
 import serial
 import binascii
