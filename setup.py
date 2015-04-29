@@ -3,6 +3,7 @@
 
 from subprocess import call
 import os
+import shutil
 import time
 import fileinput
 import argparse
@@ -18,6 +19,16 @@ class color:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
     END = '\033[0m'
+
+
+def copy_bot_images():
+    src = '/var/www/git/redalert/assets/images'
+    dest = '/var/www/uploads/bot'
+    src_files = os.listdir(src)
+    for file_name in src_files:
+        full_file_name = os.path.join(src, file_name)
+        if os.path.isfile(full_file_name):
+            shutil.copy(full_file_name, dest)
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-s", "--skipupdate", help="skip update",
@@ -60,6 +71,9 @@ os.chdir('/var/www')
 call('sudo mkdir git'.split(' '))
 call('sudo mkdir ram'.split(' '))
 call('sudo mkdir uploads'.split(' '))
+os.chdir('uploads')
+call('sudo mkdir bot'.split(' '))
+os.chdir('../')
 call('sudo mkdir tmp'.split(' '))
 call('sudo chmod 0777 -R /var/www/uploads/'.split(' '))
 
@@ -139,6 +153,8 @@ os.chdir('hardware/camera')
 print('\nCompiling Servo.c ...\n')
 
 call('sudo gcc -o servo servo.c -lwiringPi'.split(' '))
+
+copy_bot_images()
 
 if(args.cron):
     print('Yet to do!')
