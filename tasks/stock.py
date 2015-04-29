@@ -20,7 +20,7 @@ class StockTicker(ITask):
     def __run__(self, time):
         if time['hour'] == '13' and time['min'] == '15':
             result = urlopen("http://finance.yahoo.com/d/quotes.csv?s=MSFT&f=spc1").read()
-            result = result.strip().split(',')
+            result = result.encode('ascii').strip().split(',')
 
             direction = 'down'
 
