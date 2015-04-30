@@ -11,7 +11,11 @@ from threading import Lock
 REPOSITORY_ROOT = '/var/www/git/redalert'
 TMP_FOLDER_PATH = '/var/www/tmp'
 UPLOAD_FOLDER_PATH = '/var/www/uploads'
+ASSETS_FOLDER_PATH = REPOSITORY_ROOT + '/assets'
+
 OPTIONS_FILE_PATH = TMP_FOLDER_PATH + '/options.csv'
+TEXT_TO_SPEECH_PATH = REPOSITORY_ROOT + '/utilities/speech/text_to_speech.py'
+LIGHTS_PATH = REPOSITORY_ROOT + '/hardware/lights/lights.py'
 
 TALKING_PILLOW = Lock()
 STATUS_FILE_LOCK = Lock()
@@ -20,7 +24,7 @@ STATUS_FILE_LOCK = Lock()
 class ITask():
     def __init__(self):
         pass
-        # raise Exception('ITask is abstract. Are you calling __init__ from derived class?')
+        #raise Exception('ITask is abstract. Are you calling __init__ from derived class?')
 
     def __run__(self, time):
         """Runs the job"""
@@ -33,10 +37,6 @@ def safe_read_dictionary(d, key):
     except KeyError:
         return None
     return val
-
-
-def text_to_speech_path():
-    return REPOSITORY_ROOT + '/utilities/speech/text_to_speech.py'
 
 
 def read_csv_as_dictionary(path):
@@ -120,35 +120,38 @@ class Bot:
     @classmethod
     def speak(cls, msg):
         TALKING_PILLOW.acquire()
-        subprocess.call(['sudo', 'python3', text_to_speech_path(), msg])
+        subprocess.call(['sudo', 'python3', TEXT_TO_SPEECH_PATH, msg])
         TALKING_PILLOW.release()
 
 
 class NeoPixels:
     broadcast_address = '00 00 00 00 00 00 FF FF'
-    lights_path = REPOSITORY_ROOT + '/hardware/lights/lights.py'
     full_brightness = '100'
     no_timeout = '0'
 
     @classmethod
     def glow(cls, address, delay, bri, color, tout=no_timeout):
-        subprocess.call(['python3', cls.lights_path, address, 'G', delay, bri, color, tout])
+        cls.execute_command(address, 'G', delay, bri, color, tout)
 
     @classmethod
     def running(cls, address, delay, bri, color, tout=no_timeout):
-        subprocess.call(['python3', cls.lights_path, address, 'R', delay, bri, color, tout])
+        cls.execute_command(address, 'R', delay, bri, color, tout)
 
     @classmethod
     def still(cls, address, delay, bri, color, tout=no_timeout):
-        subprocess.call(['python3', cls.lights_path, address, 'S', delay, bri, color, tout])
+        cls.execute_command(address, 'S', delay, bri, color, tout)
 
     @classmethod
     def police(cls, address, bri=full_brightness, tout=no_timeout):
-        subprocess.call(['python3', cls.lights_path, address, 'P', '50', bri, '0, 0, 0', tout])
+        cls.execute_command(address, 'P', '50', bri, '0, 0, 0', tout)
 
     @classmethod
     def off(cls, address):
-        subprocess.call(['python3', cls.lights_path, address, 'O', '1', '1', '0, 0, 0', '0'])
+        cls.execute_command(address, 'O', '1', '1', '0, 0, 0', '0')
+
+    @classmethod
+    def execute_command(cls, address, command, delay, bri, color, tout):
+        subprocess.call(['python3', LIGHTS_PATH, address, command, delay, bri, color, tout])
 
 
 class BuildNotifier:
