@@ -24,7 +24,7 @@ STATUS_FILE_LOCK = Lock()
 class ITask():
     def __init__(self):
         pass
-        #raise Exception('ITask is abstract. Are you calling __init__ from derived class?')
+        # raise Exception('ITask is abstract. Are you calling __init__ from derived class?')
 
     def __run__(self, time):
         """Runs the job"""
