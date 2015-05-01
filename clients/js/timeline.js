@@ -2,6 +2,7 @@ var timelineApp = angular.module('timelineApp', []);
 
 timelineApp.controller('TimelineCtrl', function ($scope) {
     $scope.show = 10;
+    var maxScrollTop = 0;
 
     var refresh = function () {
         $.get('../utilities/get_timeline.php', function (d) {
@@ -14,12 +15,13 @@ timelineApp.controller('TimelineCtrl', function ($scope) {
     $(window).scroll(function() {
         if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
             console.log('loading more');
-            if($scope.events.length >= $scope.show + 10){
-                $scope.show += 10;
+            if($scope.events.length >= $scope.show){
+                if($(window).scrollTop() > maxScrollTop) {
+                    maxScrollTop = $(window).scrollTop();
+                    $scope.show += 10;
+                }
             }
-            else if($scope.events.length >= $scope.total){
-                $scope.show = $scope.events.length;
-            }else{
+            else{
                 console.log('ignoring')
             }
 
