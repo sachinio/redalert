@@ -9,10 +9,10 @@ timelineApp.controller('TimelineCtrl', function ($scope) {
             $scope.events = evts.reverse();
             $scope.$apply()
         });
-    }
+    };
 
     $(window).scroll(function() {
-        if($(window).scrollTop() + $(window).height() > $(document).height()) {
+        if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
             console.log('loading more');
             if($scope.events.length >= $scope.show + 10){
                 $scope.show += 10;
