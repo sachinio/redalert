@@ -15,10 +15,12 @@ timelineApp.controller('TimelineCtrl', function ($scope) {
     };
 
     $(window).scroll(function() {
-        if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+        var top = $(window).scrollTop();
+
+        if(top + $(window).height() > $(document).height() - 100) {
             if($scope.events.length >= $scope.show){
-                if($(window).scrollTop() > maxScrollTop) {
-                    maxScrollTop = $(window).scrollTop();
+                if(top > maxScrollTop) {
+                    maxScrollTop = top;
                     $scope.show += 10;
                     $scope.$apply();
                 }
