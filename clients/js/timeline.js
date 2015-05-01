@@ -8,8 +8,10 @@ timelineApp.controller('TimelineCtrl', function ($scope) {
         $.get('../utilities/get_timeline.php', function (d) {
             var evts = JSON.parse(d);
             $scope.events = evts.reverse();
-            $scope.$apply()
-        });
+            $scope.$apply();
+        }).always(function(){
+            setTimeout(refresh, 2000);
+        })
     };
 
     $(window).scroll(function() {
@@ -25,5 +27,4 @@ timelineApp.controller('TimelineCtrl', function ($scope) {
     });
 
     refresh();
-    setInterval(refresh, 2000);
 });
