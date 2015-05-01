@@ -14,18 +14,17 @@ timelineApp.controller('TimelineCtrl', function ($scope) {
 
     $(window).scroll(function() {
         if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-            console.log('loading more');
             if($scope.events.length >= $scope.show){
                 if($(window).scrollTop() > maxScrollTop) {
                     maxScrollTop = $(window).scrollTop();
                     $scope.show += 10;
+                    $scope.$apply();
+                    console.log('loading more');
                 }
             }
             else{
                 console.log('ignoring')
             }
-
-            $scope.$apply();
         }
     });
 
