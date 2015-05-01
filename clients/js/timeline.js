@@ -11,7 +11,7 @@ timelineApp.controller('TimelineCtrl', function ($scope) {
         });
     }
 
-    /*$(window).scroll(function() {
+    $(window).scroll(function() {
         if($(window).scrollTop() + $(window).height() > $(document).height()) {
             console.log('loading more');
             if($scope.events.length >= $scope.show + 10){
@@ -25,7 +25,7 @@ timelineApp.controller('TimelineCtrl', function ($scope) {
 
             $scope.$apply();
         }
-    });*/
+    });
 
     refresh();
     setInterval(refresh, 2000);
