@@ -37,7 +37,7 @@
 
 <div class="panel-body">
     <ul class="timeline">
-        <li ng-repeat="event in events track by $index | limitTo:show"
+        <li ng-repeat="event in events | limitTo:show"
             ng-class="{'timeline-inverted': $index % 2 !== 0}">
             <div class="timeline-badge {{event.iconBackground}}"><i class="fa {{event.icon}}"></i>
             </div>
