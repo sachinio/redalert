@@ -20,6 +20,7 @@ timelineApp.controller('TimelineCtrl', function ($scope) {
                 if($(window).scrollTop() > maxScrollTop) {
                     maxScrollTop = $(window).scrollTop();
                     $scope.show += 10;
+                    $scope.$apply();
                 }
             }
         }
