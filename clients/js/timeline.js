@@ -6,8 +6,8 @@ timelineApp.controller('TimelineCtrl', function ($scope) {
 
     var refresh = function () {
         $.get('../utilities/get_timeline.php', function (d) {
-            var evts = JSON.parse(d);
-            $scope.events = evts.reverse();
+            var events = JSON.parse(d);
+            $scope.events = events.reverse();
             $scope.$apply();
         }).always(function(){
             setTimeout(refresh, 2000);
@@ -20,7 +20,6 @@ timelineApp.controller('TimelineCtrl', function ($scope) {
                 if($(window).scrollTop() > maxScrollTop) {
                     maxScrollTop = $(window).scrollTop();
                     $scope.show += 10;
-                    $scope.$apply();
                 }
             }
         }
