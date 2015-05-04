@@ -164,4 +164,4 @@ if(args.delete):
 print('\nSetup is complete ' + color.BOLD + color.GREEN +':)' + color.END )
 
 if not hasRam or not apacheHasPerms or args.cron:
-    print('You will need to '+color.BOLD +'reboot' + color.END + ' your system for stuff to work correctly ')
+    print('You will need to '+color.BOLD + 'reboot' + color.END + ' your system for stuff to work correctly ')
