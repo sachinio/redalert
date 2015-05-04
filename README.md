@@ -20,6 +20,25 @@ vso_username,your_username
 weather_key,your_api_id
 ```
 
+### ITask
+An ITask is a script that when run preforms a specific operation. An example is the weather task, which checks the weather in Redmond, and posts it to the timeline. The tasks's __run__(self, time) method takes in a time parameter which can be used to control when a task is run, since the runner will launch all tasks every minute. 
+
+An example of a task.
+
+```
+from common import ITask
+
+class MyTask(ITask):
+    def __init__(self):
+        pass
+
+    def __run__(self, time):
+        if time['hour'] == '12' and time['min'] == '00':
+            print('Wooo its 12pm!')
+```
+
+Once you create a new task, remember to add it to the runner.py, so the runner can launch it.
+
 ### Authors and Contributors
 Sachin Patney
 
