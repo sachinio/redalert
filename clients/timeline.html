@@ -57,7 +57,7 @@
                 </div>
                 <div class="timeline-body">
                     <img ng-if="event.img !== ''" ng-src="{{event.img}}"/>
-                    <iframe ng-if="event.uri !== undefined" ng-src="{{trustSrc(event.uri)}}" frameBorder="0"></iframe>
+                    <iframe ng-if="event.uri !== undefined" ng-src="{{trustSrc(event.uri)}}" frameBorder="0" allowfullscreen></iframe>
                     <p>{{event.content}}</p>
                 </div>
             </div>
