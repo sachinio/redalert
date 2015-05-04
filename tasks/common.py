@@ -68,9 +68,9 @@ def sync_write_list_to_csv(fieldnames, li, path, operation):
     if not (operation == 'w' or operation == 'a'):
         raise Exception('Unsupported operation \'{0}\''.format(operation))
     write_header = not os.path.isfile(path)
-    with open(path, operation) as csvfile:
-        fcntl.flock(csvfile.fileno(), fcntl.LOCK_EX)
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    with open(path, operation) as csv_file:
+        fcntl.flock(csv_file.fileno(), fcntl.LOCK_EX)
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
 
         if write_header or operation == 'w':
             writer.writeheader()
