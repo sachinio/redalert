@@ -4,7 +4,5 @@ __author__ = 'sachinpatney'
 
 from common import SlackBot
 
-
-
-SlackBot.post_message_on_channel('redalert','There has been a break')
+SlackBot.post_message_on_channel('redalert', 'There has been a break')
 

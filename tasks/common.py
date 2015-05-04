@@ -243,7 +243,7 @@ class Timeline:
 
     @classmethod
     def add_item_from_bot(cls, title, content, img, icon, icon_back):
-        Timeline.add_item('Bot', title, content, img, icon, icon_back)
+        Timeline.add_item('Redbull', title, content, img, icon, icon_back)
 
     @classmethod
     def add_item(cls, name, title, content, img, icon, icon_back):

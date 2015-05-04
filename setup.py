@@ -23,7 +23,7 @@ class color:
 
 def copy_bot_images():
     src = '/var/www/git/redalert/assets/images'
-    dest = '/var/www/uploads/bot'
+    dest = '/var/www/uploads/redbull'
     src_files = os.listdir(src)
     for file_name in src_files:
         full_file_name = os.path.join(src, file_name)
