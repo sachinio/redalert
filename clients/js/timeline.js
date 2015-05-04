@@ -2,7 +2,6 @@ var timelineApp = angular.module('timelineApp', ['ngSanitize']);
 
 timelineApp.controller('TimelineCtrl', function ($scope, $sce) {
     $scope.trustSrc = function(src) {
-        console.log(src);
         return $sce.trustAsResourceUrl(src);
     };
 
@@ -44,9 +43,7 @@ timelineApp.controller('TimelineCtrl', function ($scope, $sce) {
         for(var i=0;i<events.length;i++){
             var uri = events[i].content.match(expression);
             if(uri){
-                events[i].uri = uri;
-
-                console.log(uri);
+                events[i].uri = uri[0];
             }
         }
 
