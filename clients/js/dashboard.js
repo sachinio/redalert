@@ -7,19 +7,19 @@ var missile = function(cmd,val) {
 };
 
 var send = function () {
-    var addr = $("#addr option:selected").val();
+    var address = $("#address option:selected").val();
     var cmd = $("#cmd option:selected").val();
     var del = $('#del').val();
     var bri = $('#bri').val();
     var rgb = $('#rgb').val();
     var tout = $('#tout').val();
 
-    R = hexToR(rgb);
-    G = hexToG(rgb);
-    B = hexToB(rgb);
+    var R = hexToR(rgb);
+    var G = hexToG(rgb);
+    var B = hexToB(rgb);
 
     rgb = R + ',' + G + ',' + B;
-    run(addr, cmd, del, bri, rgb, tout);
+    run(address, cmd, del, bri, rgb, tout);
 };
 
 var run = function (addr, cmd, del, bri, rgb, tout) {
