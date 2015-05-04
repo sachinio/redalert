@@ -31,7 +31,22 @@
           <h3>
 <a id="welcome-to-red-alert" class="anchor" href="#welcome-to-red-alert" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to 'Red' Alert</h3>
 
-<pre><code>?
+<p>This is a notification system built for the Power BI Team @ Microsoft. Some parts of the system work in conjuntion with special hardware and services. </p>
+
+<p>Setting this up on a raspberry pi is simple, just copy and run setup.py as follows :-</p>
+
+<pre><code>sudo python3 setup.py
+</code></pre>
+
+<p>This will enlist/install all the required libraries and folder structures. Depending on the hooks required, you might need to create options.csv in /var/www/tmp, and fill as shown</p>
+
+<pre><code>lack_token,your_token
+vso_password,your_password
+buildbroken,False
+gmail_username,your_username
+gmail_password,your_password
+vso_username,your_username
+weather_key,your_api_id
 </code></pre>
 
 <h3>
@@ -42,7 +57,7 @@
 <h3>
 <a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
 
-<p>Having trouble? Check out the documentation @ 'Not yet implemented'.</p>
+<p>Having trouble? Contact me.</p>
         </section>
 
         <aside id="sidebar">
