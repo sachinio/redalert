@@ -11,7 +11,7 @@ sudo python3 setup.py
 This will enlist/install all the required libraries and folder structures. Depending on the hooks required, you might need to create options.csv in /var/www/tmp, and fill as shown
 
 ```
-lack_token,your_token
+slack_token,your_token
 vso_password,your_password
 buildbroken,False
 gmail_username,your_username
