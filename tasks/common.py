@@ -222,6 +222,21 @@ class EMail:
         server.quit()
 
 
+class SlackBot:
+
+    def __init__(self):
+        pass
+
+    @classmethod
+    def post_message_on_channel(cls, channel, msg):
+        token = safe_read_dictionary(sync_read_status_file(), 'slack_token')
+        subprocess.call(['curl',
+                         '--data',
+                         msg,
+                         "https://pbiminerva.slack.com/services/hooks/"
+                         "slackbot?token={0}&channel=%23{1}".format(token, channel)])
+
+
 class Timeline:
     def __init__(self):
         pass
