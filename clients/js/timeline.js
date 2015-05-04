@@ -1,6 +1,9 @@
 var timelineApp = angular.module('timelineApp', []);
 
-timelineApp.controller('TimelineCtrl', function ($scope) {
+timelineApp.controller('TimelineCtrl', function ($scope, $sce) {
+    $scope.trustSrc = function(src) {
+        return $sce.trustAsResourceUrl(src);
+    }
     $scope.show = 10;
     var maxScrollTop = 0;
 
@@ -47,4 +50,6 @@ timelineApp.controller('TimelineCtrl', function ($scope) {
 
         return events;
     }
+
+
 });
