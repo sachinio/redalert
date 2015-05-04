@@ -24,8 +24,9 @@ from vso import VSO
 from jokes import Joker
 from stock import StockTicker
 from days_to_ga import DaysToGA
+from weather import WeatherTask
 
-tasks = [VSO(), Joker(), StockTicker(), DaysToGA()]
+tasks = [VSO(), Joker(), StockTicker(), DaysToGA(), WeatherTask()]
 
 time_info_list = datetime.now().strftime('%H,%M').split(',')
 

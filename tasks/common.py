@@ -6,6 +6,10 @@ import csv
 import fcntl
 import smtplib
 import datetime
+import json
+
+from urllib.request import urlopen
+from urllib.request import Request
 from threading import Lock
 
 REPOSITORY_ROOT = '/var/www/git/redalert'
@@ -235,6 +239,23 @@ class SlackBot:
                          msg,
                          "https://pbiminerva.slack.com/services/hooks/"
                          "slackbot?token={0}&channel=%23{1}".format(token, channel)])
+
+
+class Weather:
+    def __init__(self):
+        pass
+
+
+    @classmethod
+    def get_weather(cls, zipcode):
+        key = safe_read_dictionary(sync_read_status_file(), 'weather_key')
+        uri = 'http://api.openweathermap.org/data/2.5/weather?' \
+              'zip={0},us&units=imperial&APPID={1}'\
+            .format(zipcode, key)
+        request = Request(uri)
+        result = urlopen(request)
+        response = result.read().decode('ascii')
+        return json.loads(response)
 
 
 class Timeline:
