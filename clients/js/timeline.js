@@ -2,6 +2,7 @@ var timelineApp = angular.module('timelineApp', ['ngSanitize']);
 
 timelineApp.controller('TimelineCtrl', function ($scope, $sce) {
     $scope.trustSrc = function(src) {
+        console.log(src);
         return $sce.trustAsResourceUrl(src);
     };
 
