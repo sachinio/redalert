@@ -22,7 +22,7 @@
       <h3>
 <a id="what-is-red-alert-" class="anchor" href="#what-is-red-alert-" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is 'Red' Alert ?</h3>
 
-<p>This is a notification system built for the Power BI Team @ Microsoft. The main contoller runs on the raspberry pi. Some parts of the system work in conjuntion with special hardware. An example is the NeoPixel class which uses an XBee to comunicate light sequences to arduinos connected with neopixel strips.</p>
+<p>This is a notification system built for the <strong>Power BI Team @ Microsoft</strong>. The main contoller runs on the raspberry pi. Some parts of the system work in conjuntion with special hardware. An example is the NeoPixel class which uses an XBee to comunicate light sequences to arduinos connected with neopixel strips.</p>
 
 <h3>
 <a id="architecture" class="anchor" href="#architecture" aria-hidden="true"><span class="octicon octicon-link"></span></a>Architecture</h3>
@@ -55,7 +55,7 @@ weather_key,your_api_id
 <h3>
 <a id="itask" class="anchor" href="#itask" aria-hidden="true"><span class="octicon octicon-link"></span></a>ITask</h3>
 
-<p>ITasks are extensible units of the system. It is a script that when run preforms a specific operation. An example is the weather task, which checks the weather in Redmond, and posts it to the timeline. The tasks's <strong>run</strong>(self, time) method takes in a time parameter which can be used to control when a task is run, since the runner will launch all tasks every minute. </p>
+<p>ITasks are extensible units of the system. It is a script that when run preforms a specific operation. An example is the weather task, which checks the weather in Redmond, and posts it to the timeline. The tasks's <code>__run__(self, time)</code> method takes in a time parameter which can be used to control when a task is run, since the runner will launch all tasks every minute. </p>
 
 <p>A sample implementation of a task looks like this :-</p>
 
@@ -79,7 +79,7 @@ weather_key,your_api_id
 <h3>
 <a id="support" class="anchor" href="#support" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support</h3>
 
-<p>Part of the Power BI team &amp; having trouble getting setup? Contact me. If you are not part of the Power BI team, I am afraid I will be unable to provide you with any support. Feel free to file issues that you think might be genuine bugs.</p>
+<p>Part of the Power BI team &amp; having trouble getting setup? Contact me. If you are <strong>not</strong> part of the Power BI team, I am afraid I will be unable to provide you with any support. Feel free to file issues that you think might be genuine bugs.</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/sachinio/redalert">&#39;Red&#39; Alert</a> is maintained by <a href="https://github.com/sachinio">sachinio</a>.</span>
