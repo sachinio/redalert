@@ -1,7 +1,12 @@
 ### Welcome to 'Red' Alert
-
 This is a notification system built for the Power BI Team @ Microsoft. The main contoller runs on the raspberry pi. Some parts of the system work in conjuntion with special hardware. An example is the NeoPixel class which uses an XBee to comunicate light sequences to arduinos connected with neopixel strips.
 
+### Architecture
+The system consists of a raspberry pi connected to a mesh of neo pixel strips via the use of XBee ZB modules. The raspberry pi runs a number of automated task such as build health, stock price, weather, etc. The report it generates can be accessed via the timeline that is hosted on its own apache service. 
+
+Tasks also have access to external peripherals connected to the pi, such as the neo pixel strips, speakers & usb missile launchers. 
+
+### Setup
 Setting this up on a raspberry pi is simple, just copy and run setup.py as follows :-
 
 ```
