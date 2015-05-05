@@ -50,4 +50,4 @@ Once you create a new task, remember to add it to the runner.py, so the runner c
 Sachin Patney
 
 ### Support
-Part of the Power BI team & having trouble getting setup? Contact me. If you are **not** part of the **Power BI team**, I am afraid I will be unable to provide you with any support. Feel free to file issues that you think might be genuine bugs.
+Part of the Power BI team & having trouble getting setup? Contact me. If you are **not** part of the Power BI team, I am afraid I will be unable to provide you with any support. Feel free to file issues that you think might be genuine bugs.
