@@ -32,7 +32,7 @@ ITasks are extensible units of the system. It is a script that when run preforms
 
 A sample implementation of a task looks like this :-
 
-```
+``` python
 from common import ITask
 
 class MyTask(ITask):
