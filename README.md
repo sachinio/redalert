@@ -1,4 +1,4 @@
-### Welcome to 'Red' Alert
+### What is 'Red' Alert ?
 This is a notification system built for the Power BI Team @ Microsoft. The main contoller runs on the raspberry pi. Some parts of the system work in conjuntion with special hardware. An example is the NeoPixel class which uses an XBee to comunicate light sequences to arduinos connected with neopixel strips.
 
 ### Architecture
