@@ -8,7 +8,7 @@ Setting this up on a raspberry pi is simple, just copy and run setup.py as follo
 sudo python3 setup.py
 ```
 
-This will enlist/install all the required libraries and folder structures. Depending on the hooks required, you might need to create options.csv in /var/www/tmp, and fill as shown
+This will install & create all the required libraries and folder structures. Depending on the hooks required, you might need to manually create the options.csv file in /var/www/tmp, and fill the required fields as shown
 
 ```
 slack_token,your_token
@@ -20,7 +20,7 @@ vso_username,your_username
 weather_key,your_api_id
 ```
 
-In addition, you will also need to create a cronjob to execute runner.py every minute.
+In addition, you will also need to manually create a cronjob to execute runner.py every minute. This will launch ITasks which are setup to execute at specific times during the day.
 
 ### ITask
 ITasks are extensible units of the system. It is a script that when run preforms a specific operation. An example is the weather task, which checks the weather in Redmond, and posts it to the timeline. The tasks's __run__(self, time) method takes in a time parameter which can be used to control when a task is run, since the runner will launch all tasks every minute. 
@@ -45,4 +45,4 @@ Once you create a new task, remember to add it to the runner.py, so the runner c
 Sachin Patney
 
 ### Support
-Part of the Power BI team? Having trouble? Contact me. If you are not part of the Power BI team, I will be unable to provide you with any support. Feel free to file issues if you think they are genuine bugs.
+Part of the Power BI team & having trouble getting setup? Contact me. If you are not part of the Power BI team, I am afraid I will be unable to provide you with any support. Feel free to file issues that you think might be genuine bugs.
