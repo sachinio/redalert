@@ -28,7 +28,7 @@ weather_key,your_api_id
 In addition, you will also need to manually create a cronjob to execute runner.py every minute. This will launch ITasks which are setup to execute at specific times during the day.
 
 ### ITask
-ITasks are extensible units of the system. It is a script that when run preforms a specific operation. An example is the weather task, which checks the weather in Redmond, and posts it to the timeline. The tasks's __run__(self, time) method takes in a time parameter which can be used to control when a task is run, since the runner will launch all tasks every minute. 
+ITasks are extensible units of the system. It is a script that when run preforms a specific operation. An example is the weather task, which checks the weather in Redmond, and posts it to the timeline. The tasks's `__run__(self, time)` method takes in a time parameter which can be used to control when a task is run, since the runner will launch all tasks every minute. 
 
 A sample implementation of a task looks like this :-
 
