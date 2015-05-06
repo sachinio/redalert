@@ -18,4 +18,3 @@ while True:
                 print('Hex string')
                 print(binascii.hexlify(s))
             s = b''
-            time.sleep(0.3)
