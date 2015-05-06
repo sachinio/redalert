@@ -16,7 +16,7 @@ while True:
             if binascii.hexlify(s) == b'7e':
                 w = ser.read(2)
                 s += w
-                l = int.from_bytes(w, byteorder='big')
+                l = int(binascii.hexlify(w), 16)
                 print('len: '+str(l))
                 s += ser.read(l)
             else:
