@@ -25,6 +25,21 @@ TALKING_PILLOW = Lock()
 STATUS_FILE_LOCK = Lock()
 
 
+class Icons:
+    Ambulance = 'fa-ambulance'
+    Announcement = 'fa-bullhorn'
+    Cloud = 'fa-cloud'
+    LineChart = 'fa-line-chart'
+    Wrench = 'fa-wrench'
+
+
+class IconBackgrounds:
+    Blue = 'info'
+    Red = 'danger'
+    Yellow = 'warning'
+    Green = 'success'
+
+
 class ITask():
     def __init__(self):
         pass

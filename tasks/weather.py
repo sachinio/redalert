@@ -3,6 +3,8 @@ __author__ = 'sachinpatney'
 from common import ITask
 from common import Timeline
 from common import Weather
+from common import Icons
+from common import IconBackgrounds
 
 class WeatherTask(ITask):
     def __init__(self):
@@ -15,4 +17,4 @@ class WeatherTask(ITask):
             message = 'The weather right now at {0} is {1}, and the temperature is around {2} degrees fahrenheit.' \
                 .format(w['name'], w['weather'][0]['main'], w['main']['temp'])
 
-            Timeline.add_item_from_bot('Weather Report', message, '', 'fa-cloud', 'info')
+            Timeline.add_item_from_bot('Weather Report', message, '', Icons.Cloud, IconBackgrounds.Blue)

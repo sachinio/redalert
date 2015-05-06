@@ -6,6 +6,9 @@ import os
 from common import ITask
 from common import Timeline
 from common import UPLOAD_FOLDER_PATH
+from common import Icons
+from common import IconBackgrounds
+
 
 class DaysToGA(ITask):
     def __init__(self):
@@ -20,5 +23,5 @@ class DaysToGA(ITask):
             Timeline.add_item_from_bot('{0} days to GA :)'.format(delta.days),
                                        '',
                                        pictures[delta.days % len(pictures)],
-                                       'fa-bullhorn',
-                                       'info')
+                                       Icons.Announcement,
+                                       IconBackgrounds.Blue)

@@ -10,6 +10,8 @@ from common import BuildNotifier
 from common import sync_read_status_file
 from common import Timeline
 from common import safe_read_dictionary
+from common import Icons
+from common import IconBackgrounds
 
 
 class VSO_API_Templates:
@@ -60,8 +62,8 @@ class VSO(ITask):
                 Timeline.add_item_from_bot('BUILD BREAK FIXED',
                                            'Thank you for taking care of it',
                                            '',
-                                           'fa-wrench',
-                                           'success')
+                                           Icons.Wrench,
+                                           IconBackgrounds.Green)
                 print('Sent all clear notification')
             else:
                 print('Was not broken previously too, so do nothing new')
@@ -77,8 +79,8 @@ class VSO(ITask):
                                                broken[len(broken) - 1]['buildNumber'],
                                                broken[len(broken) - 1]['requests'][0]['requestedFor']['displayName']),
                                            '',
-                                           'fa-ambulance',
-                                           'danger')
+                                           Icons.Ambulance,
+                                           IconBackgrounds.Red)
                 print('Sent build break notification')
             else:
                 print('Was broken previously too, so do nothing')

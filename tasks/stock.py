@@ -6,7 +6,8 @@ import random
 from common import ITask
 from common import Bot
 from common import Timeline
-
+from common import Icons
+from common import IconBackgrounds
 
 template = "Microsoft stock closed at {0}, {1}, {2}.{3}"
 motivate = [' Come on people we can do better!', ' OK. Clearly you guys need to work harder.']
@@ -32,11 +33,11 @@ class StockTicker(ITask):
             Bot.speak(msg)
 
             if direction == 'up':
-                icon_back = 'success'
+                icon_back = IconBackgrounds.Green
                 speak = random.choice(praise)
                 Bot.speak(speak)
             else:
-                icon_back = 'danger'
+                icon_back = IconBackgrounds.Red
                 speak = random.choice(motivate)
                 Bot.speak(speak)
 
@@ -45,5 +46,5 @@ class StockTicker(ITask):
                                                        direction,
                                                        result[2].replace('-', ''), speak),
                                        '',
-                                       'fa-line-chart',
+                                       Icons.LineChart,
                                        icon_back)
