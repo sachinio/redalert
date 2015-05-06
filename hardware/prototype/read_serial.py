@@ -13,11 +13,14 @@ while True:
 
         if bytesToRead > 0:
             s += ser.read()
-            w = ser.read(2)
-            s += w
-            l = int.from_bytes(w, byteorder='big')
-            print('len: '+str(l))
-            s += ser.read(l)
+            if binascii.hexlify(s) == b'7e':
+                w = ser.read(2)
+                s += w
+                l = int.from_bytes(w, byteorder='big')
+                print('len: '+str(l))
+                s += ser.read(l)
+            else:
+                s = b''
         else:
             if len(s) > 0:
                 print('Hex string')
