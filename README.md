@@ -1,5 +1,5 @@
 ### What is 'Red' Alert ?
-This is a notification system built for the **Power BI Team @ Microsoft**. The main contoller runs on the raspberry pi. Some parts of the system work in conjuntion with special hardware. An example is the NeoPixel class which uses an XBee to comunicate light sequences to arduinos connected with neopixel strips.
+It is a notification system built for the **Power BI Team @ Microsoft**. The main contoller runs on the raspberry pi. Some parts of the system work in conjuntion with special hardware. An example is the NeoPixel class which uses an XBee to comunicate light sequences to arduinos connected with neopixel strips.
 
 ### Architecture
 The system consists of a raspberry pi connected to a mesh of neo pixel strips via the use of XBee ZB modules. The raspberry pi runs a number of automated task such as build health, stock price, weather, etc. The report it generates can be accessed via the timeline that is hosted on its own apache service. 
@@ -15,7 +15,7 @@ sudo python3 setup.py
 
 This will install & create all the required libraries and folder structures. Depending on the hooks required, you might need to manually create the options.csv file in /var/www/tmp, and fill the required fields as shown
 
-```
+``` csv
 slack_token,your_token
 vso_password,your_password
 buildbroken,False
