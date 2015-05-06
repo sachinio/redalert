@@ -32,7 +32,7 @@ def createFrame(address, data):
     arr.append(frameDelimiter)
     arr = arr[::-1]
     arr.append(str(checksum).replace('0x', ''))
-    print(arr)
+    # print(arr)
     cmd = ''.join(b for b in arr)
 
     return cmd
@@ -45,6 +45,6 @@ frame = createFrame(address, data)
 ser = serial.Serial('/dev/ttyUSB0', baudrate=9600, timeout=3.0)
 fcntl.flock(ser.fileno(), fcntl.LOCK_EX)
 ser.write(bytearray.fromhex(frame))
-print(frame)
-print(bytearray.fromhex(frame))
+# print(frame)
+# print(bytearray.fromhex(frame))
 print(sys.argv)
