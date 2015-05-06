@@ -12,7 +12,11 @@ while True:
         bytesToRead = ser.inWaiting()
 
         if bytesToRead > 0:
-            s += ser.read(bytesToRead)
+            w = ser.read(3)
+            s += w
+            l = int.from_bytes(w[2] + w[3], byteorder='big')
+            print('len: '+l)
+            s += ser.read(l)
         else:
             if len(s) > 0:
                 print('Hex string')
