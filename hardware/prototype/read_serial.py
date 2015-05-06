@@ -9,6 +9,8 @@ while True:
         bytesToRead = ser.inWaiting()
         if bytesToRead > 0:
             s = ser.read(bytesToRead)
+            print('===== start ß=====')
             print(s)
+            print('===== end =====')
     except:
         print('Exception .. timeout ?')
