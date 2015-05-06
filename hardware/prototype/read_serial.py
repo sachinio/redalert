@@ -15,6 +15,7 @@ while True:
             s += ser.read(bytesToRead)
         else:
             if len(s) > 0:
+                print('Hex string ...')
                 print(binascii.hexlify(s))
             s = b''
             time.sleep(300)
