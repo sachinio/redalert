@@ -22,7 +22,7 @@
       <h3>
 <a id="what-is-red-alert-" class="anchor" href="#what-is-red-alert-" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is 'Red' Alert ?</h3>
 
-<p>This is a notification system built for the <strong>Power BI Team @ Microsoft</strong>. The main contoller runs on the raspberry pi. Some parts of the system work in conjuntion with special hardware. An example is the NeoPixel class which uses an XBee to comunicate light sequences to arduinos connected with neopixel strips.</p>
+<p>It is a notification system built for the <strong>Power BI Team @ Microsoft</strong>. The main contoller runs on the raspberry pi. Some parts of the system work in conjuntion with special hardware. An example is the NeoPixel class which uses an XBee to comunicate light sequences to arduinos connected with neopixel strips.</p>
 
 <h3>
 <a id="architecture" class="anchor" href="#architecture" aria-hidden="true"><span class="octicon octicon-link"></span></a>Architecture</h3>
@@ -41,7 +41,7 @@
 
 <p>This will install &amp; create all the required libraries and folder structures. Depending on the hooks required, you might need to manually create the options.csv file in /var/www/tmp, and fill the required fields as shown</p>
 
-<pre><code>slack_token,your_token
+<pre lang="csv"><code>slack_token,your_token
 vso_password,your_password
 buildbroken,False
 gmail_username,your_username
