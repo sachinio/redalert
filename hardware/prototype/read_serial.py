@@ -14,7 +14,7 @@ while True:
         if bytesToRead > 0:
             w = ser.read(3)
             s += w
-            l = int.from_bytes(w[2] + w[3], byteorder='big')
+            l = int.from_bytes(w[1] + w[2], byteorder='big')
             print('len: '+l)
             s += ser.read(l)
         else:
