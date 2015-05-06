@@ -12,9 +12,10 @@ while True:
         bytesToRead = ser.inWaiting()
 
         if bytesToRead > 0:
-            w = ser.read(3)
+            s += ser.read()
+            w = ser.read(2)
             s += w
-            l = int.from_bytes(w[1] + w[2], byteorder='big')
+            l = int.from_bytes(w, byteorder='big')
             print('len: '+l)
             s += ser.read(l)
         else:
