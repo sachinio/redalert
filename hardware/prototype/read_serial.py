@@ -22,10 +22,15 @@ while True:
 
                 s += ser.read(l + 2)
                 s = binascii.hexlify(s)
-                data = s[32:-2]
 
-                print('Data -> ' + binascii.unhexlify(data).decode('utf-8'))
+                if s[6:8] == b'90':
+                    data = s[32:-2]
+                    print('Data -> ' + binascii.unhexlify(data).decode('utf-8'))
+                else:
+                    print(s[6:8])
+                    print('Unknown Type')
             else:
                 s = b''
         else:
             s = b''
+            time.sleep(0.3)
