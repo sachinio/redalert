@@ -5,8 +5,12 @@ import time
 import binascii
 
 ser = serial.Serial('/dev/ttyUSB0', baudrate=9600, timeout=1.0)
-
 s = b''
+
+
+def do(cmd):
+    if cmd == 'play':
+        print('Playing music ...')
 
 while True:
         bytesToRead = ser.inWaiting()
@@ -17,18 +21,13 @@ while True:
                 w = ser.read(2)
                 s += w
                 l = int(binascii.hexlify(w), 16)
-
-                print('len: '+str(l))
-
                 s += ser.read(l + 2)
                 s = binascii.hexlify(s)
 
-                if s[6:8] == b'90':
+                if len(s) > 8 and s[6:8] == b'90':
                     data = s[32:-2]
-                    print('Data -> ' + binascii.unhexlify(data).decode('utf-8'))
-                else:
-                    print(s[6:8])
-                    print('Unknown Type')
+                    data = binascii.unhexlify(data).decode('utf-8')
+                    do(data)
             else:
                 s = b''
         else:
