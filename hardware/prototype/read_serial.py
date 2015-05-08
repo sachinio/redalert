@@ -17,12 +17,15 @@ while True:
                 w = ser.read(2)
                 s += w
                 l = int(binascii.hexlify(w), 16)
+
                 print('len: '+str(l))
+
                 s += ser.read(l + 2)
+                s = binascii.hexlify(s)
+                data = s[32:-2]
+
+                print('Data -> ' + binascii.unhexlify(data).decode('utf-8'))
             else:
                 s = b''
         else:
-            if len(s) > 0:
-                print('Hex string')
-                print(binascii.hexlify(s))
             s = b''
