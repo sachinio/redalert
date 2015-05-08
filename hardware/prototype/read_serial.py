@@ -28,6 +28,7 @@ while True:
                     data = s[32:-2]
                     data = binascii.unhexlify(data).decode('utf-8')
                     print(data)
+                    print(len(data))
                     do(data.strip())
             else:
                 s = b''
