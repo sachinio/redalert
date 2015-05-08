@@ -27,8 +27,6 @@ while True:
                 if s[6:8] == b'90':
                     data = s[32:-2]
                     data = binascii.unhexlify(data).decode('utf-8').strip('\0')
-                    print(data)
-                    print(len(data))
                     do(data)
             else:
                 s = b''
