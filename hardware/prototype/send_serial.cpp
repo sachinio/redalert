@@ -2,23 +2,25 @@
 
 XBee xbee = XBee();
 
-uint8_t payload[] = { 0, 0 };
-
-XBeeAddress64 addr64 = XBeeAddress64(0x0013a200, 0x403e0f30);
-ZBTxRequest zbTx = ZBTxRequest(addr64, payload, sizeof(payload));
-ZBTxStatusResponse txStatus = ZBTxStatusResponse();
-
 
 void setup() {
   Serial.begin(9600);
   xbee.setSerial(Serial);
 }
 
-void loop() {
-  payload[0] = 6;
-  payload[1] = 9;
+void send(String s){
+  uint8_t p = '\0';
+  uint8_t payload[] = {p,p,p,p,p,p,p,p,p,p,p,p};
+  
+  s.getBytes(payload, sizeof(payload));
 
+  XBeeAddress64 addr64 = XBeeAddress64(0x00000000, 0x00000000);
+  ZBTxRequest zbTx = ZBTxRequest(addr64, payload, sizeof(payload));
+  
   xbee.send(zbTx);
+}
 
-  delay(1000);
+void loop() {
+  send("play");
+  delay(5000);
 }
