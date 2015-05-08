@@ -24,7 +24,7 @@ while True:
                 s += ser.read(l + 2)
                 s = binascii.hexlify(s)
 
-                if len(s) > 8 and s[6:8] == b'90':
+                if s[6:8] == b'90':
                     data = s[32:-2]
                     data = binascii.unhexlify(data).decode('utf-8')
                     do(data)
