@@ -18,7 +18,7 @@ while True:
                 s += w
                 l = int(binascii.hexlify(w), 16)
                 print('len: '+str(l))
-                s += ser.read(l)
+                s += ser.read(l + 2)
             else:
                 s = b''
         else:
