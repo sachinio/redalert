@@ -8,9 +8,8 @@ ser = serial.Serial('/dev/ttyUSB0', baudrate=9600, timeout=1.0)
 s = b''
 
 
-def do(cmd):
-    if cmd == 'play':
-        print('Playing music ...')
+def do(command):
+    pass  # TODO
 
 while True:
         bytesToRead = ser.inWaiting()
@@ -24,7 +23,7 @@ while True:
                 s += ser.read(l + 2)
                 s = binascii.hexlify(s)
 
-                if s[6:8] == b'90':
+                if s[6:8] == b'90':  # Receive Request
                     data = s[32:-2]
                     data = binascii.unhexlify(data).decode('utf-8').strip('\0')
                     do(data)
