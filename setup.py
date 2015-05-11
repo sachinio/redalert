@@ -68,7 +68,7 @@ call('sudo pip-3.2 install pyserial'.split(' '))
 
 os.chdir('/var/www')
 
-#call('sudo mkdir git'.split(' '))
+call('sudo mkdir git'.split(' '))
 call('sudo mkdir ram'.split(' '))
 call('sudo mkdir uploads'.split(' '))
 os.chdir('uploads')
