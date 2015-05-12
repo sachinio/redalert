@@ -2,12 +2,12 @@ __author__ = 'sachinpatney'
 
 import sys
 sys.path.append('/var/www/git/redalert/tasks')
-sys.path.append('/var/www/git/redalert/hardware/watcher')
+sys.path.append('/var/www/git/redalert/hardware/watcher/actions')
 
 import serial
 import time
 import binascii
-from actions.test_action import LetsParty
+from test_action import LetsParty
 
 
 ser = serial.Serial('/dev/ttyUSB0', baudrate=9600, timeout=1.0)
