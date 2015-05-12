@@ -7,6 +7,7 @@ import fcntl
 import smtplib
 import datetime
 import json
+import threading
 
 from urllib.request import urlopen
 from urllib.request import Request
@@ -116,6 +117,13 @@ def sync_write_to_status_file(key, value):
     d[key] = value
     write_dictionary_to_csv(d, OPTIONS_FILE_PATH)
     STATUS_FILE_LOCK.release()
+
+
+def run_async(target, args):
+    threading.Thread(target=target,
+                     args=args,
+                     kwargs=None,
+                     ).start()
 
 
 class Bot:

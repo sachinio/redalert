@@ -1,15 +1,22 @@
 __author__ = 'sachinpatney'
 
+import sys
+sys.path.append('/var/www/git/redalert/tasks')
+
 import serial
 import time
 import binascii
+from test_action import LetsParty
+
 
 ser = serial.Serial('/dev/ttyUSB0', baudrate=9600, timeout=1.0)
 s = b''
 
 
 def do(command):
-    pass  # TODO
+    if command == 'party':
+        LetsParty().__do__()
+
 
 while True:
         bytesToRead = ser.inWaiting()
@@ -32,3 +39,5 @@ while True:
         else:
             s = b''
             time.sleep(0.3)
+
+do('party')
