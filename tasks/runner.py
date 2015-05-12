@@ -41,6 +41,5 @@ for task in tasks:
                      kwargs=None,
                      ).start()
 
-    # start_new_thread(task.__run__, (options,))
 
 sleep(45)  # give jobs 45 seconds to run
