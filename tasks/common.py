@@ -139,10 +139,8 @@ class Bot:
 
     @classmethod
     def play_sound(cls, name):
-        TALKING_PILLOW.acquire()
         subprocess.call(['sudo','pkill','omxplayer'])
         subprocess.call(['sudo','omxplayer',name])
-        TALKING_PILLOW.release()
 
     @classmethod
     def speak(cls, msg):
