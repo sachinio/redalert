@@ -2,7 +2,7 @@ __author__ = 'sachinpatney'
 
 import sys
 sys.path.append('/var/www/git/redalert/tasks')
-sys.path.append('/var/www/git/redalert/hardware/watcher/actions')
+sys.path.append('/var/www/git/redalert/hardware/watcher')
 
 import serial
 import time
