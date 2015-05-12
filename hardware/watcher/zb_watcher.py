@@ -18,6 +18,10 @@ def do(command):
     if command == 'party':
         LetsParty().__do__()
 
+do('party')
+
+sys.exit(0)
+
 while True:
         bytesToRead = ser.inWaiting()
 

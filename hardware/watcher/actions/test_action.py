@@ -9,7 +9,7 @@ from common import NeoPixels
 
 class IAction:
     def __init__(self):
-        pass;
+        pass
 
     def __do__(self):
         raise Exception('This should be overridden')
