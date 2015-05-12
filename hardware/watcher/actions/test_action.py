@@ -29,7 +29,7 @@ class LetsParty(IAction):
 
     def __do__(self):
         self.run_async(Bot.play_sound, (ASSETS_FOLDER_PATH + '/sounds/gfdr.mp3',))
-        NeoPixels.police(NeoPixels.broadcast_address, 99)
+        NeoPixels.police(NeoPixels.broadcast_address, '50')
         time.sleep(10)
         NeoPixels.off(NeoPixels.broadcast_address)
         Bot.kill_sound()
