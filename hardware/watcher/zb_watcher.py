@@ -6,7 +6,7 @@ sys.path.append('/var/www/git/redalert/tasks')
 import serial
 import time
 import binascii
-from test_action import LetsParty
+from actions.test_action import LetsParty
 
 
 ser = serial.Serial('/dev/ttyUSB0', baudrate=9600, timeout=1.0)
