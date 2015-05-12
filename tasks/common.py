@@ -142,6 +142,10 @@ class Bot:
         subprocess.call(['sudo', 'python3', TEXT_TO_SPEECH_PATH, msg])
         TALKING_PILLOW.release()
 
+    @classmethod
+    def kill_sound(cls):
+        subprocess.call(['sudo', 'pkill', 'omxplayer'])
+
 
 class NeoPixels:
     broadcast_address = '00 00 00 00 00 00 FF FF'

@@ -23,7 +23,7 @@ while True:
                 s += ser.read(l + 2)
                 s = binascii.hexlify(s)
 
-                if s[6:8] == b'90':  # Receive Request
+                if s[6:8] == b'90':  # Receive Request, checksum verification not needed.
                     data = s[32:-2]
                     data = binascii.unhexlify(data).decode('utf-8').strip('\0')
                     do(data)
