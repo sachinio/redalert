@@ -19,6 +19,8 @@ def do(command):
         LetsParty().__do__()
 
 
+do('party')
+
 while True:
         bytesToRead = ser.inWaiting()
 
@@ -40,5 +42,3 @@ while True:
         else:
             s = b''
             time.sleep(0.3)
-
-do('party')
