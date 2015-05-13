@@ -17,10 +17,8 @@ s = b''
 def do(command):
     if command == 'party':
         LetsParty().__do__()
-
-do('party')
-
-sys.exit(0)
+    if command == 'play':
+        print('playing ... ')
 
 while True:
         bytesToRead = ser.inWaiting()
