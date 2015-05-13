@@ -28,7 +28,7 @@ class VSO(ITask):
         ]
 
     def is_broken(self, build):
-        if build['status'] == 'failed':
+        if build['status'] !== 'succeeded':
             return True
         return False
 
