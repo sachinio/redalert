@@ -30,15 +30,13 @@ class VSO(ITask):
     def is_broken(self, build):
         if build['status'] == 'failed':
             return True
-        if build['status'].lower() == 'partiallysucceeded':
+        if build['status'] == 'partiallySucceeded':
             return True
         return False
 
     def get_broken_builds(self, data):
         broken_builds = []
         
-        for build in data['value']:
-            print(build['status'])
         for build in data['value']:
             if self.is_broken(build):
                 if build['definition']['name'] == 'CI':
