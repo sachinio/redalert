@@ -42,4 +42,4 @@ for task in tasks:
                      ).start()
 
 
-sleep(45)  # give jobs 45 seconds to run
+sleep(30)  # give jobs 45 seconds to run
