@@ -37,7 +37,9 @@ class VSO(ITask):
 
     def get_broken_builds(self, data):
         broken_builds = []
-
+        
+        print(data['value'])
+        
         for build in data['value']:
             if self.is_broken(build):
                 if build['definition']['name'] == 'CI':
