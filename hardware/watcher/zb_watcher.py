@@ -18,7 +18,7 @@ def do(command):
     if command == 'party':
         LetsParty().__do__()
     if command == 'play':
-        print('playing ... ')
+        print('button pressed ... ')
 
 while True:
         bytesToRead = ser.inWaiting()
@@ -40,4 +40,4 @@ while True:
                 s = b''
         else:
             s = b''
-            time.sleep(0.3)
+            time.sleep(0.2)
