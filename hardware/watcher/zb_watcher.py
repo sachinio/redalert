@@ -7,6 +7,7 @@ sys.path.append('/var/www/git/redalert/hardware/watcher/actions')
 import serial
 import time
 import binascii
+import subprocess
 from test_action import LetsParty
 
 
@@ -18,7 +19,7 @@ def do(command):
     if command == 'party':
         LetsParty().__do__()
     if command == 'play':
-        print('button pressed ... ')
+        subprocess.call(['sudo', 'python3', '/var/www/git/redalert/hardware/missile/missile.py', 'fire', '1'])
 
 while True:
         bytesToRead = ser.inWaiting()
