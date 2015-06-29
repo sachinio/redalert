@@ -39,7 +39,7 @@ class VSO(ITask):
         
         for build in data['value']:
             if self.is_broken(build):
-                if build['definition']['name'] == 'CI':
+                if build['definition']['name'] == 'master':
                     broken_builds.append(build)
             else:  # We only want broken builds after last success
                 break
