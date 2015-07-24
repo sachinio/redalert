@@ -45,18 +45,11 @@ class VSO(ITask):
                 return False
         return True
 
-    def get_latest_pr_builds(self, data):
+    def get_latest_pr_build_results(self, data):
         builds = []
 
         for build in data['value']:
             if self.is_unique(builds, build):
-                print(build['definition']['name'])
-                print(self.get_user_info_from_build(build)['displayName'])
-                s = build['status'];
-                if 'result' in build:
-                    s += ' -> ' + build['result']
-                print(s)
-                print('------------------')
                 builds.append(build)
 
         return builds
@@ -81,7 +74,7 @@ class VSO(ITask):
         return json.loads(response)
 
     def __run__(self, time):
-        self.get_latest_pr_builds(self.get_build_info('7','50'))
+        BuildNotifier.notify_pr_build_results(self.get_latest_pr_build_results(self.get_build_info('7','50')))
         brokenMasterBuilds = self.get_broken_master_builds(self.get_build_info('1','5'))
 
         if len(brokenMasterBuilds) == 0:

@@ -204,6 +204,16 @@ class BuildNotifier:
     def set_build_broken(cls, status):
         sync_write_to_status_file('buildbroken', status)
 
+    @classmethod
+    def notify_pr_build_results(cls, builds):
+        for build in builds:
+            for unit in cls.units:
+                if build['requestedFor']['uniqueName'] == unit['email']:
+                    if 'status' in build:
+                        if build['status'] == 'succeeded':
+                            print(build['requestedFor']['displayName'] + ' your PR succeeded :)')
+                        else:
+                            print(build['requestedFor']['displayName'] + ' your PR failed :(')
 
     @classmethod
     def notify_build_break(cls, culprits):
