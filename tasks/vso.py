@@ -15,7 +15,7 @@ from common import IconBackgrounds
 
 #https://fabrikam.visualstudio.com/DefaultCollection/Fabrikam-Fiber-Git/_apis/build/builds?definitions=25&statusFilter=completed&$top=1&api-version=2.0
 class VSO_API_Templates:
-    getBuilds = "https://{0}.visualstudio.com/defaultcollection/{1}/_apis/build/builds?definitions=1,7&top=50&api-version={2}"
+    getBuilds = "https://{0}.visualstudio.com/defaultcollection/{1}/_apis/build/builds?definitions=1&$top=50&api-version={2}"
 
 
 class VSO(ITask):
