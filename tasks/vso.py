@@ -44,8 +44,7 @@ class VSO(ITask):
             print(build['definition']['name'])
             print(self.get_user_info_from_build(build)['displayName'])
             if self.is_broken(build):
-                if build['definition']['id'] == '7':
-                    broken_builds.append(build)
+                broken_builds.append(build)
 
         return broken_builds
 
@@ -54,8 +53,7 @@ class VSO(ITask):
         
         for build in data['value']:
             if self.is_broken(build):
-                if build['definition']['name'] == 'master':
-                    broken_builds.append(build)
+                broken_builds.append(build)
             else:  # We only want broken builds after last success
                 break
         return broken_builds
