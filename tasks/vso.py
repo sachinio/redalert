@@ -21,7 +21,7 @@ class VSO_API_Templates:
 class VSO(ITask):
 
     def get_user_info_from_build(self, build):
-        return build['requests'][0]['requestedFor']
+        return build['requestedFor']
 
     def get_auth(self):
         d = sync_read_status_file()
@@ -96,7 +96,7 @@ class VSO(ITask):
                 Timeline.add_item_from_bot('BUILD BREAK',
                                            '{0} broke the build. Change was requested by {1}'.format(
                                                broken[len(broken) - 1]['buildNumber'],
-                                               broken[len(broken) - 1]['requests'][0]['requestedFor']['displayName']),
+                                               broken[len(broken) - 1]['requestedFor']['displayName']),
                                            '',
                                            Icons.Ambulance,
                                            IconBackgrounds.Red)
