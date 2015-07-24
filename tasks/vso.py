@@ -81,7 +81,7 @@ class VSO(ITask):
 
         if len(brokenMasterBuilds) == 0:
             if BuildNotifier.build_was_broken():
-                BuildNotifier.update_build_status(False)
+                BuildNotifier.set_build_broken(False)
                 BuildNotifier.notify_all_clear()
                 Timeline.add_item_from_bot('BUILD BREAK FIXED',
                                            'Thank you for taking care of it',
@@ -97,7 +97,7 @@ class VSO(ITask):
                 for b in brokenMasterBuilds:
                     culprits.append(self.get_user_info_from_build(b))
                 BuildNotifier.notify_build_break(culprits)
-                BuildNotifier.update_build_status(True)
+                BuildNotifier.set_build_broken(True)
                 Timeline.add_item_from_bot('BUILD BREAK',
                                            '{0} broke the build. Change was requested by {1}'.format(
                                                brokenMasterBuilds[len(brokenMasterBuilds) - 1]['buildNumber'],

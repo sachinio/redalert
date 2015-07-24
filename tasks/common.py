@@ -201,7 +201,7 @@ class BuildNotifier:
         return safe_read_dictionary(sync_read_status_file(), 'buildbroken') == 'True'
 
     @classmethod
-    def update_build_status(cls, status):
+    def set_build_broken(cls, status):
         sync_write_to_status_file('buildbroken', status)
 
 
