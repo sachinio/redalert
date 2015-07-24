@@ -74,7 +74,7 @@ class VSO(ITask):
         return json.loads(response)
 
     def __run__(self, time):
-        BuildNotifier.notify_pr_build_results(self.get_latest_pr_build_results(self.get_build_info('7','50')))
+        #BuildNotifier.notify_pr_build_results(self.get_latest_pr_build_results(self.get_build_info('7','50')))
         brokenMasterBuilds = self.get_broken_master_builds(self.get_build_info('1','5'))
 
         if len(brokenMasterBuilds) == 0:
