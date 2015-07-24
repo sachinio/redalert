@@ -15,7 +15,7 @@ class DaysToGA(ITask):
         pass
 
     def __run__(self, time):
-        if time['hour'] == '8' and time['min'] == '15':
+        if time['hour'] == '12' and time['min'] == '39':
             pictures = os.listdir(UPLOAD_FOLDER_PATH + '/redbull')
             d0 = datetime.datetime.now().date()
             d1 = datetime.date(2015, 7, 24)
