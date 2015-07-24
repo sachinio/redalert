@@ -193,11 +193,6 @@ class BuildNotifier:
             'addr' : '00 00 00 00 00 00 FF FF',
             'email': 'spatney@microsoft.com',
             'room': '3C'
-        },{
-            'id' : 1,
-            'addr' : '00 00 00 00 00 00 FF FF',
-            'email': 'akjana@microsoft.com',
-            'room': '3C'
         }
     ]
 
