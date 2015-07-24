@@ -15,7 +15,7 @@ from common import IconBackgrounds
 
 
 class VSO_API_Templates:
-    getBuilds = "https://{0}.visualstudio.com/defaultcollection/{1}/_apis/build/builds?definition=PR%20Build&$top=5&api-version={2}"
+    getBuilds = "https://{0}.visualstudio.com/defaultcollection/{1}/_apis/build/builds?definitions=1&maxBuildsPerDefinition=5&api-version={2}"
 
 
 class VSO(ITask):
@@ -61,7 +61,7 @@ class VSO(ITask):
         return broken_builds
 
     def get_build_info(self):
-        request = Request(VSO_API_Templates.getBuilds.format('pbix', 'powerbiclients', '1.0'))
+        request = Request(VSO_API_Templates.getBuilds.format('pbix', 'powerbiclients', '2.0'))
         auth = self.get_auth()
         username_password = base64.b64encode(("%s:%s" % (auth[0], auth[1])).encode('utf-8')).decode("ascii")
         request.add_header("Authorization", "Basic %s" % username_password)
