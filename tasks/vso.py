@@ -15,7 +15,7 @@ from common import IconBackgrounds
 
 
 class VSO_API_Templates:
-    getBuilds = "https://{0}.visualstudio.com/defaultcollection/{1}/_apis/build/builds?definitions=1,7&api-version={2}"
+    getBuilds = "https://{0}.visualstudio.com/defaultcollection/{1}/_apis/build/builds?definition=master&$top=5&api-version={2}"
 
 
 class VSO(ITask):
