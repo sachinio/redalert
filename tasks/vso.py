@@ -15,7 +15,7 @@ from common import IconBackgrounds
 
 
 class VSO_API_Templates:
-    getBuilds = "https://{0}.visualstudio.com/defaultcollection/{1}/_apis/build/builds?definitions=7&maxBuildsPerDefinition=5&api-version={2}"
+    getBuilds = "https://{0}.visualstudio.com/defaultcollection/{1}/_apis/build/builds?definitions={2}&$top={3}&api-version={4}"
 
 
 class VSO(ITask):
@@ -60,8 +60,8 @@ class VSO(ITask):
                 break
         return broken_builds
 
-    def get_build_info(self):
-        request = Request(VSO_API_Templates.getBuilds.format('pbix', 'powerbiclients', '2.0'))
+    def get_build_info(self, definitionId):
+        request = Request(VSO_API_Templates.getBuilds.format('pbix', 'powerbiclients', definitionId, '10', '2.0'))
         auth = self.get_auth()
         username_password = base64.b64encode(("%s:%s" % (auth[0], auth[1])).encode('utf-8')).decode("ascii")
         request.add_header("Authorization", "Basic %s" % username_password)
@@ -70,9 +70,8 @@ class VSO(ITask):
         return json.loads(response)
 
     def __run__(self, time):
-        info = self.get_build_info()
-        self.get_broken_pr_builds(info)
-        broken = self.get_broken_master_builds(info)
+        self.get_broken_pr_builds(self.get_build_info('7'))
+        broken = self.get_broken_master_builds(self.get_build_info('1'))
 
         if len(broken) == 0:
             if BuildNotifier.build_was_broken():
