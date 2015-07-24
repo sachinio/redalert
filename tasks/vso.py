@@ -31,9 +31,9 @@ class VSO(ITask):
         ]
 
     def is_broken(self, build):
-        if build['status'] == 'failed':
+        if build['result'] == 'failed':
             return True
-        if build['status'] == 'partiallySucceeded':
+        if build['result'] == 'partiallySucceeded':
             return True
         return False
 
@@ -50,7 +50,7 @@ class VSO(ITask):
             if self.is_unique(builds, build):
                 print(build['definition']['name'])
                 print(self.get_user_info_from_build(build)['displayName'])
-                print(build['status'])
+                print(build['status'] + ' -> ' + build['result'])
                 print('------------------')
                 builds.append(build)
 
