@@ -13,9 +13,9 @@ from common import safe_read_dictionary
 from common import Icons
 from common import IconBackgrounds
 
-#https://fabrikam.visualstudio.com/DefaultCollection/Fabrikam-Fiber-Git/_apis/build/builds?definitions=25&statusFilter=completed&$top=1&api-version=2.0
+
 class VSO_API_Templates:
-    getBuilds = "https://{0}.visualstudio.com/defaultcollection/{1}/_apis/build/builds?definitions=1&$top=50&api-version={2}"
+    getBuilds = "https://{0}.visualstudio.com/defaultcollection/{1}/_apis/build/builds?api-version={2}"
 
 
 class VSO(ITask):
@@ -41,9 +41,9 @@ class VSO(ITask):
         broken_builds = []
 
         for build in data['value']:
+            print(build['definition']['name'])
+            print(self.get_user_info_from_build(build)['displayName'])
             if self.is_broken(build):
-                print(build['definition']['name'])
-                print(self.get_user_info_from_build(build)['displayName'])
                 if build['definition']['id'] == '7':
                     broken_builds.append(build)
 
@@ -61,7 +61,7 @@ class VSO(ITask):
         return broken_builds
 
     def get_build_info(self):
-        request = Request(VSO_API_Templates.getBuilds.format('pbix', 'powerbiclients', '2.0'))
+        request = Request(VSO_API_Templates.getBuilds.format('pbix', 'powerbiclients', '1.0'))
         auth = self.get_auth()
         username_password = base64.b64encode(("%s:%s" % (auth[0], auth[1])).encode('utf-8')).decode("ascii")
         request.add_header("Authorization", "Basic %s" % username_password)
