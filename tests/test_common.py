@@ -75,7 +75,7 @@ class TestVSO(unittest.TestCase):
         morphine = VSO()
         morphine.is_broken = MagicMock(return_value=True)
         common.OPTIONS_FILE_PATH = 'temp.csv'  # gets password from here
-        info = morphine.get_broken_builds(morphine.get_build_info())
+        info = morphine.get_broken_master_builds(morphine.get_build_info())
 
         self.assertTrue(len(info) > 0)
 
@@ -83,7 +83,7 @@ class TestVSO(unittest.TestCase):
         morphine = VSO()
         morphine.is_broken = MagicMock(return_value=False)
         common.OPTIONS_FILE_PATH = 'temp.csv'  # gets password from here
-        info = morphine.get_broken_builds(morphine.get_build_info())
+        info = morphine.get_broken_master_builds(morphine.get_build_info())
 
         self.assertEqual(len(info), 0)
 

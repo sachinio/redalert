@@ -34,7 +34,18 @@ class VSO(ITask):
             return True
         return False
 
-    def get_broken_builds(self, data):
+    def get_broken_pr_builds(self, data):
+        broken_builds = []
+
+        for build in data['value']:
+            if self.is_broken(build):
+                if build['definition']['name'] == 'pr':
+                    broken_builds.append(build)
+                    print(build)
+
+        return broken_builds
+
+    def get_broken_master_builds(self, data):
         broken_builds = []
         
         for build in data['value']:
@@ -55,7 +66,9 @@ class VSO(ITask):
         return json.loads(response)
 
     def __run__(self, time):
-        broken = self.get_broken_builds(self.get_build_info())
+        info = self.get_build_info()
+        self.get_broken_pr_builds(info)
+        broken = self.get_broken_master_builds(info)
 
         if len(broken) == 0:
             if BuildNotifier.build_was_broken():
