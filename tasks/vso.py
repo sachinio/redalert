@@ -13,12 +13,15 @@ from common import safe_read_dictionary
 from common import Icons
 from common import IconBackgrounds
 
-
+#https://fabrikam.visualstudio.com/DefaultCollection/Fabrikam-Fiber-Git/_apis/build/builds?definitions=25&statusFilter=completed&$top=1&api-version=2.0
 class VSO_API_Templates:
-    getBuilds = "https://{0}.visualstudio.com/defaultcollection/{1}/_apis/build/builds?api-version={2}"
+    getBuilds = "https://{0}.visualstudio.com/defaultcollection/{1}/_apis/build/builds?definitions=1,7&top=50&api-version={2}"
 
 
 class VSO(ITask):
+
+    def get_user_info_from_build(self, build):
+        return build['requests'][0]['requestedFor']
 
     def get_auth(self):
         d = sync_read_status_file()
@@ -40,7 +43,7 @@ class VSO(ITask):
         for build in data['value']:
             if self.is_broken(build):
                 print(build['definition']['name'])
-                print(build['requests'][0]['requestedFor']['displayName'])
+                print(self.get_user_info_from_build(build)['displayName'])
                 if build['definition']['id'] == '7':
                     broken_builds.append(build)
 
@@ -58,7 +61,7 @@ class VSO(ITask):
         return broken_builds
 
     def get_build_info(self):
-        request = Request(VSO_API_Templates.getBuilds.format('pbix', 'powerbiclients', '1.0'))
+        request = Request(VSO_API_Templates.getBuilds.format('pbix', 'powerbiclients', '2.0'))
         auth = self.get_auth()
         username_password = base64.b64encode(("%s:%s" % (auth[0], auth[1])).encode('utf-8')).decode("ascii")
         request.add_header("Authorization", "Basic %s" % username_password)
@@ -87,7 +90,7 @@ class VSO(ITask):
             if not BuildNotifier.build_was_broken():
                 culprits = []
                 for b in broken:
-                    culprits.append(b['requests'][0]['requestedFor'])
+                    culprits.append(self.get_user_info_from_build(b))
                 BuildNotifier.notify_build_break(culprits)
                 BuildNotifier.update_build_status(True)
                 Timeline.add_item_from_bot('BUILD BREAK',
