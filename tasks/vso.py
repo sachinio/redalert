@@ -39,7 +39,7 @@ class VSO(ITask):
 
         for build in data['value']:
             if self.is_broken(build):
-                if build['definition']['name'] == 'pr':
+                if build['definition']['id'] == '7':
                     broken_builds.append(build)
                     print(build)
 
