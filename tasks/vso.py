@@ -43,6 +43,8 @@ class VSO(ITask):
         for build in data['value']:
             print(build['definition']['name'])
             print(self.get_user_info_from_build(build)['displayName'])
+            print(build['status'])
+            print('------------------')
             if self.is_broken(build):
                 broken_builds.append(build)
 
