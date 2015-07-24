@@ -39,7 +39,7 @@ class VSO(ITask):
 
     def is_unique(self, builds, build):
         for b in builds:
-            if b['uniqueName'] == build['uniqueName']:
+            if self.get_user_info_from_build(b)['uniqueName'] == self.get_user_info_from_build(build)['uniqueName']:
                 return False
         return True
 
