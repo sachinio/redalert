@@ -37,18 +37,24 @@ class VSO(ITask):
             return True
         return False
 
-    def get_broken_pr_builds(self, data):
-        broken_builds = []
+    def is_unique(self, builds, build):
+        for b in builds:
+            if b['uniqueName'] == build['uniqueName']:
+                return False
+        return True
+
+    def get_latest_pr_builds(self, data):
+        builds = []
 
         for build in data['value']:
-            print(build['definition']['name'])
-            print(self.get_user_info_from_build(build)['displayName'])
-            print(build['status'])
-            print('------------------')
-            if self.is_broken(build):
-                broken_builds.append(build)
+            if self.is_unique(builds, build):
+                print(build['definition']['name'])
+                print(self.get_user_info_from_build(build)['displayName'])
+                print(build['status'])
+                print('------------------')
+                builds.append(build)
 
-        return broken_builds
+        return builds
 
     def get_broken_master_builds(self, data):
         broken_builds = []
@@ -60,8 +66,8 @@ class VSO(ITask):
                 break
         return broken_builds
 
-    def get_build_info(self, definitionId):
-        request = Request(VSO_API_Templates.getBuilds.format('pbix', 'powerbiclients', definitionId, '10', '2.0'))
+    def get_build_info(self, definitionId, top):
+        request = Request(VSO_API_Templates.getBuilds.format('pbix', 'powerbiclients', definitionId, top, '2.0'))
         auth = self.get_auth()
         username_password = base64.b64encode(("%s:%s" % (auth[0], auth[1])).encode('utf-8')).decode("ascii")
         request.add_header("Authorization", "Basic %s" % username_password)
@@ -70,10 +76,10 @@ class VSO(ITask):
         return json.loads(response)
 
     def __run__(self, time):
-        self.get_broken_pr_builds(self.get_build_info('7'))
-        broken = self.get_broken_master_builds(self.get_build_info('1'))
+        self.get_latest_pr_builds(self.get_build_info('7','50'))
+        brokenMasterBuilds = self.get_broken_master_builds(self.get_build_info('1','5'))
 
-        if len(broken) == 0:
+        if len(brokenMasterBuilds) == 0:
             if BuildNotifier.build_was_broken():
                 BuildNotifier.update_build_status(False)
                 BuildNotifier.notify_all_clear()
@@ -88,14 +94,14 @@ class VSO(ITask):
         else:
             if not BuildNotifier.build_was_broken():
                 culprits = []
-                for b in broken:
+                for b in brokenMasterBuilds:
                     culprits.append(self.get_user_info_from_build(b))
                 BuildNotifier.notify_build_break(culprits)
                 BuildNotifier.update_build_status(True)
                 Timeline.add_item_from_bot('BUILD BREAK',
                                            '{0} broke the build. Change was requested by {1}'.format(
-                                               broken[len(broken) - 1]['buildNumber'],
-                                               broken[len(broken) - 1]['requestedFor']['displayName']),
+                                               brokenMasterBuilds[len(brokenMasterBuilds) - 1]['buildNumber'],
+                                               brokenMasterBuilds[len(brokenMasterBuilds) - 1]['requestedFor']['displayName']),
                                            '',
                                            Icons.Ambulance,
                                            IconBackgrounds.Red)
