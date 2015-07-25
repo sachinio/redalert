@@ -190,7 +190,7 @@ class BuildNotifier:
     units = [
         {
             'id' : 0,
-            'addr' : '00 00 00 00 00 00 FF FF',
+            'addr' : '00 13 A2 00 40 BF 8E 79',
             'email': 'spatney@microsoft.com',
             'room': '3C'
         }
@@ -212,8 +212,10 @@ class BuildNotifier:
                     if 'status' in build:
                         if build['status'] == 'succeeded':
                             print(build['requestedFor']['displayName'] + ' your PR succeeded :)')
+                            NeoPixels.off(unit['addr'])
                         else:
                             print(build['requestedFor']['displayName'] + ' your PR failed :(')
+                            NeoPixels.glow(unit['addr'], '500', '100', '255, 255, 0', '0')
 
     @classmethod
     def notify_build_break(cls, culprits):
