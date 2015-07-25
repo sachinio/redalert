@@ -7,9 +7,8 @@ sys.path.append('/var/www/git/redalert/hardware/watcher/actions')
 import serial
 import time
 import binascii
-import subprocess
-from test_action import LetsParty
-
+from party_actions import LetsParty
+from missile_actions import FireMissile
 
 ser = serial.Serial('/dev/ttyUSB0', baudrate=9600, timeout=1.0)
 s = b''
@@ -18,9 +17,8 @@ s = b''
 def do(command):
     if command == 'party':
         LetsParty().__do__()
-    if command == 'play':
-        print('Firing Missile')
-        subprocess.call(['sudo', 'python3', '/var/www/git/redalert/hardware/missile/missile.py', 'fire', '1'])
+    if command == 'fire':
+        FireMissile().__do__()
 
 while True:
         bytesToRead = ser.inWaiting()

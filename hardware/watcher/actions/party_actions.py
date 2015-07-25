@@ -5,14 +5,7 @@ from common import run_async
 from common import Bot
 from common import ASSETS_FOLDER_PATH
 from common import NeoPixels
-
-
-class IAction:
-    def __init__(self):
-        pass
-
-    def __do__(self):
-        raise Exception('This should be overridden')
+from actions_common import IAction
 
 
 class LetsParty(IAction):
