@@ -35,7 +35,7 @@ void loop() {
     if (reading != buttonState) {
       buttonState = reading;
 
-      if (buttonState == HIGH) {
+      if (buttonState == LOW) {
         send("fire");
       }
     }

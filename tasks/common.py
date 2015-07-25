@@ -211,15 +211,17 @@ class BuildNotifier:
                 if build['requestedFor']['uniqueName'] == unit['email']:
                     print(build['status'])
                     if 'status' in build:
-                        if build['status'] == 'succeeded':
-                            print(build['requestedFor']['displayName'] + ' your PR succeeded :)')
-                            NeoPixels.off(unit['addr'])
+                        if build['status'] == 'completed':
+                            if 'result' in build:
+                                if build['result'] == 'succeeded':
+                                    print(build['requestedFor']['displayName'] + ' your PR succeeded :)')
+                                    NeoPixels.off(unit['addr'])
+                                else:
+                                    print(build['requestedFor']['displayName'] + ' your PR failed :(')
+                                    NeoPixels.glow(unit['addr'], '500', '100', '255, 255, 0', '0')
                         elif build['status'] == 'inProgress':
                             print(build['requestedFor']['displayName'] + ' your PR succeeded :)')
                             NeoPixels.running(unit['addr'],'100','20','0,255,0','0')
-                        else:
-                            print(build['requestedFor']['displayName'] + ' your PR failed :(')
-                            NeoPixels.glow(unit['addr'], '500', '100', '255, 255, 0', '0')
 
     @classmethod
     def notify_build_break(cls, culprits):
