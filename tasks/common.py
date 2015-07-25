@@ -221,8 +221,8 @@ class BuildNotifier:
                                     print(build['requestedFor']['displayName'] + ' your PR failed :(')
                                     NeoPixels.glow(unit['addr'], '500', '100', '255, 255, 0', '0')
                         elif build['status'] == 'inProgress':
-                            print(build['requestedFor']['displayName'] + ' your PR succeeded :)')
-                            NeoPixels.running(unit['addr'],'100','20','0,255,0','0')
+                            print(build['requestedFor']['displayName'] + ' your PR is in progress :)')
+                            NeoPixels.running(unit['addr'], '100', '20', '0,255,0', '0')
                         else:
                             print('Unknown status')
 
