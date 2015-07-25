@@ -209,6 +209,7 @@ class BuildNotifier:
         for build in builds:
             for unit in cls.units:
                 if build['requestedFor']['uniqueName'] == unit['email']:
+                    print(build['status'])
                     if 'status' in build:
                         if build['status'] == 'succeeded':
                             print(build['requestedFor']['displayName'] + ' your PR succeeded :)')
