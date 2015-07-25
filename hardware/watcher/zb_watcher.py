@@ -19,6 +19,7 @@ def do(command):
     if command == 'party':
         LetsParty().__do__()
     if command == 'play':
+        print('Firing Missile')
         subprocess.call(['sudo', 'python3', '/var/www/git/redalert/hardware/missile/missile.py', 'fire', '1'])
 
 while True:
