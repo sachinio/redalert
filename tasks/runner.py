@@ -30,10 +30,12 @@ tasks = [VSO(), Joker(), StockTicker(), DaysToGA(), WeatherTask()]
 
 time_info_list = datetime.now().strftime('%H,%M').split(',')
 
-options = {'hour': time_info_list[0], 'min': time_info_list[1]}
+options = {'hour': time_info_list[0], 'min': time_info_list[1], 'simulate': False}
 
-if len(sys.argv) == 3:  # This is for testing the runner with a specific time
+if len(sys.argv) >= 3:  # This is for testing the runner with a specific time
     options = {'hour': sys.argv[1], 'min': sys.argv[2]}
+if len(sys.argv) == 4:
+    options['simulate'] = True
 
 for task in tasks:
     threading.Thread(target=task.__run__,

@@ -13,6 +13,13 @@ from common import safe_read_dictionary
 from common import Icons
 from common import IconBackgrounds
 
+dummyBreak = [{
+    'buildNumber': '42',
+    'requestedFor': {
+        'displayName': 'Sachin Patney',
+        'uniqueName': 'spatney@microsoft.com'
+    }
+}]
 
 class VSO_API_Templates:
     getBuilds = "https://{0}.visualstudio.com/defaultcollection/{1}/_apis/build/builds?definitions={2}&$top={3}&api-version={4}"
@@ -74,8 +81,12 @@ class VSO(ITask):
         return json.loads(response)
 
     def __run__(self, time):
-        BuildNotifier.notify_pr_build_results(self.get_latest_pr_build_results(self.get_build_info('7','50')))
-        brokenMasterBuilds = self.get_broken_master_builds(self.get_build_info('1','5'))
+        # 7 == PR Build & 1 == master
+        if time['simulate'] is not True:
+            BuildNotifier.notify_pr_build_results(self.get_latest_pr_build_results(self.get_build_info('7','50')))
+            brokenMasterBuilds = self.get_broken_master_builds(self.get_build_info('1','5'))
+        else:
+            brokenMasterBuilds = dummyBreak
 
         if len(brokenMasterBuilds) == 0:
             if BuildNotifier.build_was_broken():
