@@ -14,7 +14,7 @@ from common import Icons
 from common import IconBackgrounds
 
 dummyBreak = [{
-    'buildNumber': '42',
+    'buildNumber': 'Simulating build break',
     'requestedFor': {
         'displayName': 'Sachin Patney',
         'uniqueName': 'spatney@microsoft.com'
