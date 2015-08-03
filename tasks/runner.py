@@ -33,7 +33,7 @@ time_info_list = datetime.now().strftime('%H,%M').split(',')
 options = {'hour': time_info_list[0], 'min': time_info_list[1], 'simulate': False}
 
 if len(sys.argv) >= 3:  # This is for testing the runner with a specific time
-    options = {'hour': sys.argv[1], 'min': sys.argv[2]}
+    options = {'hour': sys.argv[1], 'min': sys.argv[2], 'simulate': False}
 if len(sys.argv) == 4:
     options['simulate'] = True
 
