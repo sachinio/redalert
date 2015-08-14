@@ -11,6 +11,7 @@ import threading
 
 from urllib.request import urlopen
 from urllib.request import Request
+import re
 from threading import Lock
 
 REPOSITORY_ROOT = '/var/www/git/redalert'
@@ -314,13 +315,17 @@ class Timeline:
         Timeline.add_item('Redbull', title, content, img, icon, icon_back)
 
     @classmethod
-    def add_item(cls, name, title, content, img, icon, icon_back, http):
+    def add_item(cls, name, title, content, img, icon, icon_back):
         if name == '':
             name = 'unknown'
         if img is not None and img != '':
-            img = '{0}/{1}/{2}'.format('../../../uploads', name.lower(), img)
-        if http is not None and http != '':
-            img = http
+            urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+',
+                              img)
+            if len(urls) > 0:
+                img = urls[0]
+            else:
+                img = '{0}/{1}/{2}'.format('../../../uploads', name.lower(), img)
+
         list_item = {
             "name": name,
             "title": title,
