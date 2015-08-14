@@ -28,9 +28,10 @@ class Github(ITask):
 
                     Timeline.add_item_from_bot(i['user']['login'] + ' reported an issue',
                                                i['title'],
-                                               link,
+                                               '',
                                                Icons.Github,
-                                               IconBackgrounds.Yellow)
+                                               IconBackgrounds.Yellow,
+                                               link)
                 issues.append(i['id'])
         self.writeReportedIssues(issues)
         print(self.getReportedIssues())

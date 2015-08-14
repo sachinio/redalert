@@ -314,11 +314,13 @@ class Timeline:
         Timeline.add_item('Redbull', title, content, img, icon, icon_back)
 
     @classmethod
-    def add_item(cls, name, title, content, img, icon, icon_back):
+    def add_item(cls, name, title, content, img, icon, icon_back, http):
         if name == '':
             name = 'unknown'
         if img is not None and img != '':
             img = '{0}/{1}/{2}'.format('../../../uploads', name.lower(), img)
+        if http is not None and http != '':
+            img = http
         list_item = {
             "name": name,
             "title": title,
