@@ -43,7 +43,7 @@ class Github(ITask):
     def writeReportedIssues(cls, issues):
         str = ''
         for issue in issues:
-            str += issue + ' '
+            str += str(issue) + ' '
         sync_write_to_status_file('issues', str)
 
 Github().__run__(None)
