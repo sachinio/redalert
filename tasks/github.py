@@ -1,6 +1,7 @@
 from common import ITask
 import json
 import base64
+import re
 from common import safe_read_dictionary
 from common import sync_read_status_file
 from common import sync_write_to_status_file
@@ -19,9 +20,15 @@ class Github(ITask):
         for i in info:
             if safe_read_dictionary(i, 'pull_request') is None:
                 if str(i['id']) not in curr:
-                    Timeline.add_item_from_bot('Issue Reported: ' + i['title'],
-                                               i['body'],
-                                               i['user']['login'],
+                    urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+',
+                                      i['body'])
+                    link = ''
+                    if len(urls) > 0:
+                        link = urls[0]
+
+                    Timeline.add_item_from_bot(i['user']['login'] + ' reported an issue',
+                                               i['title'],
+                                               link,
                                                Icons.Github,
                                                IconBackgrounds.Yellow)
                 issues.append(i['id'])
