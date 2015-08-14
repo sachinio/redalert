@@ -9,7 +9,12 @@ from urllib.request import Request
 
 class Github(ITask):
     def __run__(self, time):
-        print(self.get_build_info())
+        info = self.get_build_info()
+        for i in info:
+            print(i['id'])
+            print(i['title'])
+            print(i['user']['login'])
+
 
     def get_auth(self):
         d = sync_read_status_file()
