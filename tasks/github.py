@@ -40,7 +40,10 @@ class Github(ITask):
         return json.loads(response)
 
     def getReportedIssues(cls):
-        return safe_read_dictionary(sync_read_status_file(), 'issues').split()
+        i = safe_read_dictionary(sync_read_status_file(), 'issues')
+        if i is None:
+            i = ''
+        return i.split()
 
     def writeReportedIssues(cls, issues):
         s = ''
