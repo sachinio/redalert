@@ -11,7 +11,7 @@ class Github(ITask):
     def __run__(self, time):
         info = self.get_build_info()
         for i in info:
-            if safe_read_dictionary(i['pull_request']) is None:
+            if safe_read_dictionary(i,'pull_request') is None:
                 print(i['id'])
                 print(i['title'])
                 print(i['user']['login'])
