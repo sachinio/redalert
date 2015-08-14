@@ -32,6 +32,7 @@ class Icons:
     Cloud = 'fa-cloud'
     LineChart = 'fa-line-chart'
     Wrench = 'fa-wrench'
+    Github = 'fa-github'
 
 
 class IconBackgrounds:

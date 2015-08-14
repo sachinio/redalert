@@ -7,6 +7,9 @@ from common import sync_write_to_status_file
 
 from urllib.request import urlopen
 from urllib.request import Request
+from common import Icons
+from common import IconBackgrounds
+from common import Timeline
 
 class Github(ITask):
     def __run__(self, time):
@@ -16,9 +19,11 @@ class Github(ITask):
         for i in info:
             if safe_read_dictionary(i, 'pull_request') is None:
                 if str(i['id']) not in curr:
-                    print(i['id'])
-                    print(i['title'])
-                    print(i['user']['login'])
+                    Timeline.add_item_from_bot('Issue Reported: ' + i['title'],
+                                               i['body'],
+                                               i['user']['login'],
+                                               Icons.Github,
+                                               IconBackgrounds.Yellow)
                 issues.append(i['id'])
         self.writeReportedIssues(issues)
         print(self.getReportedIssues())
