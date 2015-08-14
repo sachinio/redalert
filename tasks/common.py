@@ -322,7 +322,7 @@ class Timeline:
             urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+',
                               img)
             if len(urls) > 0:
-                img = urls[0]
+                img = urls[0].replace(')', '')
             else:
                 img = '{0}/{1}/{2}'.format('../../../uploads', name.lower(), img)
 
