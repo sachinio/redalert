@@ -55,5 +55,3 @@ class Github(ITask):
         for issue in issues:
             s += str(issue) + ' '
         sync_write_to_status_file('issues', s)
-
-Github().__run__(None)

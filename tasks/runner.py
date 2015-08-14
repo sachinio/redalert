@@ -25,8 +25,9 @@ from jokes import Joker
 from stock import StockTicker
 from days_to_ga import DaysToGA
 from weather import WeatherTask
+from github import  Github
 
-tasks = [VSO(), Joker(), StockTicker(), WeatherTask()]
+tasks = [VSO(), Joker(), StockTicker(), WeatherTask(), Github()]
 
 time_info_list = datetime.now().strftime('%H,%M').split(',')
 
