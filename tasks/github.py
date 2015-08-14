@@ -12,11 +12,13 @@ class Github(ITask):
     def __run__(self, time):
         info = self.get_build_info()
         issues = []
+        curr = self.getReportedIssues()
         for i in info:
             if safe_read_dictionary(i, 'pull_request') is None:
-                print(i['id'])
-                print(i['title'])
-                print(i['user']['login'])
+                if str(i['id']) not in curr:
+                    print(i['id'])
+                    print(i['title'])
+                    print(i['user']['login'])
                 issues.append(i['id'])
         self.writeReportedIssues(issues)
         print(self.getReportedIssues())
