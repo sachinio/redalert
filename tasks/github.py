@@ -41,9 +41,9 @@ class Github(ITask):
         return safe_read_dictionary(sync_read_status_file(), 'issues').split()
 
     def writeReportedIssues(cls, issues):
-        str = ''
+        s = ''
         for issue in issues:
-            str += str(issue) + ' '
-        sync_write_to_status_file('issues', str)
+            s += str(issue) + ' '
+        sync_write_to_status_file('issues', s)
 
 Github().__run__(None)
