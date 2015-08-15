@@ -20,9 +20,18 @@ class Github(ITask):
         for i in info:
             if safe_read_dictionary(i, 'pull_request') is None:
                 if str(i['id']) not in curr:
+                    urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+',
+                                      i['body'])
+
+                    img = i['body']
+                    bodyText = i['body']
+                    if len(urls) > 0:
+                        img = urls[0]
+                        bodyText = bodyText.replace(img, '')
+
                     Timeline.add_item_from_bot(i['user']['login'] + ' reported an issue',
-                                               i['title'],
-                                               i['body'],
+                                               i['title'] + '. ' + bodyText,
+                                               img,
                                                Icons.Github,
                                                IconBackgrounds.Yellow,)
                 issues.append(i['id'])
