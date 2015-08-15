@@ -23,7 +23,7 @@ class Github(ITask):
                     urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+',
                                       i['body'])
 
-                    img = i['body']
+                    img = ''
                     bodyText = i['body']
                     if len(urls) > 0:
                         img = urls[0]
