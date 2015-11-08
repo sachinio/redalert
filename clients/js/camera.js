@@ -22,6 +22,21 @@ var center = function(){
     send(0,1,800);
 };
 
+run = function (addr, cmd, del, bri, rgb, tout) {
+    var getCmd = "../hardware/lights/lights_cmd.php?cmd=" + cmd + "&del=" + del + "&bri="
+        + bri + "&rgb=" + rgb + "&tout=" + tout + '&addr="' + addr + '"';
+    console.log('sending command');
+    $.get(getCmd, function (d) {
+        console.log(d);
+    });
+};
+
+var on = false;
+var laser = function(){
+    on = !on;
+    run('00 00 00 00 00 00 FF FF','R',on?'R':'O','100','255,0,0','0');
+}
+
 var record = function(){
     var rec = $('#record');
     var state = rec.attr('record');
