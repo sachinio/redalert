@@ -34,7 +34,7 @@ run = function (addr, cmd, del, bri, rgb, tout) {
 var on = false;
 var laser = function(){
     on = !on;
-    run('00 00 00 00 00 00 FF FF','R',on?'R':'O','100','255,0,0','0');
+    run('00 00 00 00 00 00 FF FF',on?'R':'O','0','100','255,0,0','0');
 }
 
 var record = function(){
