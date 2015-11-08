@@ -1,4 +1,4 @@
-.camControl .top, .bottom, #record{
+.camControl .top, .bottom, #record, #laser{
     display: block;
     width: 311px;
 }
